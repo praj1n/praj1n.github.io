@@ -252,7 +252,7 @@
       Your browser does not support the video tag.
     </video>
     <section id="image-reveal-slider" class="w-full min-h-screen bg-black flex items-center justify-center p-6">
-      <div class="flex flex-col md:flex-row items-center gap-10">
+      <div class="flex flex-col lg:flex-row items-center justify-center w-full gap-10">
         <!-- Text Section -->
         <div class="text-left max-w-md">
           <h1 class="text-4xl font-extrabold text-[#8B8EE2] leading-tight">Clarity Comparison</h1>
@@ -261,7 +261,7 @@
         </div>
     
         <!-- Slider Section -->
-        <div class="relative slider-container ml-auto mr-6" id="sliderContainer">
+        <div class="relative slider-container" id="sliderContainer">
           <div class="image-wrapper">
             <img src="assests/images/logo/blurry.PNG" alt="Blurry Image">
             <img src="assests/images/logo/highres.PNG" class="top-image" id="topImage" alt="Clear Image">
@@ -284,15 +284,26 @@
         }
     
         .slider-container {
-          position: relative;
-          width: 100%;
-          max-width: 900px;
-          height: 400px;
-          aspect-ratio: 16 / 9;
-          overflow: hidden;
-          user-select: none;
-          border-radius: 1rem;
-        }
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  user-select: none;
+  border-radius: 1rem;
+  padding: 0;
+}
+
+@media (min-width: 768px) {
+  .slider-container {
+    width: 700px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .slider-container {
+    width: 1000px;
+  }
+}
     
         .image-wrapper img {
           position: absolute;
