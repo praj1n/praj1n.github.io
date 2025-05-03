@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Skterabytes - Premium TVs</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display+Condensed:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@900;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  
+
+
+
+
+  <style>
+    @layer base {
+    :root {
+      --primary-color: #8B8EE2;
+      --secondary-color: #F96E59;
+    }
+  }
+  .fade-in {
+      opacity: 0;
+      animation: fadeIn 2s ease-in-out forwards;
+      animation-delay: 1s;
+    }
+    
+
+    .white-fade {
+      animation: fadeOut 2s ease-in-out forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+    body {
+      font-family: 'Geist', sans-serif;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent }
+    }
+
+    .typewriter-text {
+      display: inline-block;
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 2px solid #F96E59;
+      animation: typing 3s steps(30, end), blink 0.75s step-end infinite;
+    }
+
+    .active {
+      color: #F96E59;
+      font-weight: 700;
+    }
+
+    .fade-in-element {
+      opacity: 0;
+      transition: opacity 1s ease-out;
+    }
+
+    .fade-in-visible {
+      opacity: 1;
+    }
+
+    @keyframes slideInText {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+      
+    }
+
+    .animated-overlay-text {
+      animation: slideInText 1.2s ease-out forwards;
+      font-family: 'Inter', sans-serif;
+    }
+    .sidebar a {
+  font-family: 'Permanent Marker', cursive !important;
+}
+
+
+  </style>
+</head>
+<body class="bg-white text-gray-900 leading-relaxed">
+    <style>
+        .fade-in-visible {
+          opacity: 1 !important;
+        }
+        @keyframes slideFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateX(0%) translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0%) translateY(0);
+  }
+}
+
+.custom-slide-in {
+  animation: slideFadeIn 1.5s ease-out forwards;
+  opacity: 0;
+}
+
+      </style>
+      
+    <!-- Navbar -->
+<nav class="bg-white py-3 w-full z-50 shadow-none">
+  <div class="container mx-auto px-6 flex items-center justify-between relative">
+    <!-- Logo -->
+    <div class="flex-shrink-0">
+      <img src="assests/images/logo/skterabytes-logo.png" alt="Skterabytes Logo" class="h-20 md:h-28">
+    </div>
+
+    <!-- Center Navlinks -->
+    <div class="absolute left-1/2 transform -translate-x-1/2 hidden md:flex space-x-6 text-[14px] font-[600] font-[Geist]">
+      <a href="index.html" class="text-gray-900 hover:text-[#8B8EE2] font-[Raleway] border-b-2 border-[#F96E59]">HOME</a>
+      <a href="models.html" class="text-gray-900 hover:text-[#8B8EE2] font-[Raleway]">TV MODELS</a>
+      <a href="support.html" class="text-gray-900 hover:text-[#8B8EE2] font-[Raleway]">SUPPORT</a>
+      <a href="about.html" class="text-gray-900 hover:text-[#8B8EE2] font-[Raleway]">ABOUT</a>
+      <a href="contact.html" class="text-gray-900 hover:text-[#8B8EE2] font-[Raleway]">CONTACT</a>
+    </div>
+
+    <!-- Search Bar -->
+<div class="hidden md:flex items-center space-x-2 relative w-full max-w-[250px]">
+  <input 
+    type="text" 
+    id="searchInput"
+    placeholder="Search models..." 
+    class="border border-gray-300 rounded-full px-4 py-2 text-sm w-full focus:outline-none focus:ring-2 focus:ring-[#8B8EE2]">
+  
+  <!-- Suggestions Dropdown -->
+  <ul id="suggestions" class="absolute top-full mt-2 w-full bg-white border border-gray-200 rounded-xl shadow-xl hidden z-50 transition-all duration-300 ease-in-out">
+    <!-- Suggestions will be injected here -->
+  </ul>
+</div>
+
+    <!-- Mobile Menu Button -->
+    <!-- Mobile Icons (Visible only on small screens) -->
+<div class="flex items-center space-x-4 md:hidden">
+  <!-- Search Icon -->
+  <div id="mobileSearchTrigger" class="cursor-pointer">
+    <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 104.5 4.5a7.5 7.5 0 0012.15 12.15z" />
+    </svg>
+  </div>
+
+  <!-- Hamburger Menu Button -->
+  <button id="menuBtn" class="text-3xl">☰</button>
+</div>
+
+</nav>
+       
+
+
+
+  <!-- Mobile Sidebar -->
+  <div id="mobileMenu" class="md:hidden fixed top-0 right-0 h-full w-64 bg-white shadow-lg transform translate-x-full transition-transform duration-300 z-50">
+    <div class="flex justify-between items-center px-6 py-5 border-b">
+      <h2 class="text-lg font-['Exo_2']">MENU</h2>
+      <button id="closeMenu" class="text-2xl">×</button>
+    </div>
+    <div class="flex flex-col space-y-4 p-4 text-[15px] font-[600] font-[Raleway]">
+      <a href="index.html" id="homeLinkMobile" class="text-gray-900 hover:text-[#8B8EE2] transition-colors font-[Raleway] relative inline-block active-link border-b-2 border-[#F96E59]">HOME</a>
+      <a href="models.html" id="modelsLinkMobile" class="text-gray-900 hover:text-[#8B8EE2] transition-colors font-[Raleway] relative inline-block active-link">TV MODELS</a>
+      <a href="support.html" id="supportLinkMobile" class="text-gray-900 hover:text-[#8B8EE2] transition-colors font-[Raleway] relative inline-block active-link">SUPPORT</a>
+      <a href="about.html" id="aboutLinkMobile" class="text-gray-900 hover:text-[#8B8EE2] transition-colors font-[Raleway] relative inline-block active-link ">ABOUT</a>
+      <a href="contact.html" id="contactLinkMobile" class="text-gray-900 hover:text-[#8B8EE2] transition-colors font-[Raleway] relative inline-block active-link">CONTACT</a>
+    </div>
+  </div>
+    <!-- Mobile Search Bar -->
+<div id="mobileSearchContainer" class="md:hidden px-6 py-4 hidden">
+  <input 
+    type="text" 
+    id="mobileSearchInput"
+    placeholder="Search models..." 
+    class="border border-gray-300 rounded-full px-4 py-2 text-sm w-full focus:outline-none focus:ring-2 focus:ring-[#8B8EE2]">
+
+  <!-- Suggestions Dropdown -->
+  <ul id="mobileSuggestions" class="mt-2 w-full bg-white border border-gray-200 rounded-xl shadow-xl hidden z-50 transition-all duration-300 ease-in-out">
+    <!-- Suggestions will be injected here -->
+  </ul>
+</div>
+
+</nav>
+
+<!-- Hero Section -->
+<section class="relative bg-white min-h-screen flex items-center justify-center text-center px-4">
+
+  <!-- Background Video -->
+  <video autoplay muted loop playsinline
+         class="absolute top-0 left-0 w-full h-full object-cover fade-in z-0">
+    <source src="assests/videos/sony2.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- White overlay -->
+  <div class="absolute top-0 left-0 w-full h-full bg-white z-10 white-fade"></div>
+
+  <!-- Hero Text Overlay -->
+<div class="absolute z-20 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-white px-4">
+  <div class="flex justify-center items-center mb-6">
+    <h1 class="text-4xl md:text-6xl font-[Poppins] text-[#8B8EE2] drop-shadow-md">Experience</h1>
+    <h1 class="text-4xl md:text-6xl font-[Poppins] text-[#8B8EE2] ml-2 drop-shadow-md">Television</h1>
+  </div>
+  
+  <h2 class="text-4xl md:text-6xl font-[Poppins] text-[#8B8EE2] drop-shadow-md -mt-4">Excellence</h2>
+  <p id="typingText" class="text-2xl text-[#F96E59] mb-10 h-10 typewriter-text mt-4"></p>
+</div>
+
+<!-- Separate Browse TVs Button -->
+<a href="models.html"
+   class="absolute z-20 top-[61%] left-1/2 transform -translate-x-1/2 bg-[#8B8EE2] text-white px-8 py-4 rounded-full text-xl hover:bg-[#F96E59] transition-all duration-300">
+   Browse TVs
+</a>
+
+
+
+</section>
+
+
+
+<!-- First Video Section -->
+<section id="videoSection" >
+    <video autoplay muted loop playsinline class="w-full h-[90vh] object-cover">
+      <source src="assests/videos/S90d.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <section id="image-reveal-slider" class="w-full min-h-screen bg-black flex items-center justify-center p-6">
+      <div class="flex flex-col md:flex-row items-center gap-10">
+        <!-- Text Section -->
+        <div class="text-left max-w-md">
+          <h1 class="text-4xl font-extrabold text-[#8B8EE2] leading-tight">Clarity Comparison</h1>
+          <p class="text-lg text-gray-300 mt-4">Drag the slider to reveal image clarity. A quick view of how quality transforms visuals.</p>
+          <p class="text-md text-gray-400 mt-2">This feature helps you compare before-and-after effects with ease and style.</p>
+        </div>
+    
+        <!-- Slider Section -->
+        <div class="relative slider-container ml-auto mr-6" id="sliderContainer">
+          <div class="image-wrapper">
+            <img src="assests/images/logo/blurry.PNG" alt="Blurry Image">
+            <img src="assests/images/logo/highres.PNG" class="top-image" id="topImage" alt="Clear Image">
+          </div>
+    
+          <!-- Slider Bar -->
+          <div class="slider-bar" id="sliderBar" style="left: 50%;">
+            <!-- Center Circle -->
+            <div class="slider-circle"></div>
+            <!-- Arrows -->
+            <div class="arrow-wrapper arrow-left">‹</div>
+            <div class="arrow-wrapper arrow-right">›</div>
+          </div>
+        </div>
+      </div>
+    
+      <style>
+        body {
+          font-family: 'Poppins', sans-serif;
+        }
+    
+        .slider-container {
+          position: relative;
+          width: 100%;
+          max-width: 900px;
+          height: 400px;
+          aspect-ratio: 16 / 9;
+          overflow: hidden;
+          user-select: none;
+          border-radius: 1rem;
+        }
+    
+        .image-wrapper img {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+          border-radius: 1rem;
+        }
+    
+        .top-image {
+          clip-path: inset(0 50% 0 0);
+          transition: clip-path 0.1s ease-out;
+        }
+    
+        .slider-bar {
+          position: absolute;
+          top: 0;
+          width: 6px;
+          height: 100%;
+          background-color: #8B8EE2;
+          cursor: ew-resize;
+          z-index: 10;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+    
+        .arrow-wrapper {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          font-size: 50px;
+          color: #8B8EE2;
+          font-weight: bold;
+          animation: blink 1.5s infinite ease-in-out;
+          user-select: none;
+          pointer-events: none;
+        }
+    
+        .arrow-left {
+          left: -33px;
+        }
+    
+        .arrow-right {
+          right: -33px;
+        }
+    
+        @keyframes blink {
+          0%, 100% { opacity: 0.3; transform: translateY(-50%) scale(1); }
+          50% { opacity: 1; transform: translateY(-50%) scale(1.15); }
+        }
+    
+        .slider-circle {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 30px;
+          height: 30px;
+          background-color: white;
+          border: 4px solid #8B8EE2;
+          border-radius: 9999px;
+          z-index: 20;
+        }
+      </style>
+    
+      <script>
+        const sliderContainer = document.getElementById('sliderContainer');
+        const topImage = document.getElementById('topImage');
+        const sliderBar = document.getElementById('sliderBar');
+    
+        let isDragging = false;
+    
+        function updateSlider(x) {
+          const rect = sliderContainer.getBoundingClientRect();
+          let offsetX = x - rect.left;
+    
+          offsetX = Math.max(0, Math.min(offsetX, rect.width));
+          const percent = (offsetX / rect.width) * 100;
+    
+          topImage.style.clipPath = `inset(0 ${100 - percent}% 0 0)`;
+          sliderBar.style.left = `${offsetX}px`;
+        }
+    
+        sliderBar.addEventListener('mousedown', () => {
+          isDragging = true;
+          document.body.style.cursor = 'ew-resize';
+        });
+    
+        document.addEventListener('mouseup', () => {
+          isDragging = false;
+          document.body.style.cursor = 'default';
+        });
+    
+        document.addEventListener('mousemove', (e) => {
+          if (!isDragging) return;
+          updateSlider(e.clientX);
+        });
+    
+        // Touch events for mobile
+        sliderBar.addEventListener('touchstart', () => {
+          isDragging = true;
+        });
+    
+        document.addEventListener('touchend', () => {
+          isDragging = false;
+        });
+    
+        document.addEventListener('touchmove', (e) => {
+          if (!isDragging) return;
+          const touch = e.touches[0];
+          updateSlider(touch.clientX);
+        });
+      </script>
+    </section>
+    
+  
+  
+
+
+<!-- Static Image Section -->
+<section class="py-0 bg-white relative">
+    <div class="bg-black px-4 sm:px-12 md:px-20 lg:px-32">
+      <div class="w-full max-w-6xl mx-auto relative">
+        <img src="assests/images/logo/image8.jpg" alt="Premium TV Display" class="fade-in-on-scroll opacity-0 transition-opacity duration-3000 w-full">
+  
+      
+      <!-- Typewriter text below image -->
+      <div class="custom-slide-in absolute bottom-4 left-[16%] transform -translate-x-1/2 text-white text-xl font-[Geist] whitespace-nowrap">
+        
+      </div>
+      
+    </div>
+  </section>
+  
+ 
+<!-- Spacer -->
+<section class="bg-black w-full h-[0px] mt-0"></section>
+
+<!-- second Video Section -->
+<section id="videoSection" >
+  <video autoplay muted loop playsinline class="w-full h-[90vh] object-cover">
+    <source src= "assests/videos/S95d.mp4"type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</section>
+
+<!-- Text Section -->
+<section class="bg-black py-20 text-center">
+  <h2 class="text-4xl md:text-5xl font-[Poppins] text-[#8B8EE2]">Every Pixel Tells a Story</h2>
+  <p class="mt-6 max-w-3xl mx-auto text-lg text-gray-300">
+    Step into a world where color meets clarity. Our next-gen OLED TVs bring cinema-level brilliance straight to your living room — sleek, smart, and crafted for immersive storytelling.
+  </p>
+</section>
+
+<!-- third Video Section -->
+<section class="relative">
+  <video autoplay muted loop playsinline class="w-full h-[90vh] object-cover">
+    <source src="assests/videos/Wow.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <div class="absolute bottom-7 left-7 text-white font-[Orbitron] animated-overlay-text text-sm sm:text-base md:text-lg leading-relaxed">
+    <p class="mb-1"> Every angle, Every frame, Every TV</p>
+    <p class="mb-1">Designed to impress with unmatched clarity</p>
+    <p>Discover the difference with stunning visual brilliance</p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="bg-[#8B8EE2] py-16 text-center text-white">
+  <h2 class="text-3xl font-[Poppins] mb-6">Upgrade Your Viewing Experience Today!</h2>
+  <p class="text-lg mb-8">Browse our premium TV collection now and transform your home entertainment.</p>
+  <a href="contact.html" class="bg-white text-[#8B8EE2] px-8 py-4 rounded-full text-xl hover:bg-[#F96E59] hover:text-white transition-all duration-300">Contact us</a>
+</section>
+
+<!-- Footer -->
+<footer class="bg-black text-white py-12">
+  <div class="container mx-auto px-6">
+    <div class="flex flex-col md:flex-row justify-between items-center">
+      <div class="mb-6 md:mb-0">
+        <img src="assests/images/logo/skterabytes-logo.png" alt="Skterabytes Logo" class="h-28">
+        <p class="mt-2 text-gray-400">Innovating your viewing experience</p>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Company</h3>
+          <ul class="space-y-2">
+            <li><a href="about.html" class="text-gray-400 hover:text-white">About Us</a></li>
+            <li><a href="models.html" class="text-gray-400 hover:text-white">Products</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Support</h3>
+          <ul class="space-y-2">
+            <li><a href="support.html" class="text-gray-400 hover:text-white">Help Center</a></li>
+            <li><a href="contact.html" class="text-gray-400 hover:text-white">Contact Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Legal</h3>
+          <ul class="space-y-2">
+            <li><a href="privacy.html" class="text-white">Privacy Policy</a></li>
+            <li><a href="terms.html" class="text-gray-400 hover:text-white">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+      <p>© 2025 Skterabytes. All rights reserved.</p>
+      <p class="mt-2 text-sm">Last Updated: April 28, 2025</p>
+    </div>
+  </div>
+</footer>
+
+  </div>
+</footer>
+
+<!-- Scripts -->
+<script>
+  const mobileSearchInput = document.getElementById("mobileSearchInput");
+  const mobileSuggestions = document.getElementById("mobileSuggestions");
+
+  const allModels = [
+    "Sony X95K", "Samsung S95D", "LG C3", "TCL Q10G"
+    // add more if needed
+  ];
+
+  // Show suggestions
+  mobileSearchInput.addEventListener("input", () => {
+    const query = mobileSearchInput.value.toLowerCase();
+    mobileSuggestions.innerHTML = "";
+
+    if (query === "") {
+      mobileSuggestions.classList.add("hidden");
+      return;
+    }
+
+    const matches = allModels.filter(model =>
+      model.toLowerCase().includes(query)
+    );
+
+    if (matches.length > 0) {
+      mobileSuggestions.classList.remove("hidden");
+      matches.forEach(model => {
+        const li = document.createElement("li");
+        li.textContent = model;
+        li.className = "px-4 py-2 hover:bg-[#8B8EE2] hover:text-white cursor-pointer rounded-md";
+        li.addEventListener("click", () => {
+          window.location.href = "models.html";
+        });
+        mobileSuggestions.appendChild(li);
+      });
+    } else {
+      mobileSuggestions.classList.add("hidden");
+    }
+  });
+
+  // Handle enter key
+  mobileSearchInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault(); // prevent form submission or page reload
+      window.location.href = "models.html";
+    }
+  });
+
+
+
+  
+
+  // Utility: update suggestion list
+  function updateSuggestions(input, listId) {
+    const query = input.value.toLowerCase();
+    const suggestionsList = document.getElementById(listId);
+    suggestionsList.innerHTML = '';
+
+    if (query === '') {
+      suggestionsList.classList.add('hidden');
+      return;
+    }
+
+    const matchedModels = models.filter(model => model.toLowerCase().startsWith(query));
+
+    matchedModels.forEach(model => {
+      const li = document.createElement('li');
+      li.textContent = model;
+      li.className = "px-4 py-2 cursor-pointer hover:bg-gray-100 rounded-xl";
+      li.onclick = () => {
+        const fileName = model.toLowerCase().replace(/ /g, "-") + ".html";
+        window.location.href = fileName;
+      };
+      suggestionsList.appendChild(li);
+    });
+
+    suggestionsList.classList.remove('hidden');
+  }
+
+  // Desktop search
+  const desktopInput = document.getElementById('searchInput');
+  if (desktopInput) {
+    desktopInput.addEventListener('input', () => updateSuggestions(desktopInput, 'suggestions'));
+  }
+
+  // Mobile search
+  const mobileInput = document.getElementById('mobileSearchInput');
+  if (mobileInput) {
+    mobileInput.addEventListener('input', () => updateSuggestions(mobileInput, 'mobileSuggestions'));
+  }
+
+  // Toggle mobile search bar
+  const mobileSearchTrigger = document.getElementById('mobileSearchTrigger');
+  const mobileSearchContainer = document.getElementById('mobileSearchContainer');
+
+  mobileSearchTrigger.addEventListener('click', () => {
+    mobileSearchContainer.classList.toggle('hidden');
+  });
+
+
+  const searchInput = document.getElementById('searchInput');
+  const suggestionsBox = document.getElementById('suggestions');
+
+  const modelNames = [
+    { name: "Sony Bravia XR A80L", url: "models/tv1.html" },
+    { name: "Samsung OLED S95D", url: "models/tv2.html" },
+    { name: "LG OLED G3", url: "models/tv3.html" },
+    { name: "TCL QLED C845", url: "models/tv4.html" },
+    { name: "Samsung Neo QLED QN90C", url: "models/tv5.html" },
+    { name: "Sony X90L", url: "models/tv6.html" },
+    { name: "Panasonic MZ2000", url: "models/tv7.html" },
+    { name: "OnePlus Q2 Pro", url: "models/tv8.html" },
+    { name: "Hisense U7K", url: "models/tv9.html" },
+    { name: "Vu Masterpiece QLED", url: "models/tv10.html" },
+    { name: "Toshiba C350LP", url: "models/tv11.html" }
+  ];
+
+  searchInput.addEventListener('input', () => {
+    const inputVal = searchInput.value.toLowerCase();
+    suggestionsBox.innerHTML = '';
+
+    if (inputVal.length === 0) {
+      suggestionsBox.classList.add('hidden');
+      return;
+    }
+
+    const filteredModels = modelNames.filter(model => 
+      model.name.toLowerCase().startsWith(inputVal)
+    );
+
+    if (filteredModels.length === 0) {
+      suggestionsBox.classList.add('hidden');
+    } else {
+      suggestionsBox.classList.remove('hidden');
+      filteredModels.forEach(model => {
+        const li = document.createElement('li');
+        li.textContent = model.name;
+        li.className = 'px-4 py-2 hover:bg-[#8B8EE2] hover:text-white cursor-pointer rounded-lg';
+        li.onclick = () => window.location.href = model.url;
+        suggestionsBox.appendChild(li);
+      });
+    }
+  });
+
+  document.addEventListener('click', function (event) {
+    if (!searchInput.contains(event.target)) {
+      suggestionsBox.classList.add('hidden');
+    }
+  });
+
+
+  // Hide suggestions if clicked outside
+  document.addEventListener('click', (e) => {
+    if (!suggestionsBox.contains(e.target) && e.target !== searchInput) {
+      suggestionsBox.classList.add('hidden');
+    }
+  });
+
+
+  
+    // Highlight active nav link based on current URL
+    const currentPath = window.location.pathname.split("/").pop();
+
+const links = document.querySelectorAll("nav a");
+const mobileLinks = document.querySelectorAll("#mobileMenu a");
+
+[...links, ...mobileLinks].forEach(link => {
+  if (link.getAttribute("href") === currentPath) {
+    link.classList.add("text-[var(--primary-color)]", "font-semibold");
+  }
+});       
+  // Typing Animation
+  const textElement = document.getElementById("typingText");
+  const phrases = [
+    "Direct from factory to your living room.",
+    "Redefining clarity in every pixel.",
+    "Crafted for cinematic brilliance at home."
+  ];
+  let currentPhrase = 0;
+  let isDeleting = false;
+  let text = "";
+  let speed = 100;
+
+  function type() {
+    const fullText = phrases[currentPhrase];
+    text = isDeleting ? fullText.substring(0, text.length - 1) : fullText.substring(0, text.length + 1);
+    textElement.textContent = text;
+
+    if (!isDeleting && text === fullText) {
+      setTimeout(() => { isDeleting = true; type(); }, 1500);
+    } else if (isDeleting && text === "") {
+      isDeleting = false;
+      currentPhrase = (currentPhrase + 1) % phrases.length;
+      setTimeout(type, 300);
+    } else {
+      setTimeout(type, isDeleting ? speed / 2 : speed);
+    }
+  }
+  type();
+
+  // Fade-in animation using IntersectionObserver
+const observer = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      // Add the fade-in class
+      entry.target.classList.add('fade-in-visible');
+      
+      // Unobserve the target to prevent recurring fade-in
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+// Target elements for fade-in animation
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+
+  // Mobile Menu Toggle
+  const menuBtn = document.getElementById("menuBtn");
+  const closeBtn = document.getElementById("closeMenu");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  menuBtn.addEventListener("click", () => mobileMenu.classList.remove("translate-x-full"));
+  closeBtn.addEventListener("click", () => mobileMenu.classList.add("translate-x-full"));
+  // Image Fade-in Observer
+document.querySelectorAll(".fade-in-on-scroll").forEach(el => observer.observe(el));
+
+const imageTextElement = document.getElementById("typewriterImageText");
+const imagePhrases = [
+  "Experience Clarity Like Never Before.",
+  "Sharper. Smarter. Stunning.",
+  "Crafted for the Eyes of Tomorrow.",
+  "Pixels That Speak Brilliance."
+];
+
+let imageIndex = 0;
+let isDeletingImage = false;
+let imageText = "";
+let imageSpeed = 100;
+
+function typeImageText() {
+  const fullText = imagePhrases[imageIndex];
+  imageText = isDeletingImage ? fullText.substring(0, imageText.length - 1) : fullText.substring(0, imageText.length + 1);
+  imageTextElement.textContent = imageText;
+
+  if (!isDeletingImage && imageText === fullText) {
+    setTimeout(() => {
+      isDeletingImage = true;
+      typeImageText();
+    }, 1500);
+  } else if (isDeletingImage && imageText === "") {
+    isDeletingImage = false;
+    imageIndex = (imageIndex + 1) % imagePhrases.length;
+    setTimeout(typeImageText, 300);
+  } else {
+    setTimeout(typeImageText, isDeletingImage ? imageSpeed / 2 : imageSpeed);
+  }
+}
+
+typeImageText();
+
+
+</script>
+
+</body>
+</html>

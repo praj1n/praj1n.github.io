@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms & Conditions - Skterabytes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+    .gradient-text {
+      background: linear-gradient(90deg, #8B8EE2 0%, #F96E59 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    #mobileMenu {
+      transition: transform 0.3s ease;
+    }
+    .terms-section {
+      scroll-margin-top: 100px;
+    }
+    .highlight-box {
+      background: linear-gradient(to right, rgba(139, 142, 226, 0.1), rgba(249, 110, 89, 0.1));
+      border-left: 4px solid #8B8EE2;
+    }
+    .legal-list {
+      counter-reset: legal-counter;
+    }
+    .legal-list li {
+      counter-increment: legal-counter;
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-left: 2.5rem;
+    }
+    .legal-list li::before {
+      content: counter(legal-counter) ".";
+      position: absolute;
+      left: 0;
+      font-weight: 600;
+      color: #8B8EE2;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800">
+
+<!-- Navbar (Same as previous) -->
+<nav class="bg-white py-3 w-full z-50 shadow-sm sticky top-0">
+  <div class="container mx-auto px-6 flex items-center justify-between relative">
+    <div class="flex-shrink-0">
+      <img src="assests/images/logo/skterabytes-logo.png" alt="Skterabytes Logo" class="h-20 md:h-28">
+    </div>
+    <div class="absolute left-1/2 transform -translate-x-1/2 hidden md:flex space-x-6 text-[14px] font-[600] font-[Geist]">
+      <a href="index.html" class="text-gray-900 hover:text-[#8B8EE2] font-[Raleway]">HOME</a>
+      <a href="models.html" class="text-gray-900 hover:text-[#8B8EE2] font-[Raleway]">TV MODELS</a>
+      <a href="support.html" class="text-gray-900 hover:text-[#8B8EE2] font-[Raleway]">SUPPORT</a>
+      <a href="about.html" class="text-gray-900 hover:text-[#8B8EE2] font-[Raleway]">ABOUT</a>
+      <a href="contact.html" class="text-gray-900 hover:text-[#8B8EE2] font-[Raleway]">CONTACT</a>
+    </div>
+    <div class="flex items-center space-x-4 md:hidden">
+      <div id="mobileSearchTrigger" class="cursor-pointer">
+        <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 104.5 4.5a7.5 7.5 0 0012.15 12.15z" />
+        </svg>
+      </div>
+      <button id="menuBtn" class="text-3xl">☰</button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Sidebar -->
+<div id="mobileMenu" class="md:hidden fixed top-0 right-0 h-full w-64 bg-white shadow-lg transform translate-x-full transition-transform duration-300 z-50">
+  <div class="flex justify-between items-center px-6 py-5 border-b">
+    <h2 class="text-lg font-['Exo_2']">MENU</h2>
+    <button id="closeMenu" class="text-2xl">×</button>
+  </div>
+  <div class="flex flex-col space-y-4 p-4 text-[15px] font-[600] font-[Raleway]">
+    <a href="index.html" class="text-gray-900 hover:text-[#8B8EE2] font-[Raleway]">HOME</a>
+    <a href="models.html" class="text-gray-900 hover:text-[#8B8EE2] font-[Raleway]">TV MODELS</a>
+    <a href="support.html" class="text-gray-900 hover:text-[#8B8EE2] font-[Raleway]">SUPPORT</a>
+    <a href="about.html" class="text-gray-900 hover:text-[#8B8EE2] font-[Raleway]">ABOUT</a>
+    <a href="contact.html" class="text-gray-900 hover:text-[#8B8EE2] font-[Raleway]">CONTACT</a>
+  </div>
+</div>
+
+<!-- Terms Hero -->
+<section class="bg-gradient-to-r from-[#8B8EE2] to-[#F96E59] py-20 text-white">
+  <div class="container mx-auto px-6 text-center">
+    <h1 class="text-4xl md:text-5xl font-bold mb-6">Terms & Conditions</h1>
+    <p class="text-xl max-w-3xl mx-auto">Please read these terms carefully before using our website or purchasing our products.</p>
+    <div class="mt-8 flex justify-center space-x-4">
+      <a href="#quick-links" class="bg-white text-[#8B8EE2] hover:bg-gray-100 px-6 py-2 rounded-full">Quick Links</a>
+      <a href="contact.html" class="border-2 border-white hover:bg-white hover:text-[#8B8EE2] px-6 py-2 rounded-full">Contact Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- Quick Links -->
+<section id="quick-links" class="py-12 bg-white">
+  <div class="container mx-auto px-6">
+    <h2 class="text-2xl font-bold text-center mb-8">Navigate Our Terms</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <a href="#introduction" class="bg-gray-50 hover:bg-gray-100 p-4 rounded-lg text-center transition">
+        <div class="w-12 h-12 bg-[#8B8EE2] bg-opacity-10 rounded-full flex items-center justify-center mx-auto mb-3">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#8B8EE2]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <span>Introduction</span>
+      </a>
+      <a href="#purchases" class="bg-gray-50 hover:bg-gray-100 p-4 rounded-lg text-center transition">
+        <div class="w-12 h-12 bg-[#F96E59] bg-opacity-10 rounded-full flex items-center justify-center mx-auto mb-3">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#F96E59]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+        </div>
+        <span>Purchases</span>
+      </a>
+      <a href="#intellectual-property" class="bg-gray-50 hover:bg-gray-100 p-4 rounded-lg text-center transition">
+        <div class="w-12 h-12 bg-[#8B8EE2] bg-opacity-10 rounded-full flex items-center justify-center mx-auto mb-3">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#8B8EE2]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+        </div>
+        <span>Intellectual Property</span>
+      </a>
+      <a href="#limitations" class="bg-gray-50 hover:bg-gray-100 p-4 rounded-lg text-center transition">
+        <div class="w-12 h-12 bg-[#F96E59] bg-opacity-10 rounded-full flex items-center justify-center mx-auto mb-3">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#F96E59]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <span>Limitations</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Terms Content -->
+<main class="container mx-auto px-6 py-12 max-w-4xl">
+  <!-- Introduction -->
+  <section id="introduction" class="mb-16 terms-section">
+    <h2 class="text-2xl font-bold mb-6 gradient-text">1. Introduction</h2>
+    <div class="highlight-box p-6 rounded-lg mb-6">
+      <p>Welcome to Skterabytes. These Terms and Conditions ("Terms") govern your use of our website and the purchase of products from us. By accessing or using our website, you agree to be bound by these Terms.</p>
+    </div>
+    <p class="text-gray-600 text-sm">If you disagree with any part of these Terms, you must not use our website or purchase our products.</p>
+  </section>
+
+  <!-- Purchases -->
+  <section id="purchases" class="mb-16 terms-section">
+    <h2 class="text-2xl font-bold mb-6 gradient-text">2. Purchases & Orders</h2>
+    <div class="bg-gray-50 p-6 rounded-lg mb-6">
+      <ul class="legal-list">
+        <li>
+          <h3 class="font-semibold text-lg mb-2">Order Acceptance</h3>
+          <p>Your order constitutes an offer to purchase our products. All orders are subject to acceptance by us, and we reserve the right to refuse or cancel any order for any reason at any time.</p>
+        </li>
+        <li>
+          <h3 class="font-semibold text-lg mb-2">Pricing & Payment</h3>
+          <p>All prices are shown in your local currency and are subject to change without notice. Payment must be completed before we process your order.</p>
+        </li>
+        <li>
+          <h3 class="font-semibold text-lg mb-2">Shipping & Delivery</h3>
+          <p>Delivery times are estimates only. We are not responsible for delays due to unforeseen circumstances. Risk of loss passes to you upon delivery.</p>
+        </li>
+        <li>
+          <h3 class="font-semibold text-lg mb-2">Returns & Refunds</h3>
+          <p>Please review our Return Policy for details on returns and refunds. Some products may have different return policies.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Intellectual Property -->
+  <section id="intellectual-property" class="mb-16 terms-section">
+    <h2 class="text-2xl font-bold mb-6 gradient-text">3. Intellectual Property</h2>
+    <div class="border-l-4 border-[#8B8EE2] pl-4 mb-6">
+      <p>The content, features, and functionality of our website, including text, graphics, logos, and images, are owned by Skterabytes and are protected by international copyright and intellectual property laws.</p>
+    </div>
+    <div class="overflow-x-auto">
+      <table class="min-w-full bg-white rounded-lg overflow-hidden">
+        <thead class="bg-gray-100">
+          <tr>
+            <th class="py-3 px-4 text-left">Content Type</th>
+            <th class="py-3 px-4 text-left">Usage Rights</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200">
+          <tr>
+            <td class="py-3 px-4">Website Content</td>
+            <td class="py-3 px-4">All rights reserved</td>
+          </tr>
+          <tr class="bg-gray-50">
+            <td class="py-3 px-4">Product Designs</td>
+            <td class="py-3 px-4">Protected by patents</td>
+          </tr>
+          <tr>
+            <td class="py-3 px-4">Branding Materials</td>
+            <td class="py-3 px-4">Trademark protected</td>
+          </tr>
+          <tr class="bg-gray-50">
+            <td class="py-3 px-4">Software</td>
+            <td class="py-3 px-4">Proprietary licenses</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="mt-4">You may not reproduce, distribute, modify, or create derivative works of any materials without our express written permission.</p>
+  </section>
+
+  <!-- User Responsibilities -->
+  <section class="mb-16">
+    <h2 class="text-2xl font-bold mb-6 gradient-text">4. User Responsibilities</h2>
+    <div class="bg-[#F96E59] bg-opacity-5 p-6 rounded-lg mb-6">
+      <p class="mb-4">When using our website or services, you agree not to:</p>
+      <ul class="list-disc pl-5 space-y-2">
+        <li>Use our products for any illegal purpose or in violation of any laws</li>
+        <li>Violate or attempt to violate our security measures</li>
+        <li>Reverse engineer, decompile, or disassemble any of our products</li>
+        <li>Use our website in any way that could damage, disable, or impair it</li>
+        <li>Use any automated system to access our website without permission</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Limitations -->
+  <section id="limitations" class="mb-16 terms-section">
+    <h2 class="text-2xl font-bold mb-6 gradient-text">5. Limitations of Liability</h2>
+    <div class="highlight-box p-6 rounded-lg mb-6">
+      <p class="mb-4">To the maximum extent permitted by law, Skterabytes shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits or revenues, whether incurred directly or indirectly, or any loss of data, use, goodwill, or other intangible losses, resulting from:</p>
+      <ul class="list-disc pl-5 space-y-2">
+        <li>Your use or inability to use our website or products</li>
+        <li>Any unauthorized access to or use of our servers and/or any personal information stored therein</li>
+        <li>Any interruption or cessation of transmission to or from our website</li>
+        <li>Any bugs, viruses, or the like that may be transmitted to or through our website</li>
+      </ul>
+    </div>
+    <p class="text-gray-600 text-sm">Some jurisdictions do not allow the exclusion or limitation of liability for consequential or incidental damages, so the above limitation may not apply to you.</p>
+  </section>
+
+  <!-- Governing Law -->
+  <section class="mb-16">
+    <h2 class="text-2xl font-bold mb-6 gradient-text">6. Governing Law</h2>
+    <div class="bg-gray-50 p-6 rounded-lg">
+      <p>These Terms shall be governed and construed in accordance with the laws of India, without regard to its conflict of law provisions. Any disputes arising under these Terms shall be resolved in the courts of Bangalore, Karnataka.</p>
+    </div>
+  </section>
+
+  <!-- Changes to Terms -->
+  <section class="mb-16">
+    <h2 class="text-2xl font-bold mb-6 gradient-text">7. Changes to Terms</h2>
+    <p>We reserve the right, at our sole discretion, to modify or replace these Terms at any time. We will provide at least 30 days' notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion.</p>
+    <div class="mt-4 p-4 bg-yellow-50 border-l-4 border-yellow-400">
+      <p class="text-yellow-700">By continuing to access or use our website after those revisions become effective, you agree to be bound by the revised terms. If you do not agree to the new terms, you must stop using the website.</p>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="bg-gray-50 p-8 rounded-xl">
+    <h2 class="text-2xl font-bold mb-6 gradient-text">Contact Us</h2>
+    <p class="mb-4">If you have any questions about these Terms, please contact us at:</p>
+    <div class="flex flex-col md:flex-row gap-6">
+      <div class="flex-1">
+        <h3 class="font-semibold mb-2">Email</h3>
+        <a href="mailto:legal@skterabytes.com" class="text-[#8B8EE2] hover:underline">info@skterabytes.com</a>
+      </div>
+      <div class="flex-1">
+        <h3 class="font-semibold mb-2">Address</h3>
+        <p>Skterabytes Office<br>No.12 Mullai St, Chennai<br>Tamilnadu, India 600063</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Footer -->
+<footer class="bg-black text-white py-12">
+  <div class="container mx-auto px-6">
+    <div class="flex flex-col md:flex-row justify-between items-center">
+      <div class="mb-6 md:mb-0">
+        <img src="assests/images/logo/skterabytes-logo.png" alt="Skterabytes Logo" class="h-16">
+        <p class="mt-2 text-gray-400">Innovating your viewing experience</p>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Company</h3>
+          <ul class="space-y-2">
+            <li><a href="about.html" class="text-gray-400 hover:text-white">About Us</a></li>
+            <li><a href="models.html" class="text-gray-400 hover:text-white">Products</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Support</h3>
+          <ul class="space-y-2">
+            <li><a href="support.html" class="text-gray-400 hover:text-white">Help Center</a></li>
+            <li><a href="contact.html" class="text-gray-400 hover:text-white">Contact Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Legal</h3>
+          <ul class="space-y-2">
+            <li><a href="privacy.html" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+            <li><a href="terms.html" class="text-white">Terms & Conditions</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+      <p>© 2025 Skterabytes. All rights reserved.</p>
+      <p class="mt-2 text-sm">Last Updated: April 28, 2025</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile menu functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    const menuBtn = document.getElementById('menuBtn');
+    const closeMenu = document.getElementById('closeMenu');
+    const mobileMenu = document.getElementById('mobileMenu');
+    
+    // Open mobile menu
+    menuBtn.addEventListener('click', function() {
+      mobileMenu.classList.remove('translate-x-full');
+      document.body.style.overflow = 'hidden';
+    });
+    
+    // Close mobile menu
+    closeMenu.addEventListener('click', function() {
+      mobileMenu.classList.add('translate-x-full');
+      document.body.style.overflow = '';
+    });
+    
+    // Close menu when clicking on a link
+    const menuLinks = mobileMenu.querySelectorAll('a');
+    menuLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        mobileMenu.classList.add('translate-x-full');
+        document.body.style.overflow = '';
+      });
+    });
+  });
+
+  // Smooth scrolling for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        window.scrollTo({
+          top: target.offsetTop - 80,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
