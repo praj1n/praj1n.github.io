@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Story | Skterabytes</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    @layer base {
+      :root {
+        --primary-color: #8B8EE2;
+        --secondary-color: #F96E59;
+      }
+    }
+
+    @keyframes fadeInStep {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes blink {
+      0%, 100% { background-color: #8B8EE2; }
+      50% { background-color: #c3c6f1; }
+    }
+
+    .timeline-step {
+      opacity: 0;
+      animation: fadeInStep 1s ease-in-out forwards;
+    }
+
+    .timeline-step:nth-child(1) { animation-delay: 0.3s; }
+    .timeline-step:nth-child(2) { animation-delay: 1.2s; }
+    .timeline-step:nth-child(3) { animation-delay: 2.1s; }
+    .timeline-step:nth-child(4) { animation-delay: 3s; }
+    .timeline-step:nth-child(5) { animation-delay: 3.9s; }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 9999px;
+      animation: blink 1.5s infinite;
+      margin-right: 10px;
+    }
+
+    .fade-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 1s ease-out, transform 1s ease-out;
+    }
+
+    .fade-on-scroll.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blinkCursor {
+      0%, 100% { border-color: transparent; }
+      50% { border-color: #F96E59; }
+    }
+
+    .typing-effect {
+      animation: typing 4s steps(40, end), blinkCursor 0.75s step-end infinite;
+    }
+
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .animate-fade-in-up {
+      animation: fadeInUp 1s ease-out forwards;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-800 font-sans">
+
+   <!-- Navbar -->
+<nav class="bg-white py-3 w-full z-50 shadow">
+  <div class="container mx-auto px-6 flex items-center justify-between relative">
+    <!-- Logo -->
+    <div class="flex-shrink-0">
+      <img src="assests/images/logo/skterabytes-logo.png" alt="Skterabytes Logo" class="h-20 md:h-28">
+    </div>
+
+    <!-- Center Navlinks -->
+    <div class="absolute left-1/2 transform -translate-x-1/2 hidden md:flex space-x-6 text-[14px] font-[600] font-[Geist]">
+      <a href="index.html" class="text-gray-900 hover:text-[#8B8EE2] font-[Raleway] ">HOME</a>
+      <a href="models.html" class="text-gray-900 hover:text-[#8B8EE2] font-[Raleway] ">TV MODELS</a>
+      <a href="support.html" class="text-gray-900 hover:text-[#8B8EE2] font-[Raleway]">SUPPORT</a>
+      <a href="about.html" class="text-gray-900 hover:text-[#8B8EE2] font-[Raleway] border-b-2 border-[#F96E59]">ABOUT</a>
+      <a href="contact.html" class="text-gray-900 hover:text-[#8B8EE2] font-[Raleway]">CONTACT</a>
+      
+    </div>
+
+    <!-- Search Bar -->
+<div class="hidden md:flex items-center space-x-2 relative w-full max-w-[250px]">
+  <input 
+    type="text" 
+    id="searchInput"
+    placeholder="Search models..." 
+    class="border border-gray-300 rounded-full px-4 py-2 text-sm w-full focus:outline-none focus:ring-2 focus:ring-[#8B8EE2]">
+  
+  <!-- Suggestions Dropdown -->
+  <ul id="suggestions" class="absolute top-full mt-2 w-full bg-white border border-gray-200 rounded-xl shadow-xl hidden z-50 transition-all duration-300 ease-in-out">
+    <!-- Suggestions will be injected here -->
+  </ul>
+</div>
+
+      <!-- Hamburger Icon -->
+      <button id="openMenu" class="md:hidden text-3xl text-gray-900">☰</button>
+    </div>
+
+    <!-- Mobile Sidebar -->
+    <div id="mobileMenu" class="md:hidden fixed top-0 right-0 h-full w-64 bg-white shadow-lg transform translate-x-full transition-transform duration-300 z-50">
+      <div class="flex justify-between items-center px-6 py-5 border-b">
+        <h2 class="text-lg font-['Exo_2']">MENU</h2>
+        <button id="closeMenu" class="text-2xl">×</button>
+      </div>
+      <div class="flex flex-col space-y-4 p-4 text-[15px] font-[600] font-[Raleway]">
+        <a href="index.html" class="text-gray-900 hover:text-[#8B8EE2] font-[Raleway]">HOME</a>
+        <a href="models.html" class="text-gray-900 hover:text-[#8B8EE2] font-[Raleway]">TV MODELS</a>
+        <a href="support.html" class="text-gray-900 hover:text-[#8B8EE2] font-[Raleway]">SUPPORT</a>
+        <a href="about.html" class="text-gray-900 hover:text-[#8B8EE2] font-[Raleway] border-b-2 border-[#F96E59]">ABOUT</a>
+        <a href="contact.html" class="text-gray-900 hover:text-[#8B8EE2] font-[Raleway]">CONTACT</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Our Story -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-6 max-w-6xl flex flex-col md:flex-row items-center gap-12">
+      <div class="w-full md:w-1/2">
+        <img src="assests/images/logo/image2.jpg" alt="Our Story Image" class="rounded-lg shadow-lg w-full h-auto" />
+      </div>
+      <div class="w-full md:w-1/2 text-gray-800 animate-fade-in-up">
+        <h2 class="text-2xl font-bold text-[#F96E59] mb-4">Our Story</h2>
+        <p class="text-sm leading-relaxed mb-4">
+          It all began in <strong>2025</strong>—with one bold vision: to redefine what an Indian television brand could be.
+          Skterabytes was born from a desire to fuse affordability with cutting-edge innovation. No more compromises.
+        </p>
+        <p class="text-sm leading-relaxed mb-4">
+          Every Skterabytes TV is not just a screen — it's a statement. As a proudly <strong>Made in India</strong> brand,
+          we're rewriting the rules and crafting TVs that aren’t just better for the price — they’re better, period.
+        </p>
+        <p class="text-sm text-[#F96E59] font-mono typing-effect whitespace-nowrap overflow-hidden border-r-2 border-[#F96E59] w-fit">
+          Affordable. Premium. Quality. That's SKterabytes.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Founder Timeline -->
+  <section class="py-20 bg-white fade-on-scroll">
+    <div class="container mx-auto px-6 max-w-4xl">
+      <h2 class="text-3xl font-bold text-center mb-12">Founder’s Journey</h2>
+      <div class="relative border-l-4 border-[#8B8EE2] pl-6 space-y-16">
+        <div class="timeline-step flex items-start">
+          <div class="dot bg-[#8B8EE2] mt-2"></div>
+          <div>
+            <h3 class="text-xl font-semibold">1977 — Born in Chennai</h3>
+            <p class="text-gray-700">Sivakumar Kumaraswamy, born in a humble family in Chennai, Tamil Nadu.</p>
+          </div>
+        </div>
+        <div class="timeline-step flex items-start">
+          <div class="dot bg-[#8B8EE2] mt-2"></div>
+          <div>
+            <h3 class="text-xl font-semibold">2003 — Completed Education</h3>
+            <p class="text-gray-700">First Engineering graduate in the family, completing B.Tech in Electrical & Electronics Engineering.</p>
+          </div>
+        </div>
+        <div class="timeline-step flex items-start">
+          <div class="dot bg-[#8B8EE2] mt-2"></div>
+          <div>
+            <h3 class="text-xl font-semibold">2006 — Shifted to USA</h3>
+            <p class="text-gray-700">Worked with major US tech firms, gaining global experience in electronics and IT.</p>
+          </div>
+        </div>
+        <div class="timeline-step flex items-start">
+          <div class="dot bg-[#8B8EE2] mt-2"></div>
+          <div>
+            <h3 class="text-xl font-semibold">2016 — Returned to India</h3>
+            <p class="text-gray-700">With a desire to innovate locally and contribute to India’s tech ecosystem.</p>
+          </div>
+        </div>
+        <div class="timeline-step flex items-start">
+          <div class="dot bg-[#8B8EE2] mt-2"></div>
+          <div>
+            <h3 class="text-xl font-semibold">2025 — Skterabytes Vision Born</h3>
+            <p class="text-gray-700">The dream to build an Indian premium TV brand that rivals global companies took shape.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vision -->
+  <section class="py-20 bg-gray-50">
+    <div class="container mx-auto px-6 text-center">
+      <h2 class="text-3xl font-bold mb-6">Our Vision</h2>
+      <p class="text-xl italic text-gray-600 mb-12 max-w-2xl mx-auto">
+        "To make cutting-edge television technology accessible without compromise"
+      </p>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition">
+          <h3 class="text-xl font-semibold mb-2">🖥️ Engineering First</h3>
+          <p>We design our own panels and processors to ensure top performance and value.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition">
+          <h3 class="text-xl font-semibold mb-2">🏭 Made in India</h3>
+          <p>All TVs are built in Tamil Nadu, supporting local jobs and quality control.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition">
+          <h3 class="text-xl font-semibold mb-2">🔧 No Middlemen</h3>
+          <p>We sell directly to you—cutting costs and giving you 30%+ more value.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+<footer class="bg-black text-white py-12">
+  <div class="container mx-auto px-6">
+    <div class="flex flex-col md:flex-row justify-between items-center">
+      <div class="mb-6 md:mb-0">
+        <img src="assests/images/logo/skterabytes-logo.png" alt="Skterabytes Logo" class="h-28">
+        <p class="mt-2 text-gray-400">Innovating your viewing experience</p>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Company</h3>
+          <ul class="space-y-2">
+            <li><a href="about.html" class="text-gray-400 hover:text-white">About Us</a></li>
+            <li><a href="models.html" class="text-gray-400 hover:text-white">Products</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Support</h3>
+          <ul class="space-y-2">
+            <li><a href="support.html" class="text-gray-400 hover:text-white">Help Center</a></li>
+            <li><a href="contact.html" class="text-gray-400 hover:text-white">Contact Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Legal</h3>
+          <ul class="space-y-2">
+            <li><a href="privacy.html" class="text-white">Privacy Policy</a></li>
+            <li><a href="terms.html" class="text-gray-400 hover:text-white">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+      <p>© 2025 Skterabytes. All rights reserved.</p>
+      <p class="mt-2 text-sm">Last Updated: April 28, 2025</p>
+    </div>
+  </div>
+</footer>
+
+  </div>
+</footer>
+
+  <!-- Scripts -->
+  <script>
+  const searchInput = document.getElementById('searchInput');
+  const suggestionsBox = document.getElementById('suggestions');
+
+  const modelNames = [
+    { name: "Sony Bravia XR A80L", url: "models/tv1.html" },
+    { name: "Samsung OLED S95D", url: "models/tv2.html" },
+    { name: "LG OLED G3", url: "models/tv3.html" },
+    { name: "TCL QLED C845", url: "models/tv4.html" },
+    { name: "Samsung Neo QLED QN90C", url: "models/tv5.html" },
+    { name: "Sony X90L", url: "models/tv6.html" },
+    { name: "Panasonic MZ2000", url: "models/tv7.html" },
+    { name: "OnePlus Q2 Pro", url: "models/tv8.html" },
+    { name: "Hisense U7K", url: "models/tv9.html" },
+    { name: "Vu Masterpiece QLED", url: "models/tv10.html" },
+    { name: "Toshiba C350LP", url: "models/tv11.html" }
+  ];
+
+  searchInput.addEventListener('input', () => {
+    const inputVal = searchInput.value.toLowerCase();
+    suggestionsBox.innerHTML = '';
+
+    if (inputVal.length === 0) {
+      suggestionsBox.classList.add('hidden');
+      return;
+    }
+
+    const filteredModels = modelNames.filter(model => 
+      model.name.toLowerCase().startsWith(inputVal)
+    );
+
+    if (filteredModels.length === 0) {
+      suggestionsBox.classList.add('hidden');
+    } else {
+      suggestionsBox.classList.remove('hidden');
+      filteredModels.forEach(model => {
+        const li = document.createElement('li');
+        li.textContent = model.name;
+        li.className = 'px-4 py-2 hover:bg-[#8B8EE2] hover:text-white cursor-pointer rounded-lg';
+        li.onclick = () => window.location.href = model.url;
+        suggestionsBox.appendChild(li);
+      });
+    }
+  });
+
+  document.addEventListener('click', function (event) {
+    if (!searchInput.contains(event.target)) {
+      suggestionsBox.classList.add('hidden');
+    }
+  });
+
+  // Hide suggestions if clicked outside
+  document.addEventListener('click', (e) => {
+    if (!suggestionsBox.contains(e.target) && e.target !== searchInput) {
+      suggestionsBox.classList.add('hidden');
+    }
+  });
+
+  // Highlight active nav link based on current URL
+  const currentPath = window.location.pathname.split("/").pop();
+
+  const links = document.querySelectorAll("nav a");
+  const mobileLinks = document.querySelectorAll("#mobileMenu a");
+
+  [...links, ...mobileLinks].forEach(link => {
+    if (link.getAttribute("href") === currentPath) {
+      link.classList.add("text-[var(--primary-color)]", "font-semibold");
+    }
+  });
+
+    // Toggle mobile menu
+    const openMenu = document.getElementById("openMenu");
+    const closeMenu = document.getElementById("closeMenu");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    openMenu.addEventListener("click", () => {
+      mobileMenu.classList.remove("translate-x-full");
+    });
+
+    closeMenu.addEventListener("click", () => {
+      mobileMenu.classList.add("translate-x-full");
+    });
+
+    // Scroll fade effect
+    window.addEventListener("scroll", () => {
+      const fadeElements = document.querySelectorAll(".fade-on-scroll");
+      fadeElements.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) {
+          el.classList.add("visible");
+        }
+      });
+    });
+  </script>
+</body>
+</html>

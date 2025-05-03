@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TV Models | Skterabytes</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#8B8EE2',
+            secondary: '#F96E59',
+          },
+          fontFamily: {
+            poppins: ['Poppins', 'sans-serif'],
+            raleway: ['Raleway', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    .hero-video {
+      height: 80vh;
+    }
+    @media (max-width: 768px) {
+      .hero-video {
+        height: 50vh;
+      }
+    }
+    .model-card {
+      transition: all 0.3s ease;
+    }
+    .model-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    .nav-link {
+      position: relative;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -2px;
+      left: 0;
+      background-color: #8B8EE2;
+      transition: width 0.3s;
+    }
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    .active-link::after {
+      width: 100%;
+    }
+    .mobile-menu {
+      transform: translateX(100%);
+      transition: transform 0.3s ease-in-out;
+    }
+    .mobile-menu.open {
+      transform: translateX(0);
+    }
+    .overlay {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease-in-out;
+    }
+    .overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  </style>
+</head>
+<body class="font-poppins bg-gray-50">
+
+    <!-- Navbar -->
+<nav class="bg-white py-3 w-full z-50 shadow-none">
+    <div class="container mx-auto px-6 flex items-center justify-between relative">
+      <!-- Logo -->
+      <div class="flex-shrink-0">
+        <img src="assests/images/logo/skterabytes-logo.png" alt="Skterabytes Logo" class="h-20 md:h-28">
+      </div>
+  
+      <!-- Center Navlinks -->
+      <div class="absolute left-1/2 transform -translate-x-1/2 hidden md:flex space-x-6 text-[14px] font-[600] font-[Geist]">
+        <a href="index.html" class="text-gray-900 hover:text-[#8B8EE2] font-[Raleway]">HOME</a>
+        <a href="models.html" class="text-[#8B8EE2] font-[Raleway] border-b-2 border-[#F96E59]">TV MODELS</a>
+        <a href="support.html" class="text-gray-900 hover:text-[#8B8EE2] font-[Raleway]">SUPPORT</a>
+        <a href="about.html" class="text-gray-900 hover:text-[#8B8EE2] font-[Raleway]">ABOUT</a>
+        <a href="contact.html" class="text-gray-900 hover:text-[#8B8EE2] font-[Raleway]">CONTACT</a>
+      </div>
+
+  <!-- Mobile Menu Overlay -->
+  <div id="overlay" class="overlay fixed inset-0 bg-black bg-opacity-50 z-40"></div>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="mobile-menu fixed top-0 right-0 w-64 h-full bg-white shadow-xl z-50 p-6">
+    <div class="flex justify-between items-center mb-8">
+      <h2 class="text-lg font-['Exo_2']">MENU</h2>
+      <button id="closeMenu" class="text-3xl text-gray-500 hover:text-gray-700 "></button>
+    </div>
+    <nav class="space-y-4">
+        <div class="flex flex-col space-y-4 p-4 text-[15px] font-[600] font-[Raleway]">
+            <a href="index.html" id="homeLinkMobile" class="text-gray-900 hover:text-[#8B8EE2] transition-colors font-[Raleway] relative inline-block active-link ">HOME</a>
+            <a href="models.html" id="modelsLinkMobile" class="text-[#8B8EE2] transition-colors font-[Raleway] relative inline-block active-link border-b-2 border-[#F96E59]">TV MODELS</a>
+            <a href="support.html" id="supportLinkMobile" class="text-gray-900 hover:text-[#8B8EE2] transition-colors font-[Raleway] relative inline-block active-link">SUPPORT</a>
+            <a href="about.html" id="aboutLinkMobile" class="text-gray-900 hover:text-[#8B8EE2] transition-colors font-[Raleway] relative inline-block active-link ">ABOUT</a>
+            <a href="contact.html" id="contactLinkMobile" class="text-gray-900 hover:text-[#8B8EE2] transition-colors font-[Raleway] relative inline-block active-link">CONTACT</a>
+          </div>
+    </nav>
+  </div>
+
+  
+
+        <!-- Search and Mobile Menu Button -->
+        <div class="flex items-center space-x-4">
+          <div class="hidden md:block relative">
+            <input 
+              type="text" 
+              id="searchInput"
+              placeholder="Search models..." 
+              class="border border-gray-300 rounded-full px-4 py-2 text-sm w-64 focus:outline-none focus:ring-2 focus:ring-primary">
+            <ul id="suggestions" class="absolute top-full mt-1 w-full bg-white border border-gray-200 rounded-lg shadow-lg hidden z-50"></ul>
+          </div>
+          <button id="menuBtn" class="md:hidden text-3xl text-gray-700 focus:outline-none">
+            ☰
+          </button>
+        </div>
+      </div>
+      
+      <!-- Mobile Search (shown only on mobile) -->
+      <div id="mobileSearchContainer" class="md:hidden mt-4 hidden">
+        <input 
+          type="text" 
+          id="mobileSearchInput"
+          placeholder="Search models..." 
+          class="border border-gray-300 rounded-full px-4 py-2 text-sm w-full focus:outline-none focus:ring-2 focus:ring-primary">
+        <ul id="mobileSuggestions" class="mt-1 w-full bg-white border border-gray-200 rounded-lg shadow-lg hidden z-50"></ul>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Video -->
+  <section class="relative bg-black">
+    <video class="w-full hero-video object-cover" autoplay muted loop>
+      <source src="assests/videos/Sonyheader.mp4" type="video/mp4">
+    </video>
+    <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+      <div class="text-center px-4">
+        <h1 class="text-4xl md:text-6xl font-bold text-white mb-4">Premium TV Collection</h1>
+        <p class="text-xl text-gray-200 max-w-2xl mx-auto">Experience the future of home entertainment with our cutting-edge television technology</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Models Section -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Our Latest Models</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">Browse our curated selection of high-end televisions designed to transform your viewing experience</p>
+      </div>
+
+      <!-- Filter Buttons -->
+      <div class="flex flex-wrap justify-center gap-3 mb-8">
+        <button class="filter-btn px-4 py-2 rounded-full border border-gray-300" data-filter="all">All Models</button>
+        <button class="filter-btn px-4 py-2 rounded-full border border-gray-300" data-filter="4K Ultra HD">4K Ultra HD</button>
+        <button class="filter-btn px-4 py-2 rounded-full border border-gray-300" data-filter="OLED">OLED</button>
+        <button class="filter-btn px-4 py-2 rounded-full border border-gray-300" data-filter="QLED">QLED</button>
+        <button class="filter-btn px-4 py-2 rounded-full border border-gray-300" data-filter="LED">LED</button>
+      </div>
+
+      <!-- TV Grid -->
+      <div id="modelList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="model-card relative bg-white rounded-xl overflow-hidden shadow-md" data-name="Samsung QLED 65" data-category="QLED,4K Ultra HD">
+          <a href="tv1.html" class="block">
+            <div class="relative overflow-hidden h-64">
+              <img src="assests/images/logo/image7.jpg" alt="Samsung QLED 65" class="w-full h-full object-cover transition duration-500 hover:scale-105">
+              <span class="absolute top-3 left-3 bg-secondary text-white text-xs font-bold px-3 py-1 rounded-full">4K Ultra HD</span>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-gray-800 mb-2">Samsung QLED 65"</h3>
+              <p class="text-gray-600">Experience incredible picture quality and immersive sound.</p>
+              <div class="mt-4 flex justify-between items-center">
+                <span class="text-primary font-semibold">₹16,000</span>
+                <button class="text-sm bg-primary hover:bg-opacity-90 text-white px-4 py-2 rounded-full transition">View Details</button>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="model-card relative bg-white rounded-xl overflow-hidden shadow-md" data-name="LG OLED 55" data-category="OLED,4K Ultra HD">
+          <a href="tv2.html" class="block">
+            <div class="relative overflow-hidden h-64">
+              <img src="assests/images/logo/image4.jpg" alt="LG OLED 55" class="w-full h-full object-cover transition duration-500 hover:scale-105">
+              <span class="absolute top-3 left-3 bg-secondary text-white text-xs font-bold px-3 py-1 rounded-full">OLED</span>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-gray-800 mb-2">LG OLED 55"</h3>
+              <p class="text-gray-600">Brilliant blacks, stunning colors, and sleek design.</p>
+              <div class="mt-4 flex justify-between items-center">
+                <span class="text-primary font-semibold">₹23,500</span>
+                <button class="text-sm bg-primary hover:bg-opacity-90 text-white px-4 py-2 rounded-full transition">View Details</button>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="model-card relative bg-white rounded-xl overflow-hidden shadow-md" data-name="Sony Bravia 55" data-category="4K Ultra HD">
+          <a href="tv3.html" class="block">
+            <div class="relative overflow-hidden h-64">
+              <img src="assests/images/logo/image3.jpg" alt="Sony Bravia 55" class="w-full h-full object-cover transition duration-500 hover:scale-105">
+              <span class="absolute top-3 left-3 bg-secondary text-white text-xs font-bold px-3 py-1 rounded-full">4K Ultra HD</span>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-gray-800 mb-2">Sony Bravia 55"</h3>
+              <p class="text-gray-600">Unmatched picture clarity with Dolby Vision support.</p>
+              <div class="mt-4 flex justify-between items-center">
+                <span class="text-primary font-semibold">₹19,000</span>
+                <button class="text-sm bg-primary hover:bg-opacity-90 text-white px-4 py-2 rounded-full transition">View Details</button>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="model-card relative bg-white rounded-xl overflow-hidden shadow-md" data-name="Samsung LED 50" data-category="LED">
+          <a href="tv4.html" class="block">
+            <div class="relative overflow-hidden h-64">
+              <img src="assests/images/logo/image5.jpg" alt="Samsung LED 50" class="w-full h-full object-cover transition duration-500 hover:scale-105">
+              <span class="absolute top-3 left-3 bg-secondary text-white text-xs font-bold px-3 py-1 rounded-full">LED</span>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-gray-800 mb-2">Samsung LED 50"</h3>
+              <p class="text-gray-600">Affordable, high-quality LED TV with vibrant colors.</p>
+              <div class="mt-4 flex justify-between items-center">
+                <span class="text-primary font-semibold">₹21,000</span>
+                <button class="text-sm bg-primary hover:bg-opacity-90 text-white px-4 py-2 rounded-full transition">View Details</button>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="model-card relative bg-white rounded-xl overflow-hidden shadow-md" data-name="Vizio OLED 65" data-category="OLED,4K Ultra HD">
+          <a href="tv5.html" class="block">
+            <div class="relative overflow-hidden h-64">
+              <img src="assests/images/logo/image2.jpg" alt="Vizio OLED 65" class="w-full h-full object-cover transition duration-500 hover:scale-105">
+              <span class="absolute top-3 left-3 bg-secondary text-white text-xs font-bold px-3 py-1 rounded-full">OLED</span>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-gray-800 mb-2">Vizio OLED 65"</h3>
+              <p class="text-gray-600">Perfect balance of price and performance.</p>
+              <div class="mt-4 flex justify-between items-center">
+                <span class="text-primary font-semibold">₹9,000</span>
+                <button class="text-sm bg-primary hover:bg-opacity-90 text-white px-4 py-2 rounded-full transition">View Details</button>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="py-16 bg-gray-100">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Why Choose Skterabytes</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">Cutting-edge technology meets exceptional quality</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-white p-6 rounded-xl shadow-sm text-center">
+          <div class="w-16 h-16 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Superior Picture Quality</h3>
+          <p class="text-gray-600">Experience lifelike images with our advanced display technologies including 4K, 8K, OLED and QLED.</p>
+        </div>
+        
+        <div class="bg-white p-6 rounded-xl shadow-sm text-center">
+          <div class="w-16 h-16 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Smart Features</h3>
+          <p class="text-gray-600">Access your favorite streaming services, apps and voice assistants with our intuitive smart TV platforms.</p>
+        </div>
+        
+        <div class="bg-white p-6 rounded-xl shadow-sm text-center">
+          <div class="w-16 h-16 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Premium Sound</h3>
+          <p class="text-gray-600">Immerse yourself in cinema-quality audio with Dolby Atmos and our advanced speaker systems.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+<footer class="bg-black text-white py-12">
+    <div class="container mx-auto px-6">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="mb-6 md:mb-0">
+          <img src="assests/images/logo/skterabytes-logo.png" alt="Skterabytes Logo" class="h-28">
+          <p class="mt-2 text-gray-400">Innovating your viewing experience</p>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+          <div>
+            <h3 class="text-lg font-semibold mb-4">Company</h3>
+            <ul class="space-y-2">
+              <li><a href="about.html" class="text-gray-400 hover:text-white">About Us</a></li>
+              <li><a href="models.html" class="text-gray-400 hover:text-white">Products</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold mb-4">Support</h3>
+            <ul class="space-y-2">
+              <li><a href="support.html" class="text-gray-400 hover:text-white">Help Center</a></li>
+              <li><a href="contact.html" class="text-gray-400 hover:text-white">Contact Us</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold mb-4">Legal</h3>
+            <ul class="space-y-2">
+              <li><a href="privacy.html" class="text-white">Privacy Policy</a></li>
+              <li><a href="terms.html" class="text-gray-400 hover:text-white">Terms of Service</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+        <p>© 2025 Skterabytes. All rights reserved.</p>
+        <p class="mt-2 text-sm">Last Updated: April 28, 2025</p>
+      </div>
+    </div>
+  </footer>
+  <script>
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const closeMenu = document.getElementById('closeMenu');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const overlay = document.getElementById('overlay');
+
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.add('open');
+      overlay.classList.add('active');
+    });
+
+    closeMenu.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      overlay.classList.remove('active');
+    });
+
+    overlay.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      overlay.classList.remove('active');
+    });
+
+    // Search functionality
+    const searchInput = document.getElementById('searchInput');
+    const suggestionsBox = document.getElementById('suggestions');
+    const models = Array.from(document.querySelectorAll('.model-card'));
+
+    searchInput.addEventListener('input', function () {
+      const query = this.value.toLowerCase();
+      suggestionsBox.innerHTML = '';
+      
+      if (query.length === 0) {
+        suggestionsBox.classList.add('hidden');
+        return;
+      }
+
+      const filtered = models.filter(card => {
+        const name = card.getAttribute('data-name').toLowerCase();
+        return name.includes(query);
+      });
+
+      if (filtered.length > 0) {
+        suggestionsBox.classList.remove('hidden');
+        filtered.forEach(model => {
+          const name = model.getAttribute('data-name');
+          const listItem = document.createElement('li');
+          listItem.textContent = name;
+          listItem.className = "px-4 py-2 cursor-pointer hover:bg-primary hover:text-white transition";
+
+          listItem.addEventListener('click', () => {
+            searchInput.value = '';
+            suggestionsBox.classList.add('hidden');
+            model.scrollIntoView({ behavior: "smooth", block: "center" });
+            model.classList.add('ring-2', 'ring-primary');
+            setTimeout(() => model.classList.remove('ring-2', 'ring-primary'), 2000);
+          });
+
+          suggestionsBox.appendChild(listItem);
+        });
+      } else {
+        suggestionsBox.classList.add('hidden');
+      }
+    });
+
+    // Close suggestions when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!searchInput.contains(e.target)) {
+        suggestionsBox.classList.add('hidden');
+      }
+    });
+
+    // Highlight active nav link
+    const currentPath = window.location.pathname.split("/").pop();
+    const navLinks = document.querySelectorAll('nav a');
+
+    navLinks.forEach(link => {
+      if (link.getAttribute('href') === currentPath) {
+        link.classList.add('active-link');
+      }
+    });
+
+    // Filter functionality
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const modelCards = document.querySelectorAll('.model-card');
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Remove active class from all buttons
+        filterButtons.forEach(btn => {
+          btn.classList.remove('bg-primary', 'text-white');
+          btn.classList.add('border', 'border-gray-300', 'hover:bg-gray-100');
+        });
+        
+        // Add active class to clicked button
+        button.classList.add('bg-primary', 'text-white');
+        button.classList.remove('border', 'border-gray-300', 'hover:bg-gray-100');
+        
+        const filterValue = button.dataset.filter;
+        
+        // Filter models based on button clicked
+        modelCards.forEach(card => {
+          const categories = card.dataset.category.split(',');
+          
+          if (filterValue === 'all' || categories.includes(filterValue)) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Set 'All Models' as active by default
+    document.querySelector('[data-filter="all"]').click();
+  </script>
+</body>
+</html>
