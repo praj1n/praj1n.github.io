@@ -23,13 +23,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/site.css">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Organization","name":"SK Terabytes","slogan":"Your Trust, Our Promise","url":"https://skterabytes.com","logo":"https://skterabytes.com/assets/img/icon-512.png","email":"info@skterabytes.com","telephone":["+91 98416 00963","+91 74017 19274","+91 99522 92220"],"founder":{"@type":"Person","name":"K. Sivakumar","jobTitle":"Proprietor"},"brand":[{"@type":"Brand","name":"Xudesi"},{"@type":"Brand","name":"Adsan"}],"address":{"@type":"PostalAddress","streetAddress":"12, Mullai Street, Ramani Nagar Extn, West Tambaram","addressLocality":"Chennai","postalCode":"600063","addressCountry":"IN"}}
+{"@context":"https://schema.org","@type":"Organization","name":"SK Terabytes","slogan":"Your Trust, Our Promise","foundingDate":"2024","url":"https://skterabytes.com","logo":"https://skterabytes.com/assets/img/icon-512.png","email":"info@skterabytes.com","telephone":["+91 98416 00963","+91 74017 19274","+91 99522 92220"],"founder":{"@type":"Person","name":"K. Sivakumar","jobTitle":"Proprietor"},"brand":[{"@type":"Brand","name":"Xudesi"},{"@type":"Brand","name":"Adsan"}],"address":{"@type":"PostalAddress","streetAddress":"12, Mullai Street, Ramani Nagar Extn, West Tambaram","addressLocality":"Chennai","postalCode":"600063","addressCountry":"IN"}}
 </script>
 </head>
 <body>
-<a class="skip" href="#house">Skip to content</a>
+<a class="skip" href="#about">Skip to content</a>
 
-<div id="pre" aria-hidden="true"><img class="pz" src="assets/img/horizon.webp" alt=""><img class="mk" src="assets/img/skt-mark.png" alt=""></div>
+<div id="pre" aria-hidden="true"><i></i><i></i><i></i><img class="mk" src="assets/img/skt-mark.png" alt=""></div>
 
 <!-- ============ NAV ============ -->
 <header class="nav">
@@ -37,8 +37,7 @@
     <a class="logo" href="#top" aria-label="SK Terabytes — home"><img src="assets/img/skt-logo.png" alt="SK Terabytes"></a>
     <nav aria-label="Primary">
       <ul>
-        <li><a href="#house">Story</a></li>
-        <li><a href="#founder">Founder</a></li>
+        <li><a href="#about">About</a></li>
         <li><a href="#brands">Brands</a></li>
         <li><a href="#catalog">Catalog</a></li>
         <li><a href="#way">How we work</a></li>
@@ -50,7 +49,7 @@
   </div>
 </header>
 <div class="drawer" aria-label="Menu">
-  <a href="#house">Story</a><a href="#founder">Founder</a><a href="#brands">Brands</a><a href="#catalog">Catalog</a><a href="#way">How we work</a><a href="#contact">Contact</a>
+  <a href="#about">About</a><a href="#brands">Brands</a><a href="#catalog">Catalog</a><a href="#way">How we work</a><a href="#contact">Contact</a>
   <a class="btn btn-lav" href="#contact">Get dealer price list</a>
 </div>
 <div class="rail" aria-hidden="true"></div>
@@ -58,7 +57,7 @@
 <main>
 <!-- ============ 01 · THE PROMISE ============ -->
 <section class="hero spot" id="top" data-ch="Promise">
-  <img class="hz hz-b" src="assets/img/horizon.webp" alt="" aria-hidden="true">
+  <canvas id="bgfx" aria-hidden="true"></canvas>
   <div class="wrap grid">
     <div>
       <p class="eyebrow reveal">SK Terabytes · OEM / Super Stockist · Chennai</p>
@@ -71,14 +70,20 @@
       </div>
     </div>
     <div class="hero-tv reveal" style="--d:.2s">
-      <span class="chip c1">Xudesi™ — The Smart Choice</span>
-      <span class="chip c2">Adsan — The Best or Nothing!</span>
-      <figure class="tvf lav" data-mode="video" data-order="1,3,2,6,4,5" data-splash="assets/img/splash-skt.jpg" data-auto="8000">
-          <div class="tvf-screen"><img class="tvf-pic" alt="" src="assets/img/splash-skt.jpg"><video class="tvf-vid" muted playsinline loop preload="none" disablepictureinpicture></video><canvas class="tvf-noise" width="96" height="54"></canvas><span class="tvf-osd"></span><span class="tvf-glare"></span></div>
-          <img class="tvf-frame" src="assets/img/tv-frame.webp" alt="">
-          <span class="tvf-brand">SK TERABYTES</span>
-          <span class="tvf-hint">Tap the TV to change channel</span>
-        </figure>
+      <div class="hbrands" aria-label="Our brands">
+        <span class="hb-label">Our brands</span>
+        <div class="hb-row">
+          <a class="hb x" href="#xudesi" style="--m:url(/assets/img/xudesi-logo-h.png)" aria-label="Xudesi"><img src="assets/img/xudesi-logo-h.png" alt="Xudesi"></a>
+          <i class="hb-sep" aria-hidden="true"></i>
+          <a class="hb a" href="#adsan" style="--m:url(/assets/img/adsan-logo-ns-dark.png)" aria-label="Adsan"><img src="assets/img/adsan-logo-ns-dark.png" alt="Adsan"></a>
+        </div>
+      </div>
+      <figure class="tvf gold" data-mode="video" data-order="1,3,4,2,5,6,7" data-splash="assets/img/splash-xudesi.jpg" data-auto="8000">
+        <div class="tvf-screen"><img class="tvf-pic" alt="" src="assets/img/splash-xudesi.jpg"><video class="tvf-vid" muted playsinline loop preload="none" disablepictureinpicture></video><canvas class="tvf-noise" width="96" height="54"></canvas><span class="tvf-osd"></span><span class="tvf-glare"></span></div>
+        <img class="tvf-frame" src="assets/img/tv-frame.webp" alt="">
+        <span class="tvf-brand">XUDESI</span>
+        <span class="tvf-hint">Tap the TV to change channel</span>
+      </figure>
     </div>
   </div>
   <div class="scroll-cue" aria-hidden="true">Scroll</div>
@@ -94,86 +99,108 @@
   </div>
 </div>
 
-<!-- ============ 02 · THE HOUSE ============ -->
-<section class="house pad spot" id="house" data-ch="Story">
-  <div class="wrap grid">
-    <div>
-      <div class="chapter reveal"><b>02</b><span></span><p class="eyebrow">The House</p></div>
-      <h2 class="reveal">A Chennai house with a simple <span class="grad">promise.</span></h2>
-      <p class="lead reveal">SK Terabytes is an OEM and super stockist of LED Smart TVs, based in West Tambaram, Chennai. We bring <b>Xudesi™</b> and <b>Adsan</b> to dealers and customers with clear terms, a stated delivery window and doorstep service behind every set.</p>
-      <p class="lead reveal">“Your Trust, Our Promise” is printed on every card we hand out. Everything on this page — the range, the warranty, the terms — is how we keep it.</p>
-      <div class="facts">
-        <div class="fact reveal"><small>We are</small><b>OEM / Super Stockist</b></div>
-        <div class="fact reveal" style="--d:.08s"><small>Based in</small><b>West Tambaram, Chennai</b></div>
-        <div class="fact reveal" style="--d:.16s"><small>Proprietor</small><b>K. Sivakumar</b></div>
-        <div class="fact reveal" style="--d:.24s"><small>Our brands</small><b>Xudesi™ · Adsan</b></div>
-      </div>
-    </div>
-    <div class="tower reveal" aria-hidden="true"><img class="arc" src="assets/img/horizon.webp" alt=""><img class="mk" src="assets/img/skt-mark.png" alt=""></div>
-  </div>
-</section>
-
-<!-- ============ 03 · THE FOUNDER ============ -->
-<section class="founder pad spot" id="founder" data-ch="Founder">
+<!-- ============ 02 · ABOUT ============ -->
+<section class="house about pad spot" id="about" data-ch="About">
   <div class="wrap">
-    <div class="head">
-      <div class="chapter reveal" style="justify-content:center"><b>03</b><span></span><p class="eyebrow">The Founder</p></div>
-      <h2 class="reveal">A humble start. <span class="grad">A bold promise.</span></h2>
-      <p class="lead reveal">The story behind SK Terabytes begins long before the first TV — in Chennai, in 1977.</p>
-    </div>
-    <div class="tl-grid">
-      <aside class="tl-side">
-        <div class="tl-card reveal">
-          <div class="tl-year" id="tl-year" aria-hidden="true">1977</div>
-          <p class="tl-name">Sivakumar Kumaraswamy</p>
-          <p class="tl-role">K. Sivakumar · Proprietor</p>
+    <div class="grid">
+      <div>
+        <div class="chapter reveal"><b>02</b><span></span><p class="eyebrow">About us</p></div>
+        <h2 class="reveal">Making home electronics <span class="grad">affordable.</span></h2>
+        <p class="lead reveal">SK Terabytes is an OEM and super stockist of LED Smart TVs, based in Chennai. We started our television business in <b>2024</b> with one mission: to make home electronics affordable for every home — good screens, smart features and honest service, without the premium price tag.</p>
+        <p class="lead reveal">“Your Trust, Our Promise” is printed on every card we hand out. Everything on this page — the range, the warranty, the terms — is how we keep it.</p>
+        <div class="facts">
+          <div class="fact reveal"><small>TVs since</small><b>2024</b></div>
+          <div class="fact reveal" style="--d:.08s"><small>We are</small><b>OEM / Super Stockist</b></div>
+          <div class="fact reveal" style="--d:.16s"><small>Based in</small><b>West Tambaram, Chennai</b></div>
+          <div class="fact reveal" style="--d:.24s"><small>Our brands</small><b>Xudesi™ · Adsan</b></div>
         </div>
-      </aside>
-      <ol class="tl" id="tl">
-        <li class="tl-item reveal" data-year="1977"><span class="y">1977</span><h3>Born in Chennai</h3><p>Born into a humble family in Chennai, Tamil Nadu — the city SK Terabytes still calls home.</p></li>
-        <li class="tl-item reveal" data-year="2003"><span class="y">2003</span><h3>The first engineer in the family</h3><p>Graduated with a B.Tech in Electrical &amp; Electronics Engineering — the first engineering graduate in the family.</p></li>
-        <li class="tl-item reveal" data-year="2006"><span class="y">2006</span><h3>Across the world</h3><p>Moved to the USA and worked with major US tech firms, gaining global experience in electronics and IT.</p></li>
-        <li class="tl-item reveal" data-year="2016"><span class="y">2016</span><h3>Home again</h3><p>Returned to India with a desire to innovate locally and contribute to the country’s tech ecosystem.</p></li>
-        <li class="tl-item reveal" data-year="2025"><span class="y">2025</span><h3>The promise takes shape</h3><p>The dream of an Indian premium TV brand that rivals the global companies became SK Terabytes — and “Your Trust, Our Promise” became its word.</p></li>
-      </ol>
+      </div>
+      <div class="tower reveal" aria-hidden="true"><i></i><i></i><i></i><img class="mk" src="assets/img/skt-mark.png" alt=""></div>
     </div>
-    <blockquote class="vision reveal">
-      <span class="eyebrow">Our vision</span>
-      <p>“To make cutting-edge television technology accessible without compromise.”</p>
-      <a class="btn btn-ghost" href="#brands">Meet the brands ↓</a>
-    </blockquote>
+
+    <div class="why">
+      <article class="wcard reveal">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>
+        <h3>Our mission</h3>
+        <p>Make home electronics affordable. A good TV shouldn’t be a luxury purchase, so we keep the range simple, the terms clear and the prices honest — and stand behind every set with doorstep service.</p>
+      </article>
+      <article class="wcard gx reveal" style="--d:.08s">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+        <h3>Why Xudesi™</h3>
+        <p>The smart choice. We started Xudesi to put a smart, good-looking LED TV within reach of everyday families — Android and WebOS smart platforms, sizes from 24″ to 55″, in a black-and-gold finish that looks the part in any home.</p>
+      </article>
+      <article class="wcard ga reveal" style="--d:.16s">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3L3 20h18z"/><path d="M12 10l-4 7h8z"/></svg>
+        <h3>Why Adsan</h3>
+        <p>Top-notch quality for the best price. Adsan is for buyers and dealers who want a dependable TV across the full size range — all the way up to 65″ — at the best price we can offer.</p>
+      </article>
+    </div>
+
+    <div class="founder fb">
+      <div class="head">
+        <div class="chapter reveal" style="justify-content:center"><span></span><p class="eyebrow">The founder’s journey</p><span></span></div>
+        <h3 class="fb-title reveal">A humble start. <span class="grad">A bold promise.</span></h3>
+        <p class="lead reveal">The story behind SK Terabytes begins long before the first TV — in Chennai, in 1977.</p>
+      </div>
+      <div class="tl-grid">
+        <aside class="tl-side">
+          <div class="tl-card reveal">
+            <div class="tl-year" id="tl-year" aria-hidden="true">1977</div>
+            <p class="tl-name">Sivakumar Kumaraswamy</p>
+            <p class="tl-role">K. Sivakumar · Proprietor</p>
+          </div>
+        </aside>
+        <ol class="tl" id="tl">
+          <li class="tl-item reveal" data-year="1977"><span class="y">1977</span><h3>Born in Chennai</h3><p>Born into a humble family in Chennai, Tamil Nadu — the city SK Terabytes still calls home.</p></li>
+          <li class="tl-item reveal" data-year="2003"><span class="y">2003</span><h3>The first engineer in the family</h3><p>Graduated with a B.Tech in Electrical &amp; Electronics Engineering — the first engineering graduate in the family.</p></li>
+          <li class="tl-item reveal" data-year="2006"><span class="y">2006</span><h3>Across the world</h3><p>Moved to the USA and worked with major US tech firms, gaining global experience in electronics and IT.</p></li>
+          <li class="tl-item reveal" data-year="2016"><span class="y">2016</span><h3>Home again</h3><p>Returned to India with a desire to innovate locally and contribute to the country’s tech ecosystem.</p></li>
+          <li class="tl-item reveal" data-year="2024"><span class="y">2024</span><h3>SK Terabytes begins</h3><p>Started the television business with a mission to make home electronics affordable — and a promise: “Your Trust, Our Promise.”</p></li>
+        </ol>
+      </div>
+      <blockquote class="vision reveal">
+        <span class="eyebrow">Our vision</span>
+        <p>“To make cutting-edge television technology accessible without compromise.”</p>
+        <a class="btn btn-ghost" href="#brands">Meet the brands ↓</a>
+      </blockquote>
+    </div>
   </div>
 </section>
 
-<!-- ============ 04 · THE BRANDS ============ -->
+<!-- ============ 03 · THE BRANDS ============ -->
 <section class="brands" id="brands" data-ch="Brands">
   <div class="wrap head">
-    <div class="chapter reveal" style="justify-content:center"><b>04</b><span></span><p class="eyebrow">The Brands</p></div>
+    <div class="chapter reveal" style="justify-content:center"><b>03</b><span></span><p class="eyebrow">Our brands</p></div>
     <h2 class="reveal">Two brands. <span class="grad">Two personalities.</span></h2>
-    <p class="lead reveal">One promise behind both. Step inside.</p>
+    <p class="lead reveal">One promise behind both. Pick a brand to step inside.</p>
   </div>
-  <div class="split">
-    <a class="pane pane-x" href="#xudesi">
-      <img src="assets/img/xudesi-logo-tag.png" alt="Xudesi — The Smart Choice">
-      <h3 class="gold">The Smart Choice</h3>
-      <p>Premium &amp; luxurious LED Smart TVs. Five models, 24″ to 55″.</p>
-      <span class="btn btn-line-gold">Enter Xudesi ↓</span>
+  <div class="bgrid">
+    <a class="bcard bx reveal" href="#xudesi" data-tilt>
+      <img class="bhz" src="assets/img/xudesi-horizon-1x.webp" alt="" aria-hidden="true">
+      <span class="bnum">01</span>
+      <img class="blogo" src="assets/img/xudesi-logo-tag.png" alt="Xudesi — The Smart Choice">
+      <p class="bdesc">Premium &amp; luxurious LED Smart TVs, in black and gold.</p>
+      <div class="b-tv" data-tv="xudesi"></div>
+      <ul class="bmeta"><li><b>5</b> models</li><li><b>24″–55″</b></li><li>Android · WebOS 4K</li></ul>
+      <span class="bcta">Enter Xudesi <i>→</i></span>
     </a>
-    <a class="pane pane-a" href="#adsan">
-      <img src="assets/img/adsan-logo.png" alt="Adsan — The Best or Nothing!">
-      <h3>The Best or Nothing!</h3>
-      <p>Top-notch quality for the best price. Six models, 24″ to 65″.</p>
-      <span class="btn btn-line-ad">Enter Adsan ↓</span>
+    <a class="bcard ba reveal" style="--d:.1s" href="#adsan" data-tilt>
+      <span class="bnum">02</span>
+      <img class="blogo" src="assets/img/adsan-logo.png" alt="Adsan — The Best or Nothing!">
+      <p class="bdesc">Top-notch quality for the best price.</p>
+      <div class="b-tv" data-tv="adsan"></div>
+      <ul class="bmeta"><li><b>6</b> models</li><li><b>24″–65″</b></li><li>Android · WebOS 4K</li></ul>
+      <span class="bcta">Enter Adsan <i>→</i></span>
     </a>
   </div>
 </section>
 
-<!-- ============ 05 · XUDESI ============ -->
+<!-- ============ 04 · XUDESI ============ -->
 <section class="xud pad spot" id="xudesi" data-ch="Xudesi">
-  <img class="hz hz-t" src="assets/img/horizon-gold.webp" alt="" aria-hidden="true">
+  <img class="xhz" src="assets/img/xudesi-horizon.webp" alt="" aria-hidden="true">
   <div class="wrap">
     <div class="head">
-      <div class="chapter reveal" style="justify-content:center"><b>05</b><span></span><p class="eyebrow" style="color:var(--gold2)">Chapter Five</p></div>
+      <div class="chapter reveal" style="justify-content:center"><b>04</b><span></span><p class="eyebrow" style="color:var(--gold2)">Chapter Four</p></div>
       <img class="logo-big reveal" src="assets/img/xudesi-logo-tag.png" alt="Xudesi — The Smart Choice">
       <h2 class="gold reveal">Premium. Luxurious. Smart.</h2>
       <p class="lead reveal">LED Smart TVs built around one idea — the smart choice — in a black-and-gold finish that feels at home in any showroom.</p>
@@ -209,19 +236,14 @@
   </div>
 </section>
 
-<!-- interlude -->
-<div class="inter-band" aria-hidden="true">
-  <img class="hz hz-b" src="assets/img/horizon.webp" alt="">
-  <div class="inter-txt"><p class="eyebrow">Xudesi™ &amp; Adsan</p><h2>Two brands. <span class="grad">One promise.</span></h2></div>
-</div>
-
-<!-- ============ 06 · ADSAN ============ -->
+<!-- ============ 05 · ADSAN ============ -->
 <section class="ads pad spot" id="adsan" data-ch="Adsan">
+  <div class="curve" aria-hidden="true"></div>
   <div class="wrap">
     <div class="head">
       <img class="reveal" src="assets/img/adsan-logo.png" alt="Adsan — The Best or Nothing!">
       <div class="reveal" style="--d:.1s">
-        <div class="chapter"><b>06</b><span></span><p class="eyebrow" style="color:var(--ad)">Chapter Six</p></div>
+        <div class="chapter"><b>05</b><span></span><p class="eyebrow" style="color:var(--ad)">Chapter Five</p></div>
         <h2>The Best <em>or Nothing!</em></h2>
         <p class="lead">Top-notch quality for the best price. Adsan goes all the way up to 65″ — the largest screens in our range.</p>
       </div>
@@ -257,11 +279,11 @@
   </div>
 </section>
 
-<!-- ============ 07 · CLARITY ============ -->
+<!-- ============ 06 · CLARITY ============ -->
 <section class="clarity pad spot" id="clarity" data-ch="Clarity">
   <div class="wrap grid">
     <div class="reveal">
-      <div class="chapter"><b>07</b><span></span><p class="eyebrow">See the difference</p></div>
+      <div class="chapter"><b>06</b><span></span><p class="eyebrow">See the difference</p></div>
       <h2>Drag to <span class="grad">compare.</span></h2>
       <p class="lead">Left: a standard picture. Right: the sharpness of Ultra HD 4K — the class of our WebOS 4K models. Hover or drag across the screen, or switch on the magnifier to look closer.</p>
       <p class="note">Illustration — not a photo of a product.</p>
@@ -285,11 +307,11 @@
   </div>
 </section>
 
-<!-- ============ 08 · CATALOG ============ -->
+<!-- ============ 07 · CATALOG ============ -->
 <section class="cat pad" id="catalog" data-ch="Catalog" data-brand="xudesi">
   <div class="wrap">
     <div class="head">
-      <div class="chapter reveal" style="justify-content:center"><b>08</b><span></span><p class="eyebrow">The Lineup</p></div>
+      <div class="chapter reveal" style="justify-content:center"><b>07</b><span></span><p class="eyebrow">The Lineup</p></div>
       <h2 class="reveal">The full <span class="gold">catalog.</span></h2>
       <p class="lead reveal">Pick a brand, filter by type. We share prices directly — tap <b>Get dealer price</b> on any model and we'll send the list.</p>
     </div>
@@ -308,11 +330,11 @@
   </div>
 </section>
 
-<!-- ============ 09 · HOW WE WORK ============ -->
+<!-- ============ 08 · HOW WE WORK ============ -->
 <section class="way pad spot" id="way" data-ch="Process">
   <div class="wrap">
     <div class="head">
-      <div class="chapter reveal" style="justify-content:center"><b>09</b><span></span><p class="eyebrow">The Way We Work</p></div>
+      <div class="chapter reveal" style="justify-content:center"><b>08</b><span></span><p class="eyebrow">The Way We Work</p></div>
       <h2 class="reveal">From enquiry to <span class="grad">doorstep.</span></h2>
       <p class="lead reveal">Five simple steps, and the terms laid out plainly up front.</p>
     </div>
@@ -337,12 +359,11 @@
   </div>
 </section>
 
-<!-- ============ 10 · CONTACT ============ -->
+<!-- ============ 09 · CONTACT ============ -->
 <section class="contact pad spot" id="contact" data-ch="Contact">
-  <img class="hz hz-t" src="assets/img/horizon.webp" alt="" aria-hidden="true">
   <div class="wrap">
     <div class="head">
-      <div class="chapter reveal" style="justify-content:center"><b>10</b><span></span><p class="eyebrow">Say hello</p></div>
+      <div class="chapter reveal" style="justify-content:center"><b>09</b><span></span><p class="eyebrow">Say hello</p></div>
       <h2 class="reveal">Let’s talk <span class="grad">TVs.</span></h2>
       <p class="lead reveal">Dealers, distributors or buyers — call, WhatsApp or write to us and ask for the current price list.</p>
     </div>
@@ -388,7 +409,6 @@
 
 <!-- ============ FOOTER ============ -->
 <footer>
-  <img class="hz hz-t" src="assets/img/horizon.webp" alt="" aria-hidden="true">
   <div class="wrap">
     <div class="grid">
       <div>
@@ -396,7 +416,7 @@
         <p>Your Trust, Our Promise. OEM / Super Stockist of LED Smart TVs, Chennai.</p>
         <div class="brand-pair"><img src="assets/img/xudesi-logo-h.png" alt="Xudesi"><img class="ad" src="assets/img/adsan-logo-dark.png" alt="Adsan — The Best or Nothing!"></div>
       </div>
-      <div><h4>Explore</h4><ul><li><a href="#house">Our story</a></li><li><a href="#founder">The founder</a></li><li><a href="#xudesi">Xudesi™</a></li><li><a href="#adsan">Adsan</a></li><li><a href="#catalog">Catalog</a></li></ul></div>
+      <div><h4>Explore</h4><ul><li><a href="#about">About us</a></li><li><a href="#xudesi">Xudesi™</a></li><li><a href="#adsan">Adsan</a></li><li><a href="#catalog">Catalog</a></li></ul></div>
       <div><h4>Info</h4><ul><li><a href="#way">How we work</a></li><li><a href="terms.html">Terms &amp; warranty</a></li><li><a href="privacy.html">Privacy</a></li><li><a href="#contact">Contact</a></li></ul></div>
       <div><h4>Reach us</h4><ul><li><a href="tel:+919841600963">+91 98416 00963</a></li><li><a href="tel:+917401719274">+91 74017 19274</a></li><li><a href="tel:+919952292220">+91 99522 92220</a></li><li><a href="mailto:info@skterabytes.com">info@skterabytes.com</a></li><li style="color:#8f877a;font-size:.84rem">Corporate: 12, Mullai Street, Ramani Nagar Extn,<br>West Tambaram, Chennai 600063</li><li style="color:#8f877a;font-size:.84rem">Warehouse: 5/160, 4th Main Road, Otteri Extn,<br>Vandalur, Chennai 600048</li></ul></div>
     </div>

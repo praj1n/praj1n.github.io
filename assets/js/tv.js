@@ -9,10 +9,9 @@
   var saveData = !!(navigator.connection && navigator.connection.saveData);
   var BASE = 'assets/video/';
   var CHANNELS = {
-    1: 'Nature', 2: 'Wildlife', 3: 'Golden Hour', 4: 'Macro', 5: 'Lakeside', 6: 'Bloom'
+    1: 'Wild Colours', 2: 'Deep Blue', 3: 'Splash', 4: 'Colour Burst', 5: 'Fresh', 6: 'Golden Hour', 7: 'Bloom'
   };
   var SPLASH = {
-    skt: 'assets/img/splash-skt.jpg',
     xudesi: 'assets/img/splash-xudesi.jpg',
     adsan: 'assets/img/splash-adsan.jpg'
   };
