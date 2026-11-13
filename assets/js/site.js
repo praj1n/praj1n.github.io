@@ -47,10 +47,13 @@
 
   function modelName(b, s, t) { return DATA[b].name + ' ' + s + '″ ' + TIERS[t].label; }
   function waLink(text) { return 'https://wa.me/' + WA + '?text=' + encodeURIComponent(text); }
-  var WALLS = ['honey', 'frog', 'chameleon', 'kiwi', 'dragon', 'lake', 'apples', 'peacock', 'tulips'];
-  var WALL_PICK = { xudesi: ['honey', 'frog', 'chameleon', 'kiwi', 'dragon'], adsan: ['lake', 'tulips', 'peacock', 'apples', 'chameleon', 'dragon'] };
-  function wallOrder(b, i) { var f = WALL_PICK[b][i]; return [f].concat(WALLS.filter(function (w) { return w !== f; })); }
-  function modalOrder(i) { var first = [7, 5, 6, 1][(+i || 0) % 4]; return [first].concat([7, 5, 6, 1, 4, 3, 2].filter(function (c) { return c !== first; })); }
+  var WALLS = ['honey', 'pepper', 'chameleon', 'strawberry', 'owl', 'oranges', 'jelly', 'budgie', 'kiwidrink', 'amethyst', 'peony', 'powder', 'dahlia'];
+  /* one unique wallpaper per model; the two brand cards use honey (Xudesi) and the jellyfish (Adsan) */
+  var WALL_PICK = { xudesi: ['pepper', 'chameleon', 'strawberry', 'owl', 'oranges'], adsan: ['budgie', 'kiwidrink', 'amethyst', 'peony', 'powder', 'dahlia'] };
+  function wallsFrom(f) { return [f].concat(WALLS.filter(function (w) { return w !== f; })); }
+  function wallOrder(b, i) { return wallsFrom(WALL_PICK[b][i]); }
+  function brandWalls(b) { return wallsFrom(b === 'xudesi' ? 'honey' : 'jelly'); }
+  function modalOrder(b) { var first = b === 'xudesi' ? 8 : 9; return [first].concat([8, 9, 7, 5, 6, 1, 4, 3, 2].filter(function (c) { return c !== first; })); }
   function rot(i) { var a = [1, 2, 3, 4, 5, 6, 7], k = i % 7; return a.slice(k).concat(a.slice(0, k)); }
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
 
@@ -176,7 +179,7 @@
   /* ---- brand cards: live TV previews + pointer parallax ---- */
   $$('.b-tv').forEach(function (el, i) {
     var d = DATA[el.dataset.tv];
-    el.innerHTML = SKT_TV.html({ brand: d.name.toUpperCase(), cls: d.cls, mode: 'poster', order: el.dataset.tv === 'xudesi' ? ['honey', 'frog', 'chameleon', 'kiwi', 'dragon', 'lake', 'apples', 'peacock', 'tulips'] : ['lake', 'tulips', 'peacock', 'apples', 'chameleon', 'dragon', 'honey', 'frog', 'kiwi'], interactive: false, lazy: false });
+    el.innerHTML = SKT_TV.html({ brand: d.name.toUpperCase(), cls: d.cls, mode: 'poster', order: brandWalls(el.dataset.tv), interactive: false, lazy: false });
     SKT_TV.mount(el);
   });
   if (fine && !reduce) {
@@ -236,7 +239,7 @@
     var msg = 'Hello SK Terabytes, I would like the dealer price for ' + modelName(b, s, t) + '.';
     dlg.innerHTML = '<div class="m-box" data-brand="' + b + '">' +
       '<button class="m-close" aria-label="Close">×</button>' +
-      '<div class="m-media">' + SKT_TV.html({ brand: d.name.toUpperCase(), cls: d.cls, mode: 'video', order: modalOrder(i), hint: 'Tap the TV to change channel', lazy: false }) + '</div>' +
+      '<div class="m-media">' + SKT_TV.html({ brand: d.name.toUpperCase(), cls: d.cls, mode: 'video', order: modalOrder(b), hint: 'Tap the TV to change channel', lazy: false }) + '</div>' +
       '<div class="m-body"><p class="eyebrow" style="color:var(--ac)">' + d.name + (d.tm ? '™' : '') + ' · ' + s + ' inch</p>' +
       '<h3>' + d.name + (d.tm ? '<sup>' + d.tm + '</sup>' : '') + ' ' + s + '″</h3><p class="sub">' + T.label + '</p>' +
       '<dl class="specs">' + rows +
