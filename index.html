@@ -1,788 +1,398 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Skterabytes - Premium TVs</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display+Condensed:wght@400;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@900;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600&display=swap" rel="stylesheet">
-  
-  
-
-
-
-
-  <style>
-    @layer base {
-    :root {
-      --primary-color: #8B8EE2;
-      --secondary-color: #F96E59;
-    }
-  }
-  .fade-in {
-      opacity: 0;
-      animation: fadeIn 2s ease-in-out forwards;
-      animation-delay: 1s;
-    }
-    
-
-    .white-fade {
-      animation: fadeOut 2s ease-in-out forwards;
-    }
-
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
-    }
-
-    @keyframes fadeOut {
-      to {
-        opacity: 0;
-        visibility: hidden;
-      }
-    }
-
-    body {
-      font-family: 'Geist', sans-serif;
-    }
-
-    @keyframes typing {
-      from { width: 0 }
-      to { width: 100% }
-    }
-
-    @keyframes blink {
-      50% { border-color: transparent }
-    }
-
-    .typewriter-text {
-      display: inline-block;
-      overflow: hidden;
-      white-space: nowrap;
-      border-right: 2px solid #F96E59;
-      animation: typing 3s steps(30, end), blink 0.75s step-end infinite;
-    }
-
-    .active {
-      color: #F96E59;
-      font-weight: 700;
-    }
-
-    .fade-in-element {
-      opacity: 0;
-      transition: opacity 1s ease-out;
-    }
-
-    .fade-in-visible {
-      opacity: 1;
-    }
-
-    @keyframes slideInText {
-      0% { opacity: 0; transform: translateY(30px); }
-      100% { opacity: 1; transform: translateY(0); }
-      
-    }
-
-    .animated-overlay-text {
-      animation: slideInText 1.2s ease-out forwards;
-      font-family: 'Inter', sans-serif;
-    }
-    .sidebar a {
-  font-family: 'Permanent Marker', cursive !important;
-}
-
-
-  </style>
-</head>
-<body class="bg-white text-gray-900 leading-relaxed">
-    <style>
-        .fade-in-visible {
-          opacity: 1 !important;
-        }
-        @keyframes slideFadeIn {
-  0% {
-    opacity: 0;
-    transform: translateX(0%) translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0%) translateY(0);
-  }
-}
-
-.custom-slide-in {
-  animation: slideFadeIn 1.5s ease-out forwards;
-  opacity: 0;
-}
-
-      </style>
-      
-    <!-- Navbar -->
-<nav class="bg-white py-3 w-full z-50 shadow-none">
-  <div class="container mx-auto px-6 flex items-center justify-between relative">
-    <!-- Logo -->
-    <div class="flex-shrink-0">
-      <img src="assests/images/logo/skterabytes-logo.png" alt="Skterabytes Logo" class="h-20 md:h-28">
-    </div>
-
-    <!-- Center Navlinks -->
-    <div class="absolute left-1/2 transform -translate-x-1/2 hidden md:flex space-x-6 text-[14px] font-[600] font-[Geist]">
-      <a href="index.html" class="text-gray-900 hover:text-[#8B8EE2] font-[Raleway] border-b-2 border-[#F96E59]">HOME</a>
-      <a href="models.html" class="text-gray-900 hover:text-[#8B8EE2] font-[Raleway]">TV MODELS</a>
-      <a href="support.html" class="text-gray-900 hover:text-[#8B8EE2] font-[Raleway]">SUPPORT</a>
-      <a href="about.html" class="text-gray-900 hover:text-[#8B8EE2] font-[Raleway]">ABOUT</a>
-      <a href="contact.html" class="text-gray-900 hover:text-[#8B8EE2] font-[Raleway]">CONTACT</a>
-    </div>
-
-    <!-- Search Bar -->
-<div class="hidden md:flex items-center space-x-2 relative w-full max-w-[250px]">
-  <input 
-    type="text" 
-    id="searchInput"
-    placeholder="Search models..." 
-    class="border border-gray-300 rounded-full px-4 py-2 text-sm w-full focus:outline-none focus:ring-2 focus:ring-[#8B8EE2]">
-  
-  <!-- Suggestions Dropdown -->
-  <ul id="suggestions" class="absolute top-full mt-2 w-full bg-white border border-gray-200 rounded-xl shadow-xl hidden z-50 transition-all duration-300 ease-in-out">
-    <!-- Suggestions will be injected here -->
-  </ul>
-</div>
-
-    <!-- Mobile Menu Button -->
-    <!-- Mobile Icons (Visible only on small screens) -->
-<div class="flex items-center space-x-4 md:hidden">
-  <!-- Search Icon -->
-  <div id="mobileSearchTrigger" class="cursor-pointer">
-    <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 104.5 4.5a7.5 7.5 0 0012.15 12.15z" />
-    </svg>
-  </div>
-
-  <!-- Hamburger Menu Button -->
-  <button id="menuBtn" class="text-3xl">☰</button>
-</div>
-
-</nav>
-       
-
-
-
-  <!-- Mobile Sidebar -->
-  <div id="mobileMenu" class="md:hidden fixed top-0 right-0 h-full w-64 bg-white shadow-lg transform translate-x-full transition-transform duration-300 z-50">
-    <div class="flex justify-between items-center px-6 py-5 border-b">
-      <h2 class="text-lg font-['Exo_2']">MENU</h2>
-      <button id="closeMenu" class="text-2xl">×</button>
-    </div>
-    <div class="flex flex-col space-y-4 p-4 text-[15px] font-[600] font-[Raleway]">
-      <a href="index.html" id="homeLinkMobile" class="text-gray-900 hover:text-[#8B8EE2] transition-colors font-[Raleway] relative inline-block active-link border-b-2 border-[#F96E59]">HOME</a>
-      <a href="models.html" id="modelsLinkMobile" class="text-gray-900 hover:text-[#8B8EE2] transition-colors font-[Raleway] relative inline-block active-link">TV MODELS</a>
-      <a href="support.html" id="supportLinkMobile" class="text-gray-900 hover:text-[#8B8EE2] transition-colors font-[Raleway] relative inline-block active-link">SUPPORT</a>
-      <a href="about.html" id="aboutLinkMobile" class="text-gray-900 hover:text-[#8B8EE2] transition-colors font-[Raleway] relative inline-block active-link ">ABOUT</a>
-      <a href="contact.html" id="contactLinkMobile" class="text-gray-900 hover:text-[#8B8EE2] transition-colors font-[Raleway] relative inline-block active-link">CONTACT</a>
-    </div>
-  </div>
-    <!-- Mobile Search Bar -->
-<div id="mobileSearchContainer" class="md:hidden px-6 py-4 hidden">
-  <input 
-    type="text" 
-    id="mobileSearchInput"
-    placeholder="Search models..." 
-    class="border border-gray-300 rounded-full px-4 py-2 text-sm w-full focus:outline-none focus:ring-2 focus:ring-[#8B8EE2]">
-
-  <!-- Suggestions Dropdown -->
-  <ul id="mobileSuggestions" class="mt-2 w-full bg-white border border-gray-200 rounded-xl shadow-xl hidden z-50 transition-all duration-300 ease-in-out">
-    <!-- Suggestions will be injected here -->
-  </ul>
-</div>
-
-</nav>
-
-<!-- Hero Section -->
-<section class="relative bg-white min-h-screen flex items-center justify-center text-center px-4">
-
-  <!-- Background Video -->
-<video autoplay muted loop playsinline class="absolute top-0 left-0 w-full h-full object-cover fade-in z-0">
-    <source src="assests/videos/Sonywhite.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-</video>
-
-
-  <!-- White overlay -->
-  <div class="absolute top-0 left-0 w-full h-full bg-white z-10 white-fade"></div>
-
-  <!-- Hero Text Overlay -->
-<div class="absolute z-20 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-white px-4">
-  <div class="flex justify-center items-center mb-6">
-    <h1 class="text-4xl md:text-6xl font-[Poppins] text-[#8B8EE2] drop-shadow-md">Experience</h1>
-    <h1 class="text-4xl md:text-6xl font-[Poppins] text-[#8B8EE2] ml-2 drop-shadow-md">Television</h1>
-  </div>
-  
-  <h2 class="text-4xl md:text-6xl font-[Poppins] text-[#8B8EE2] drop-shadow-md -mt-4">Excellence</h2>
-  <p id="typingText" class="text-2xl text-[#F96E59] mb-10 h-10 typewriter-text mt-4"></p>
-</div>
-
-<!-- Separate Browse TVs Button -->
-<a href="models.html"
-   class="absolute z-20 top-[61%] left-1/2 transform -translate-x-1/2 bg-[#8B8EE2] text-white px-8 py-4 rounded-full text-xl hover:bg-[#F96E59] transition-all duration-300">
-   Browse TVs
-</a>
-
-
-
-</section>
-
-
-
-<!-- First Video Section -->
-<section id="videoSection" >
-    <video autoplay muted loop playsinline class="w-full h-[90vh] object-cover">
-      <source src="assests/videos/S90d.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-    <section id="image-reveal-slider" class="w-full min-h-screen bg-black flex items-center justify-center p-6">
-      <div class="flex flex-col lg:flex-row items-center justify-center w-full gap-10">
-        <!-- Text Section -->
-        <div class="text-left max-w-md">
-          <h1 class="text-4xl font-extrabold text-[#8B8EE2] leading-tight">Clarity Comparison</h1>
-          <p class="text-lg text-gray-300 mt-4">Drag the slider to reveal image clarity. A quick view of how quality transforms visuals.</p>
-          <p class="text-md text-gray-400 mt-2">This feature helps you compare before-and-after effects with ease and style.</p>
-        </div>
-    
-        <!-- Slider Section -->
-        <div class="relative slider-container" id="sliderContainer">
-          <div class="image-wrapper">
-            <img src="assests/images/logo/blurry.PNG" alt="Blurry Image">
-            <img src="assests/images/logo/highres.PNG" class="top-image" id="topImage" alt="Clear Image">
-          </div>
-    
-          <!-- Slider Bar -->
-          <div class="slider-bar" id="sliderBar" style="left: 50%;">
-            <!-- Center Circle -->
-            <div class="slider-circle"></div>
-            <!-- Arrows -->
-            <div class="arrow-wrapper arrow-left">‹</div>
-            <div class="arrow-wrapper arrow-right">›</div>
-          </div>
-        </div>
-      </div>
-    
-      <style>
-        body {
-          font-family: 'Poppins', sans-serif;
-        }
-    
-        .slider-container {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
-  user-select: none;
-  border-radius: 1rem;
-  padding: 0;
-}
-
-@media (min-width: 768px) {
-  .slider-container {
-    width: 700px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .slider-container {
-    width: 1000px;
-  }
-}
-    
-        .image-wrapper img {
-          position: absolute;
-          top: 0;
-          left: 0;
-          height: 100%;
-          width: 100%;
-          object-fit: cover;
-          border-radius: 1rem;
-        }
-    
-        .top-image {
-          clip-path: inset(0 50% 0 0);
-          transition: clip-path 0.1s ease-out;
-        }
-    
-        .slider-bar {
-          position: absolute;
-          top: 0;
-          width: 6px;
-          height: 100%;
-          background-color: #8B8EE2;
-          cursor: ew-resize;
-          z-index: 10;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-    
-        .arrow-wrapper {
-          position: absolute;
-          top: 50%;
-          transform: translateY(-50%);
-          font-size: 50px;
-          color: #8B8EE2;
-          font-weight: bold;
-          animation: blink 1.5s infinite ease-in-out;
-          user-select: none;
-          pointer-events: none;
-        }
-    
-        .arrow-left {
-          left: -33px;
-        }
-    
-        .arrow-right {
-          right: -33px;
-        }
-    
-        @keyframes blink {
-          0%, 100% { opacity: 0.3; transform: translateY(-50%) scale(1); }
-          50% { opacity: 1; transform: translateY(-50%) scale(1.15); }
-        }
-    
-        .slider-circle {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          width: 30px;
-          height: 30px;
-          background-color: white;
-          border: 4px solid #8B8EE2;
-          border-radius: 9999px;
-          z-index: 20;
-        }
-      </style>
-    
-      <script>
-        const sliderContainer = document.getElementById('sliderContainer');
-        const topImage = document.getElementById('topImage');
-        const sliderBar = document.getElementById('sliderBar');
-    
-        let isDragging = false;
-    
-        function updateSlider(x) {
-          const rect = sliderContainer.getBoundingClientRect();
-          let offsetX = x - rect.left;
-    
-          offsetX = Math.max(0, Math.min(offsetX, rect.width));
-          const percent = (offsetX / rect.width) * 100;
-    
-          topImage.style.clipPath = `inset(0 ${100 - percent}% 0 0)`;
-          sliderBar.style.left = `${offsetX}px`;
-        }
-    
-        sliderBar.addEventListener('mousedown', () => {
-          isDragging = true;
-          document.body.style.cursor = 'ew-resize';
-        });
-    
-        document.addEventListener('mouseup', () => {
-          isDragging = false;
-          document.body.style.cursor = 'default';
-        });
-    
-        document.addEventListener('mousemove', (e) => {
-          if (!isDragging) return;
-          updateSlider(e.clientX);
-        });
-    
-        // Touch events for mobile
-        sliderBar.addEventListener('touchstart', () => {
-          isDragging = true;
-        });
-    
-        document.addEventListener('touchend', () => {
-          isDragging = false;
-        });
-    
-        document.addEventListener('touchmove', (e) => {
-          if (!isDragging) return;
-          const touch = e.touches[0];
-          updateSlider(touch.clientX);
-        });
-      </script>
-    </section>
-    
-  
-  
-
-
-<!-- Static Image Section -->
-<section class="py-0 bg-white relative">
-    <div class="bg-black px-4 sm:px-12 md:px-20 lg:px-32">
-      <div class="w-full max-w-6xl mx-auto relative">
-        <img src="assests/images/logo/image8.jpg" alt="Premium TV Display" class="fade-in-on-scroll opacity-0 transition-opacity duration-3000 w-full">
-  
-      
-      <!-- Typewriter text below image -->
-      <div class="custom-slide-in absolute bottom-4 left-[16%] transform -translate-x-1/2 text-white text-xl font-[Geist] whitespace-nowrap">
-        
-      </div>
-      
-    </div>
-  </section>
-  
- 
-<!-- Spacer -->
-<section class="bg-black w-full h-[0px] mt-0"></section>
-
-<!-- second Video Section -->
-<section id="videoSection" >
-  <video autoplay muted loop playsinline class="w-full h-[90vh] object-cover">
-    <source src= "assests/videos/S95d.mp4"type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-</section>
-
-<!-- Text Section -->
-<section class="bg-black py-20 text-center">
-  <h2 class="text-4xl md:text-5xl font-[Poppins] text-[#8B8EE2]">Every Pixel Tells a Story</h2>
-  <p class="mt-6 max-w-3xl mx-auto text-lg text-gray-300">
-    Step into a world where color meets clarity. Our next-gen OLED TVs bring cinema-level brilliance straight to your living room — sleek, smart, and crafted for immersive storytelling.
-  </p>
-</section>
-
-<!-- third Video Section -->
-<section class="relative">
-  <video autoplay muted loop playsinline class="w-full h-[90vh] object-cover">
-    <source src="assests/videos/Wow.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-  <div class="absolute bottom-7 left-7 text-white font-[Orbitron] animated-overlay-text text-sm sm:text-base md:text-lg leading-relaxed">
-    <p class="mb-1"> Every angle, Every frame, Every TV</p>
-    <p class="mb-1">Designed to impress with unmatched clarity</p>
-    <p>Discover the difference with stunning visual brilliance</p>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="bg-[#8B8EE2] py-16 text-center text-white">
-  <h2 class="text-3xl font-[Poppins] mb-6">Upgrade Your Viewing Experience Today!</h2>
-  <p class="text-lg mb-8">Browse our premium TV collection now and transform your home entertainment.</p>
-  <a href="contact.html" class="bg-white text-[#8B8EE2] px-8 py-4 rounded-full text-xl hover:bg-[#F96E59] hover:text-white transition-all duration-300">Contact us</a>
-</section>
-
-<!-- Footer -->
-<footer class="bg-black text-white py-12">
-  <div class="container mx-auto px-6">
-    <div class="flex flex-col md:flex-row justify-between items-center">
-      <div class="mb-6 md:mb-0">
-        <img src="assests/images/logo/skterabytes-logo.png" alt="Skterabytes Logo" class="h-28">
-        <p class="mt-2 text-gray-400">Innovating your viewing experience</p>
-      </div>
-      <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
-        <div>
-          <h3 class="text-lg font-semibold mb-4">Company</h3>
-          <ul class="space-y-2">
-            <li><a href="about.html" class="text-gray-400 hover:text-white">About Us</a></li>
-            <li><a href="models.html" class="text-gray-400 hover:text-white">Products</a></li>
-          </ul>
-        </div>
-        <div>
-          <h3 class="text-lg font-semibold mb-4">Support</h3>
-          <ul class="space-y-2">
-            <li><a href="support.html" class="text-gray-400 hover:text-white">Help Center</a></li>
-            <li><a href="contact.html" class="text-gray-400 hover:text-white">Contact Us</a></li>
-          </ul>
-        </div>
-        <div>
-          <h3 class="text-lg font-semibold mb-4">Legal</h3>
-          <ul class="space-y-2">
-            <li><a href="privacy.html" class="text-white">Privacy Policy</a></li>
-            <li><a href="terms.html" class="text-gray-400 hover:text-white">Terms of Service</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-      <p>© 2025 Skterabytes. All rights reserved.</p>
-      <p class="mt-2 text-sm">Last Updated: April 28, 2025</p>
-    </div>
-  </div>
-</footer>
-
-  </div>
-</footer>
-
-<!-- Scripts -->
-<script>
-  const mobileSearchInput = document.getElementById("mobileSearchInput");
-  const mobileSuggestions = document.getElementById("mobileSuggestions");
-
-  const allModels = [
-    "Sony X95K", "Samsung S95D", "LG C3", "TCL Q10G"
-    // add more if needed
-  ];
-
-  // Show suggestions
-  mobileSearchInput.addEventListener("input", () => {
-    const query = mobileSearchInput.value.toLowerCase();
-    mobileSuggestions.innerHTML = "";
-
-    if (query === "") {
-      mobileSuggestions.classList.add("hidden");
-      return;
-    }
-
-    const matches = allModels.filter(model =>
-      model.toLowerCase().includes(query)
-    );
-
-    if (matches.length > 0) {
-      mobileSuggestions.classList.remove("hidden");
-      matches.forEach(model => {
-        const li = document.createElement("li");
-        li.textContent = model;
-        li.className = "px-4 py-2 hover:bg-[#8B8EE2] hover:text-white cursor-pointer rounded-md";
-        li.addEventListener("click", () => {
-          window.location.href = "models.html";
-        });
-        mobileSuggestions.appendChild(li);
-      });
-    } else {
-      mobileSuggestions.classList.add("hidden");
-    }
-  });
-
-  // Handle enter key
-  mobileSearchInput.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") {
-      e.preventDefault(); // prevent form submission or page reload
-      window.location.href = "models.html";
-    }
-  });
-
-
-
-  
-
-  // Utility: update suggestion list
-  function updateSuggestions(input, listId) {
-    const query = input.value.toLowerCase();
-    const suggestionsList = document.getElementById(listId);
-    suggestionsList.innerHTML = '';
-
-    if (query === '') {
-      suggestionsList.classList.add('hidden');
-      return;
-    }
-
-    const matchedModels = models.filter(model => model.toLowerCase().startsWith(query));
-
-    matchedModels.forEach(model => {
-      const li = document.createElement('li');
-      li.textContent = model;
-      li.className = "px-4 py-2 cursor-pointer hover:bg-gray-100 rounded-xl";
-      li.onclick = () => {
-        const fileName = model.toLowerCase().replace(/ /g, "-") + ".html";
-        window.location.href = fileName;
-      };
-      suggestionsList.appendChild(li);
-    });
-
-    suggestionsList.classList.remove('hidden');
-  }
-
-  // Desktop search
-  const desktopInput = document.getElementById('searchInput');
-  if (desktopInput) {
-    desktopInput.addEventListener('input', () => updateSuggestions(desktopInput, 'suggestions'));
-  }
-
-  // Mobile search
-  const mobileInput = document.getElementById('mobileSearchInput');
-  if (mobileInput) {
-    mobileInput.addEventListener('input', () => updateSuggestions(mobileInput, 'mobileSuggestions'));
-  }
-
-  // Toggle mobile search bar
-  const mobileSearchTrigger = document.getElementById('mobileSearchTrigger');
-  const mobileSearchContainer = document.getElementById('mobileSearchContainer');
-
-  mobileSearchTrigger.addEventListener('click', () => {
-    mobileSearchContainer.classList.toggle('hidden');
-  });
-
-
-  const searchInput = document.getElementById('searchInput');
-  const suggestionsBox = document.getElementById('suggestions');
-
-  const modelNames = [
-    { name: "Sony Bravia XR A80L", url: "models/tv1.html" },
-    { name: "Samsung OLED S95D", url: "models/tv2.html" },
-    { name: "LG OLED G3", url: "models/tv3.html" },
-    { name: "TCL QLED C845", url: "models/tv4.html" },
-    { name: "Samsung Neo QLED QN90C", url: "models/tv5.html" },
-    { name: "Sony X90L", url: "models/tv6.html" },
-    { name: "Panasonic MZ2000", url: "models/tv7.html" },
-    { name: "OnePlus Q2 Pro", url: "models/tv8.html" },
-    { name: "Hisense U7K", url: "models/tv9.html" },
-    { name: "Vu Masterpiece QLED", url: "models/tv10.html" },
-    { name: "Toshiba C350LP", url: "models/tv11.html" }
-  ];
-
-  searchInput.addEventListener('input', () => {
-    const inputVal = searchInput.value.toLowerCase();
-    suggestionsBox.innerHTML = '';
-
-    if (inputVal.length === 0) {
-      suggestionsBox.classList.add('hidden');
-      return;
-    }
-
-    const filteredModels = modelNames.filter(model => 
-      model.name.toLowerCase().startsWith(inputVal)
-    );
-
-    if (filteredModels.length === 0) {
-      suggestionsBox.classList.add('hidden');
-    } else {
-      suggestionsBox.classList.remove('hidden');
-      filteredModels.forEach(model => {
-        const li = document.createElement('li');
-        li.textContent = model.name;
-        li.className = 'px-4 py-2 hover:bg-[#8B8EE2] hover:text-white cursor-pointer rounded-lg';
-        li.onclick = () => window.location.href = model.url;
-        suggestionsBox.appendChild(li);
-      });
-    }
-  });
-
-  document.addEventListener('click', function (event) {
-    if (!searchInput.contains(event.target)) {
-      suggestionsBox.classList.add('hidden');
-    }
-  });
-
-
-  // Hide suggestions if clicked outside
-  document.addEventListener('click', (e) => {
-    if (!suggestionsBox.contains(e.target) && e.target !== searchInput) {
-      suggestionsBox.classList.add('hidden');
-    }
-  });
-
-
-  
-    // Highlight active nav link based on current URL
-    const currentPath = window.location.pathname.split("/").pop();
-
-const links = document.querySelectorAll("nav a");
-const mobileLinks = document.querySelectorAll("#mobileMenu a");
-
-[...links, ...mobileLinks].forEach(link => {
-  if (link.getAttribute("href") === currentPath) {
-    link.classList.add("text-[var(--primary-color)]", "font-semibold");
-  }
-});       
-  // Typing Animation
-  const textElement = document.getElementById("typingText");
-  const phrases = [
-    "Direct from factory to your living room.",
-    "Redefining clarity in every pixel.",
-    "Crafted for cinematic brilliance at home."
-  ];
-  let currentPhrase = 0;
-  let isDeleting = false;
-  let text = "";
-  let speed = 100;
-
-  function type() {
-    const fullText = phrases[currentPhrase];
-    text = isDeleting ? fullText.substring(0, text.length - 1) : fullText.substring(0, text.length + 1);
-    textElement.textContent = text;
-
-    if (!isDeleting && text === fullText) {
-      setTimeout(() => { isDeleting = true; type(); }, 1500);
-    } else if (isDeleting && text === "") {
-      isDeleting = false;
-      currentPhrase = (currentPhrase + 1) % phrases.length;
-      setTimeout(type, 300);
-    } else {
-      setTimeout(type, isDeleting ? speed / 2 : speed);
-    }
-  }
-  type();
-
-  // Fade-in animation using IntersectionObserver
-const observer = new IntersectionObserver((entries, observer) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      // Add the fade-in class
-      entry.target.classList.add('fade-in-visible');
-      
-      // Unobserve the target to prevent recurring fade-in
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.1 });
-
-// Target elements for fade-in animation
-document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-
-  // Mobile Menu Toggle
-  const menuBtn = document.getElementById("menuBtn");
-  const closeBtn = document.getElementById("closeMenu");
-  const mobileMenu = document.getElementById("mobileMenu");
-
-  menuBtn.addEventListener("click", () => mobileMenu.classList.remove("translate-x-full"));
-  closeBtn.addEventListener("click", () => mobileMenu.classList.add("translate-x-full"));
-  // Image Fade-in Observer
-document.querySelectorAll(".fade-in-on-scroll").forEach(el => observer.observe(el));
-
-const imageTextElement = document.getElementById("typewriterImageText");
-const imagePhrases = [
-  "Experience Clarity Like Never Before.",
-  "Sharper. Smarter. Stunning.",
-  "Crafted for the Eyes of Tomorrow.",
-  "Pixels That Speak Brilliance."
-];
-
-let imageIndex = 0;
-let isDeletingImage = false;
-let imageText = "";
-let imageSpeed = 100;
-
-function typeImageText() {
-  const fullText = imagePhrases[imageIndex];
-  imageText = isDeletingImage ? fullText.substring(0, imageText.length - 1) : fullText.substring(0, imageText.length + 1);
-  imageTextElement.textContent = imageText;
-
-  if (!isDeletingImage && imageText === fullText) {
-    setTimeout(() => {
-      isDeletingImage = true;
-      typeImageText();
-    }, 1500);
-  } else if (isDeletingImage && imageText === "") {
-    isDeletingImage = false;
-    imageIndex = (imageIndex + 1) % imagePhrases.length;
-    setTimeout(typeImageText, 300);
-  } else {
-    setTimeout(typeImageText, isDeletingImage ? imageSpeed / 2 : imageSpeed);
-  }
-}
-
-typeImageText();
-
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SK Terabytes — Xudesi &amp; Adsan LED Smart TVs | OEM &amp; Super Stockist, Chennai</title>
+<meta name="description" content="SK Terabytes is an OEM and super stockist of premium LED Smart TVs in West Tambaram, Chennai — home of the Xudesi and Adsan brands. 24″ to 65″, 1+1 year warranty with doorstep service.">
+<meta name="theme-color" content="#0d0b09">
+<link rel="canonical" href="https://skterabytes.com/">
+<link rel="icon" type="image/png" href="assets/img/favicon.png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SK Terabytes">
+<meta property="og:title" content="SK Terabytes — Your Trust, Our Promise">
+<meta property="og:description" content="OEM &amp; super stockist of Xudesi and Adsan LED Smart TVs. Chennai.">
+<meta property="og:image" content="https://skterabytes.com/assets/img/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"SK Terabytes","slogan":"Your Trust, Our Promise","url":"https://skterabytes.com","logo":"https://skterabytes.com/assets/img/icon-512.png","email":"info@skterabytes.com","telephone":"+91 74017 19274","founder":{"@type":"Person","name":"K. Sivakumar","jobTitle":"Proprietor"},"brand":[{"@type":"Brand","name":"Xudesi"},{"@type":"Brand","name":"Adsan"}],"address":{"@type":"PostalAddress","streetAddress":"12, Mullai Street, Ramani Nagar Extn, West Tambaram","addressLocality":"Chennai","postalCode":"600063","addressCountry":"IN"}}
 </script>
+</head>
+<body>
+<a class="skip" href="#house">Skip to content</a>
 
+<div id="pre" aria-hidden="true"><i></i><i></i><i></i><img class="mk" src="assets/img/skt-mark.png" alt=""></div>
+
+<!-- ============ NAV ============ -->
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="SK Terabytes — home"><img src="assets/img/skt-logo.png" alt="SK Terabytes"></a>
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="#house">Story</a></li>
+        <li><a href="#founder">Founder</a></li>
+        <li><a href="#brands">Brands</a></li>
+        <li><a href="#catalog">Catalog</a></li>
+        <li><a href="#way">How we work</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-lav cta mag" href="#contact">Dealer price list</a>
+    <button class="burger" aria-label="Menu" aria-expanded="false"><span></span></button>
+  </div>
+</header>
+<div class="drawer" aria-label="Menu">
+  <a href="#house">Story</a><a href="#founder">Founder</a><a href="#brands">Brands</a><a href="#catalog">Catalog</a><a href="#way">How we work</a><a href="#contact">Contact</a>
+  <a class="btn btn-lav" href="#contact">Get dealer price list</a>
+</div>
+<div class="rail" aria-hidden="true"></div>
+
+<main>
+<!-- ============ 01 · THE PROMISE ============ -->
+<section class="hero spot" id="top" data-ch="Promise">
+  <div class="rings" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="wrap grid">
+    <div>
+      <p class="eyebrow reveal">SK Terabytes · OEM / Super Stockist · Chennai</p>
+      <h1 class="reveal" style="--d:.1s">Your Trust,<br><span class="grad">Our Promise.</span></h1>
+      <p class="lead reveal" style="--d:.2s">We supply two LED Smart TV brands — <b>Xudesi™</b> and <b>Adsan</b> — from West Tambaram, Chennai, to dealers and customers.</p>
+      <p class="type reveal" style="--d:.3s" id="type" aria-live="off"></p>
+      <div class="btns reveal" style="--d:.4s">
+        <a class="btn btn-lav mag" href="#catalog">Explore the catalog</a>
+        <a class="btn btn-ghost mag" href="tel:+917401719274">Call sales</a>
+      </div>
+    </div>
+    <div class="hero-tv reveal" style="--d:.2s">
+      <span class="chip c1">Xudesi™ — The Smart Choice</span>
+      <span class="chip c2">Adsan — The Best or Nothing!</span>
+      <figure class="tv" data-scenes="aurora,sunset,ribbons,eye,chevron" data-auto="7000" data-res="448">
+        <div class="tv-body"><div class="tv-screen"><canvas></canvas><div class="tv-glare"></div><div class="tv-osd"></div></div><span class="tv-brand">SK TERABYTES</span></div>
+        <div class="tv-stand"><i></i><i></i></div>
+        <span class="hint">Tap the TV to change channel</span>
+      </figure>
+    </div>
+  </div>
+  <div class="scroll-cue" aria-hidden="true">Scroll</div>
+</section>
+
+<div class="stats">
+  <div class="wrap">
+    <div class="stat"><b data-count="2">2</b><span>Brands</span></div>
+    <div class="stat"><b data-count="11">11</b><span>TV models</span></div>
+    <div class="stat"><b>24″–65″</b><span>Screen sizes</span></div>
+    <div class="stat"><b>1+1 yr</b><span>Warranty, doorstep service</span></div>
+    <div class="stat"><b>1–3 days</b><span>Delivery by location</span></div>
+  </div>
+</div>
+
+<!-- ============ 02 · THE HOUSE ============ -->
+<section class="house pad spot" id="house" data-ch="Story">
+  <div class="wrap grid">
+    <div>
+      <div class="chapter reveal"><b>02</b><span></span><p class="eyebrow">The House</p></div>
+      <h2 class="reveal">A Chennai house with a simple <span class="grad">promise.</span></h2>
+      <p class="lead reveal">SK Terabytes is an OEM and super stockist of LED Smart TVs, based in West Tambaram, Chennai. We bring <b>Xudesi™</b> and <b>Adsan</b> to dealers and customers with clear terms, a stated delivery window and doorstep service behind every set.</p>
+      <p class="lead reveal">“Your Trust, Our Promise” is printed on every card we hand out. Everything on this page — the range, the warranty, the terms — is how we keep it.</p>
+      <div class="facts">
+        <div class="fact reveal"><small>We are</small><b>OEM / Super Stockist</b></div>
+        <div class="fact reveal" style="--d:.08s"><small>Based in</small><b>West Tambaram, Chennai</b></div>
+        <div class="fact reveal" style="--d:.16s"><small>Proprietor</small><b>K. Sivakumar</b></div>
+        <div class="fact reveal" style="--d:.24s"><small>Our brands</small><b>Xudesi™ · Adsan</b></div>
+      </div>
+    </div>
+    <div class="tower reveal" aria-hidden="true"><i></i><i></i><i></i><img src="assets/img/skt-mark.png" alt=""></div>
+  </div>
+</section>
+
+<!-- ============ 03 · THE FOUNDER ============ -->
+<section class="founder pad spot" id="founder" data-ch="Founder">
+  <div class="wrap">
+    <div class="head">
+      <div class="chapter reveal" style="justify-content:center"><b>03</b><span></span><p class="eyebrow">The Founder</p></div>
+      <h2 class="reveal">A humble start. <span class="grad">A bold promise.</span></h2>
+      <p class="lead reveal">The story behind SK Terabytes begins long before the first TV — in Chennai, in 1977.</p>
+    </div>
+    <div class="tl-grid">
+      <aside class="tl-side">
+        <div class="tl-card reveal">
+          <div class="tl-year" id="tl-year" aria-hidden="true">1977</div>
+          <p class="tl-name">Sivakumar Kumaraswamy</p>
+          <p class="tl-role">K. Sivakumar · Proprietor</p>
+        </div>
+      </aside>
+      <ol class="tl" id="tl">
+        <li class="tl-item reveal" data-year="1977"><span class="y">1977</span><h3>Born in Chennai</h3><p>Born into a humble family in Chennai, Tamil Nadu — the city SK Terabytes still calls home.</p></li>
+        <li class="tl-item reveal" data-year="2003"><span class="y">2003</span><h3>The first engineer in the family</h3><p>Graduated with a B.Tech in Electrical &amp; Electronics Engineering — the first engineering graduate in the family.</p></li>
+        <li class="tl-item reveal" data-year="2006"><span class="y">2006</span><h3>Across the world</h3><p>Moved to the USA and worked with major US tech firms, gaining global experience in electronics and IT.</p></li>
+        <li class="tl-item reveal" data-year="2016"><span class="y">2016</span><h3>Home again</h3><p>Returned to India with a desire to innovate locally and contribute to the country’s tech ecosystem.</p></li>
+        <li class="tl-item reveal" data-year="2025"><span class="y">2025</span><h3>The promise takes shape</h3><p>The dream of an Indian premium TV brand that rivals the global companies became SK Terabytes — and “Your Trust, Our Promise” became its word.</p></li>
+      </ol>
+    </div>
+    <blockquote class="vision reveal">
+      <span class="eyebrow">Our vision</span>
+      <p>“To make cutting-edge television technology accessible without compromise.”</p>
+      <a class="btn btn-ghost" href="#brands">Meet the brands ↓</a>
+    </blockquote>
+  </div>
+</section>
+
+<!-- ============ 04 · THE BRANDS ============ -->
+<section class="brands" id="brands" data-ch="Brands">
+  <div class="wrap head">
+    <div class="chapter reveal" style="justify-content:center"><b>04</b><span></span><p class="eyebrow">The Brands</p></div>
+    <h2 class="reveal">Two brands. <span class="grad">Two personalities.</span></h2>
+    <p class="lead reveal">One promise behind both. Step inside.</p>
+  </div>
+  <div class="split">
+    <a class="pane pane-x" href="#xudesi">
+      <img src="assets/img/xudesi-logo-tag.png" alt="Xudesi — The Smart Choice">
+      <h3 class="gold">The Smart Choice</h3>
+      <p>Premium &amp; luxurious LED Smart TVs. Five models, 24″ to 55″.</p>
+      <span class="btn btn-line-gold">Enter Xudesi ↓</span>
+    </a>
+    <a class="pane pane-a" href="#adsan">
+      <img src="assets/img/adsan-logo.png" alt="Adsan — The Best or Nothing!">
+      <h3>The Best or Nothing!</h3>
+      <p>Premium &amp; luxurious LED Smart TVs. Six models, 24″ to 65″.</p>
+      <span class="btn btn-line-ad">Enter Adsan ↓</span>
+    </a>
+  </div>
+</section>
+
+<!-- ============ 05 · XUDESI ============ -->
+<section class="xud pad spot" id="xudesi" data-ch="Xudesi">
+  <canvas id="dust" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div class="head">
+      <div class="chapter reveal" style="justify-content:center"><b>05</b><span></span><p class="eyebrow" style="color:var(--gold2)">Chapter Five</p></div>
+      <img class="logo-big reveal" src="assets/img/xudesi-logo-tag.png" alt="Xudesi — The Smart Choice">
+      <h2 class="gold reveal">Premium. Luxurious. Smart.</h2>
+      <p class="lead reveal">LED Smart TVs built around one idea — the smart choice — in a black-and-gold finish that feels at home in any showroom.</p>
+    </div>
+    <div class="stage">
+      <div class="reveal">
+        <figure class="tv gold" data-scenes="eye,sunset,aurora,ribbons" data-auto="6500" data-res="448">
+          <div class="tv-body"><div class="tv-screen"><canvas></canvas><div class="tv-glare"></div><div class="tv-osd"></div></div><span class="tv-brand">XUDESI</span></div>
+          <div class="tv-stand"><i></i><i></i></div>
+          <span class="hint">Tap the TV to change channel</span>
+        </figure>
+      </div>
+      <div class="reveal" style="--d:.15s">
+        <h3>Five models. <span class="gold">Every everyday size.</span></h3>
+        <p>From a 24″ non-smart set to a 55″ WebOS 4K, the Xudesi range covers the sizes people actually buy.</p>
+        <ul class="ticks">
+          <li>32″ and 43″ — FHD Smart Android</li>
+          <li>50″ and 55″ — WebOS 4K</li>
+          <li>1+1 year warranty with doorstep service</li>
+        </ul>
+        <div class="from"><small>Dealer price from</small><b class="gold">₹5,300</b><em>*per unit</em></div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <a class="btn btn-gold mag" href="#contact" data-ask="xudesi||">Get Xudesi price list</a>
+          <a class="btn btn-line-gold" href="#catalog" data-open-cat="xudesi">See all models</a>
+        </div>
+      </div>
+    </div>
+    <div class="lineup-wrap">
+      <p class="lineup-title gold">The Xudesi lineup — drawn to scale</p>
+      <div class="lineup" data-brand="xudesi"></div>
+    </div>
+  </div>
+</section>
+
+<!-- interlude -->
+<div class="inter-band" aria-hidden="true">
+  <figure class="tv tv-sm inter" data-scenes="ribbons" data-res="640" data-ratio="3.4"><canvas></canvas></figure>
+  <div class="inter-txt"><p class="eyebrow">Xudesi™ &amp; Adsan</p><h2>Two brands. <span class="grad">One promise.</span></h2></div>
+</div>
+
+<!-- ============ 06 · ADSAN ============ -->
+<section class="ads pad spot" id="adsan" data-ch="Adsan">
+  <div class="wrap">
+    <div class="head">
+      <img class="reveal" src="assets/img/adsan-logo.png" alt="Adsan — The Best or Nothing!">
+      <div class="reveal" style="--d:.1s">
+        <div class="chapter"><b>06</b><span></span><p class="eyebrow" style="color:var(--ad)">Chapter Six</p></div>
+        <h2>The Best <em>or Nothing!</em></h2>
+        <p class="lead">Premium &amp; luxurious LED Smart TVs — Adsan goes all the way up to 65″ with the largest screens in our range.</p>
+      </div>
+    </div>
+    <div class="stage">
+      <div class="reveal">
+        <h3>Six models. <span style="color:var(--ad)">Up to 65″.</span></h3>
+        <p>Start with a 24″ non-smart set and scale all the way to a 65″ WebOS 4K for the big wall.</p>
+        <ul class="ticks">
+          <li>32″ and 43″ — FHD Smart Android</li>
+          <li>50″, 55″ and 65″ — WebOS 4K</li>
+          <li>1+1 year warranty with doorstep service</li>
+        </ul>
+        <div class="from"><small>Dealer price from</small><b>₹7,999</b><em>*per unit</em></div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <a class="btn btn-ad mag" href="#contact" data-ask="adsan||">Get Adsan price list</a>
+          <a class="btn btn-line-ad" href="#catalog" data-open-cat="adsan">See all models</a>
+        </div>
+      </div>
+      <div class="tv-col reveal" style="--d:.15s">
+        <figure class="tv blue" data-scenes="chevron,aurora,ribbons,sunset" data-auto="6500" data-res="448">
+          <div class="tv-body"><div class="tv-screen"><canvas></canvas><div class="tv-glare"></div><div class="tv-osd"></div></div><span class="tv-brand">ADSAN</span></div>
+          <div class="tv-stand"><i></i><i></i></div>
+          <span class="hint" style="color:#4a76a8">Tap the TV to change channel</span>
+        </figure>
+      </div>
+    </div>
+    <div class="lineup-wrap">
+      <p class="lineup-title">The Adsan lineup — drawn to scale</p>
+      <div class="lineup" data-brand="adsan"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 07 · CLARITY ============ -->
+<section class="clarity pad spot" id="clarity" data-ch="Clarity">
+  <div class="wrap grid">
+    <div class="reveal">
+      <div class="chapter"><b>07</b><span></span><p class="eyebrow">See the difference</p></div>
+      <h2>Drag to <span class="grad">compare.</span></h2>
+      <p class="lead">Left: a low-resolution picture. Right: the sharpness of Ultra HD 4K — the class of our WebOS 4K models. Grab the handle and slide.</p>
+      <div class="scenes" role="group" aria-label="Choose a scene">
+        <button class="on" data-cmp-scene="aurora">Aurora</button>
+        <button data-cmp-scene="sunset">Golden Hour</button>
+        <button data-cmp-scene="ribbons">Flow</button>
+        <button data-cmp-scene="eye">Xudesi</button>
+        <button data-cmp-scene="chevron">Adsan</button>
+      </div>
+      <p class="note">Illustration rendered live in your browser — not a photo of a product.</p>
+    </div>
+    <div class="reveal" style="--d:.15s">
+      <div class="cmp" id="cmp" role="slider" tabindex="0" aria-label="Resolution comparison slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+        <canvas class="lo"></canvas><canvas class="hi"></canvas>
+        <span class="tag l">Low resolution</span><span class="tag r">Ultra HD 4K</span>
+        <div class="bar"><div class="knob">‹›</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 08 · CATALOG ============ -->
+<section class="cat pad" id="catalog" data-ch="Catalog" data-brand="xudesi">
+  <div class="wrap">
+    <div class="head">
+      <div class="chapter reveal" style="justify-content:center"><b>08</b><span></span><p class="eyebrow">The Lineup</p></div>
+      <h2 class="reveal">The full <span class="gold">catalog.</span></h2>
+      <p class="lead reveal">Pick a brand, filter by type. We share prices directly — tap <b>Get dealer price</b> on any model and we'll send the list.</p>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Brand">
+      <button role="tab" data-b="xudesi" aria-selected="true">Xudesi™</button>
+      <button role="tab" data-b="adsan" aria-selected="false">Adsan</button>
+    </div>
+    <div class="filters" role="group" aria-label="Filter by type">
+      <button class="on" data-f="all">All</button>
+      <button data-f="non">Non Smart</button>
+      <button data-f="android">FHD Smart Android</button>
+      <button data-f="webos">WebOS 4K</button>
+    </div>
+    <div class="cards" id="cards" aria-live="polite"></div>
+    <p class="fine">Every model: 1+1 year warranty with doorstep service · Minimum order 10 units · Prices subject to change without prior notice. <a href="terms.html">Read the terms</a></p>
+  </div>
+</section>
+
+<!-- ============ 09 · HOW WE WORK ============ -->
+<section class="way pad spot" id="way" data-ch="Process">
+  <div class="wrap">
+    <div class="head">
+      <div class="chapter reveal" style="justify-content:center"><b>09</b><span></span><p class="eyebrow">The Way We Work</p></div>
+      <h2 class="reveal">From enquiry to <span class="grad">doorstep.</span></h2>
+      <p class="lead reveal">Five simple steps, and the terms laid out plainly up front.</p>
+    </div>
+    <ol class="steps" style="list-style:none">
+      <li class="step reveal"><h3>Enquire</h3><p>Call, WhatsApp or use the form below.</p></li>
+      <li class="step reveal" style="--d:.08s"><h3>Get the price list</h3><p>We send you the current dealer price list.</p></li>
+      <li class="step reveal" style="--d:.16s"><h3>Confirm &amp; pay</h3><p>100% advance payment, minimum 10 units.</p></li>
+      <li class="step reveal" style="--d:.24s"><h3>Delivery</h3><p>1 to 3 days, depending on your location.</p></li>
+      <li class="step reveal" style="--d:.32s"><h3>Doorstep service</h3><p>1+1 year warranty with doorstep service.</p></li>
+    </ol>
+    <p class="terms-h reveal">Terms &amp; conditions at a glance</p>
+    <div class="terms">
+      <div class="term reveal"><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg><h3>1+1 year warranty</h3><p>With doorstep service.</p></div>
+      <div class="term reveal" style="--d:.06s"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9L17 7M7 17l-2.1 2.1"/></svg><h3>Manufacturing defects</h3><p>The warranty covers manufacturing defects only.</p></div>
+      <div class="term reveal" style="--d:.12s"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><h3>Report within 24 hours</h3><p>Transit or physical damage must be reported within 24 hours of delivery.</p></div>
+      <div class="term reveal" style="--d:.18s"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18M7 15h3"/></svg><h3>100% advance payment</h3><p>Orders are processed on full advance payment.</p></div>
+      <div class="term reveal" style="--d:.24s"><svg viewBox="0 0 24 24"><path d="M3 8l9-5 9 5v8l-9 5-9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg><h3>Minimum 10 units</h3><p>Minimum order quantity is 10 nos.</p></div>
+      <div class="term reveal" style="--d:.3s"><svg viewBox="0 0 24 24"><path d="M2 6h11v10H2zM13 9h4l3 3v4h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg><h3>Delivery in 1–3 days</h3><p>Based on geographic location.</p></div>
+      <div class="term reveal" style="--d:.36s"><svg viewBox="0 0 24 24"><path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.2"/></svg><h3>Prices may change</h3><p>Subject to change without prior notice — ask for the current list.</p></div>
+    </div>
+    <p class="more"><a href="terms.html">Read the full terms →</a></p>
+  </div>
+</section>
+
+<!-- ============ 10 · CONTACT ============ -->
+<section class="contact pad spot" id="contact" data-ch="Contact">
+  <div class="wrap">
+    <div class="head">
+      <div class="chapter reveal" style="justify-content:center"><b>10</b><span></span><p class="eyebrow">Say hello</p></div>
+      <h2 class="reveal">Let’s talk <span class="grad">TVs.</span></h2>
+      <p class="lead reveal">Dealers, distributors or buyers — call, WhatsApp or write to us and ask for the current price list.</p>
+    </div>
+    <div class="grid">
+      <div class="info">
+        <div class="ibox reveal"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg><div><small>Sales</small><a href="tel:+919841600963">+91 98416 00963</a><a href="tel:+917401719274">+91 74017 19274</a></div></div>
+        <div class="ibox reveal" style="--d:.06s"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><div><small>Email</small><a href="mailto:info@skterabytes.com">info@skterabytes.com</a><a href="mailto:skterabytes3@gmail.com">skterabytes3@gmail.com</a></div></div>
+        <div class="ibox reveal" style="--d:.12s"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11a7 7 0 10-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><div><small>Corporate address</small><p>12, Mullai Street, Ramani Nagar Extn,<br>West Tambaram, Chennai 600063</p></div></div>
+        <div class="ibox reveal" style="--d:.18s"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg><div><small>Website</small><a href="https://skterabytes.com">skterabytes.com</a></div></div>
+        <div class="map reveal" style="--d:.24s"><iframe title="SK Terabytes on the map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=12+Mullai+Street+Ramani+Nagar+Extn+West+Tambaram+Chennai+600063&amp;output=embed"></iframe></div>
+      </div>
+      <form id="enq" class="reveal" style="--d:.1s" novalidate>
+        <h3>Request the dealer price list</h3>
+        <p>Fill what you can — it opens WhatsApp or your email app with the details ready to send.</p>
+        <div class="row">
+          <label>Your name *<input id="f-name" autocomplete="name" required></label>
+          <label>Phone *<input id="f-phone" type="tel" autocomplete="tel" required></label>
+        </div>
+        <div class="row">
+          <label>Company / shop<input id="f-co" autocomplete="organization"></label>
+          <label>City<input id="f-city" autocomplete="address-level2"></label>
+        </div>
+        <div class="row">
+          <label>Brand<select id="f-brand"><option value="">Not sure / both</option><option value="xudesi">Xudesi™</option><option value="adsan">Adsan</option></select></label>
+          <label>Model<select id="f-model"></select></label>
+        </div>
+        <label>Quantity (minimum 10)<input id="f-qty" inputmode="numeric" placeholder="e.g. 10"></label>
+        <label>Message<textarea id="f-msg"></textarea></label>
+        <div class="form-btns">
+          <button type="button" class="btn wa" id="send-wa">Send on WhatsApp</button>
+          <button type="button" class="btn btn-ghost" id="send-mail">Send by email</button>
+        </div>
+        <p class="err" id="f-err" role="alert"></p>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="grid">
+      <div>
+        <img class="fl" src="assets/img/skt-logo.png" alt="SK Terabytes">
+        <p>Your Trust, Our Promise. OEM / Super Stockist of premium LED Smart TVs, Chennai.</p>
+        <div class="brand-pair"><img src="assets/img/xudesi-logo-h.png" alt="Xudesi"><img class="ad" src="assets/img/adsan-logo.png" alt="Adsan"></div>
+      </div>
+      <div><h4>Explore</h4><ul><li><a href="#house">Our story</a></li><li><a href="#founder">The founder</a></li><li><a href="#xudesi">Xudesi™</a></li><li><a href="#adsan">Adsan</a></li><li><a href="#catalog">Catalog</a></li></ul></div>
+      <div><h4>Info</h4><ul><li><a href="#way">How we work</a></li><li><a href="terms.html">Terms &amp; warranty</a></li><li><a href="privacy.html">Privacy</a></li><li><a href="#contact">Contact</a></li></ul></div>
+      <div><h4>Reach us</h4><ul><li><a href="tel:+919841600963">+91 98416 00963</a></li><li><a href="tel:+917401719274">+91 74017 19274</a></li><li><a href="mailto:info@skterabytes.com">info@skterabytes.com</a></li><li style="color:#8f877a;font-size:.84rem">12, Mullai Street, Ramani Nagar Extn,<br>West Tambaram, Chennai 600063</li></ul></div>
+    </div>
+    <div class="copy"><span>© <span id="yr">2026</span> SK Terabytes. All rights reserved.</span><span>Xudesi™ and Adsan are brands of SK Terabytes.</span></div>
+  </div>
+</footer>
+
+<div class="actbar"><a class="c" href="tel:+917401719274">Call sales</a><a class="w" href="https://wa.me/917401719274?text=Hello%20SK%20Terabytes%2C%20I%20would%20like%20the%20dealer%20price%20list." target="_blank" rel="noopener">WhatsApp</a></div>
+
+<script src="assets/js/tv.js"></script>
+<script src="assets/js/site.js"></script>
 </body>
 </html>
