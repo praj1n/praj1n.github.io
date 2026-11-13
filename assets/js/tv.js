@@ -7,7 +7,7 @@
   'use strict';
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var saveData = !!(navigator.connection && navigator.connection.saveData);
-  var BASE = 'assets/video/', WP = 'assets/img/wp/', VER = '?v=20261113d';
+  var BASE = 'assets/video/', WP = 'assets/img/wp/', VER = '?v=20261113e';
   function picSrc(n) { return (typeof n === 'number' ? BASE + 'ch' + n + '.jpg' : WP + n + '.jpg') + VER; }
   var CHANNELS = {
     1: 'Wild Colours', 2: 'Deep Blue', 3: 'Splash', 4: 'Colour Burst', 5: 'Fresh', 6: 'Golden Hour', 7: 'Bloom', 8: 'Studio Gold', 9: 'Studio Colour'

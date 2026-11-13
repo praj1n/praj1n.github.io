@@ -218,6 +218,7 @@
       if (brand === b.dataset.b) return;
       brand = b.dataset.b; $$('.tabs button').forEach(function (x) { x.setAttribute('aria-selected', x === b); });
       renderCards(true);
+      var hg = $('#catalog h2 .gold'); if (hg) { hg.classList.remove('flip'); void hg.offsetWidth; hg.classList.add('flip'); }
     });
   });
   $$('.filters button').forEach(function (b) {

@@ -618,3 +618,9 @@ footer .wrap{position:relative;z-index:1}
 .xud::after{content:"";position:absolute;left:10%;right:10%;top:0;height:1px;background:linear-gradient(90deg,transparent,rgba(224,166,63,.85) 50%,transparent);box-shadow:0 0 70px 10px rgba(224,166,63,.2);pointer-events:none;z-index:1}
 .lu:focus-visible{outline:none}
 .lu:focus-visible .lab b{text-decoration:underline;text-underline-offset:5px}
+
+/* catalog heading follows the selected brand: gold (Xudesi) -> light blue to blue (Adsan), same shimmer */
+.cat h2 .gold{display:inline-block}
+.cat[data-brand="adsan"] h2 .gold{background:linear-gradient(110deg,#d7ecff 0%,#5db0ff 32%,#f1f8ff 52%,#2b97ff 68%,#0a6fd6 100%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 7s linear infinite}
+.cat h2 .gold.flip{animation:shimmer 7s linear infinite,brandflip .6s cubic-bezier(.2,.8,.2,1)}
+@keyframes brandflip{from{opacity:0;transform:translateY(10px) scale(.96);filter:blur(6px)}to{opacity:1;transform:none;filter:blur(0)}}
