@@ -7,7 +7,8 @@
   'use strict';
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var saveData = !!(navigator.connection && navigator.connection.saveData);
-  var BASE = 'assets/video/';
+  var BASE = 'assets/video/', WP = 'assets/img/wp/', VER = '?v=20261113c';
+  function picSrc(n) { return (typeof n === 'number' ? BASE + 'ch' + n + '.jpg' : WP + n + '.jpg') + VER; }
   var CHANNELS = {
     1: 'Wild Colours', 2: 'Deep Blue', 3: 'Splash', 4: 'Colour Burst', 5: 'Fresh', 6: 'Golden Hour', 7: 'Bloom'
   };
@@ -28,7 +29,7 @@
       (o.interactive === false ? ' data-static="1"' : '');
     return '<figure class="tvf ' + cls + '"' + attrs + '>' +
       '<div class="tvf-screen">' +
-        '<img class="tvf-pic" alt="" decoding="async"' + (o.lazy === false ? '' : ' loading="lazy"') + ' src="' + (splash && mode === 'video' ? splash : BASE + 'ch' + first + '.jpg') + '">' +
+        '<img class="tvf-pic" alt="" decoding="async"' + (o.lazy === false ? '' : ' loading="lazy"') + ' src="' + (splash && mode === 'video' ? splash : picSrc(first)) + '">' +
         (mode === 'video' ? '<video class="tvf-vid" muted playsinline loop preload="none" disablepictureinpicture></video>' : '') +
         '<canvas class="tvf-noise" width="96" height="54"></canvas>' +
         '<span class="tvf-osd"></span><span class="tvf-glare"></span>' +
@@ -39,24 +40,10 @@
       '</figure>';
   }
 
-  /* ---- shared static generator ---- */
-  var nctx = null, nimg = null, noiseRaf = 0, noiseUsers = new Set();
-  function noiseTick() {
-    noiseUsers.forEach(function (tv) {
-      if (performance.now() > tv.noiseUntil) { noiseUsers.delete(tv); tv.noise.classList.remove('on'); return; }
-      var c = tv.noise.getContext('2d');
-      if (!nimg) nimg = c.createImageData(96, 54);
-      var d = nimg.data;
-      for (var i = 0; i < d.length; i += 4) { var v = (Math.random() * 255) | 0; d[i] = d[i + 1] = d[i + 2] = v; d[i + 3] = 255; }
-      c.putImageData(nimg, 0, 0);
-    });
-    noiseRaf = noiseUsers.size ? requestAnimationFrame(noiseTick) : 0;
-  }
+  /* ---- channel change: a quick cut to black, then the new picture ---- */
   function burst(tv, ms) {
-    tv.noiseUntil = performance.now() + ms;
-    tv.noise.classList.add('on');
-    noiseUsers.add(tv);
-    if (!noiseRaf) noiseRaf = requestAnimationFrame(noiseTick);
+    tv.noise.classList.add('on'); clearTimeout(tv._bt);
+    tv._bt = setTimeout(function () { tv.noise.classList.remove('on'); }, ms);
   }
 
   /* ---- TV class ---- */
@@ -65,7 +52,7 @@
     var self = this;
     this.el = el;
     this.mode = el.dataset.mode || 'poster';
-    this.order = (el.dataset.order || '1').split(',').map(Number);
+    this.order = (el.dataset.order || '1').split(',').map(function (x) { return /^\d+$/.test(x) ? +x : x; });
     this.i = 0;
     this.splash = el.dataset.splash || '';
     this.auto = +el.dataset.auto || 0;
@@ -92,21 +79,23 @@
     io.observe(el);
   }
   TV.prototype.ch = function () { return this.order[this.i]; };
-  TV.prototype.show = function (withNoise) {
-    var n = this.ch(), self = this;
-    if (withNoise) burst(this, 340);
-    this.el.classList.remove('vid-on');
-    this.pic.src = BASE + 'ch' + n + '.jpg';
-    this.label();
-    if (this.vid && this.visible && !saveData) {
-      var v = this.vid;
-      v.src = BASE + 'ch' + n + '.mp4';
-      v.currentTime = 0;
-      var p = v.play(); if (p && p.catch) p.catch(function () {});
+  TV.prototype.show = function (blink) {
+    var self = this, n = this.ch();
+    function apply() {
+      self.el.classList.remove('vid-on');
+      self.pic.src = picSrc(n);
+      self.label();
+      if (self.vid && self.visible && !saveData) {
+        var v = self.vid;
+        v.src = BASE + 'ch' + n + '.mp4' + VER;
+        v.currentTime = 0;
+        var p = v.play(); if (p && p.catch) p.catch(function () {});
+      }
     }
+    if (blink) { burst(this, 520); clearTimeout(this._sw); this._sw = setTimeout(apply, 170); } else apply();
   };
   TV.prototype.label = function () {
-    if (!this.osd) return;
+    if (!this.osd || typeof this.ch() !== 'number') return;
     var o = this.osd, n = this.ch();
     o.textContent = 'CH ' + (this.i + 1 < 10 ? '0' : '') + (this.i + 1) + '  ·  ' + CHANNELS[n].toUpperCase();
     o.classList.add('show'); clearTimeout(this._ot);

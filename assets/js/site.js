@@ -47,6 +47,10 @@
 
   function modelName(b, s, t) { return DATA[b].name + ' ' + s + '″ ' + TIERS[t].label; }
   function waLink(text) { return 'https://wa.me/' + WA + '?text=' + encodeURIComponent(text); }
+  var WALLS = ['honey', 'frog', 'chameleon', 'kiwi', 'dragon', 'lake', 'apples', 'peacock', 'tulips'];
+  var WALL_PICK = { xudesi: ['honey', 'frog', 'chameleon', 'kiwi', 'dragon'], adsan: ['lake', 'tulips', 'peacock', 'apples', 'chameleon', 'dragon'] };
+  function wallOrder(b, i) { var f = WALL_PICK[b][i]; return [f].concat(WALLS.filter(function (w) { return w !== f; })); }
+  function modalOrder(i) { var first = [7, 5, 6, 1][(+i || 0) % 4]; return [first].concat([7, 5, 6, 1, 4, 3, 2].filter(function (c) { return c !== first; })); }
   function rot(i) { var a = [1, 2, 3, 4, 5, 6, 7], k = i % 7; return a.slice(k).concat(a.slice(0, k)); }
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
 
@@ -155,7 +159,7 @@
     var b = el.dataset.brand, d = DATA[b];
     el.innerHTML = d.sizes.map(function (z, i) {
       return '<div class="lu" role="button" tabindex="0" aria-label="' + modelName(b, z[0], z[1]) + ' — view details" data-info="' + b + '|' + z[0] + '|' + z[1] + '|' + i + '" style="--d:' + z[0] + '">' +
-        SKT_TV.html({ brand: d.name.toUpperCase(), cls: d.cls, mode: 'poster', order: rot(i + (b === 'adsan' ? 2 : 0)), interactive: false }) +
+        SKT_TV.html({ brand: d.name.toUpperCase(), cls: d.cls, mode: 'poster', order: wallOrder(b, i), interactive: false }) +
         '<div class="lab"><b>' + z[0] + '″</b><small>' + TIERS[z[1]].label + '</small></div></div>';
     }).join('');
     SKT_TV.mount(el);
@@ -172,7 +176,7 @@
   /* ---- brand cards: live TV previews + pointer parallax ---- */
   $$('.b-tv').forEach(function (el, i) {
     var d = DATA[el.dataset.tv];
-    el.innerHTML = SKT_TV.html({ brand: d.name.toUpperCase(), cls: d.cls, mode: 'poster', order: rot(i === 0 ? 1 : 3), interactive: false, lazy: false });
+    el.innerHTML = SKT_TV.html({ brand: d.name.toUpperCase(), cls: d.cls, mode: 'poster', order: el.dataset.tv === 'xudesi' ? ['honey', 'frog', 'chameleon', 'kiwi', 'dragon', 'lake', 'apples', 'peacock', 'tulips'] : ['lake', 'tulips', 'peacock', 'apples', 'chameleon', 'dragon', 'honey', 'frog', 'kiwi'], interactive: false, lazy: false });
     SKT_TV.mount(el);
   });
   if (fine && !reduce) {
@@ -193,7 +197,7 @@
       var s = z[0], t = z[1], T = TIERS[t];
       var msg = 'Hello SK Terabytes, I would like the dealer price for ' + modelName(brand, s, t) + '.';
       return '<article class="card" data-t="' + t + '"><span class="info-hint">More info ↗</span>' +
-        '<div class="art">' + SKT_TV.html({ brand: d.name.toUpperCase(), cls: d.cls, mode: 'poster', order: rot(i), interactive: false }) + '</div>' +
+        '<div class="art">' + SKT_TV.html({ brand: d.name.toUpperCase(), cls: d.cls, mode: 'poster', order: wallOrder(brand, i), interactive: false }) + '</div>' +
         '<h3><button type="button" class="stretch" data-info="' + brand + '|' + s + '|' + t + '|' + i + '">' + d.name + (d.tm ? '<sup>' + d.tm + '</sup>' : '') + ' ' + s + '″</button></h3><p class="sub">' + T.label + '</p>' +
         '<div class="chips"><span class="t">' + s + ' inch</span><span>' + T.short + '</span><span>' + T.os + '</span><span>1+1 yr warranty</span></div>' +
         '<div class="go"><button type="button" class="p" data-ask="' + brand + '|' + s + '|' + t + '">Get dealer price</button><a class="w" target="_blank" rel="noopener" href="' + waLink(msg) + '">WhatsApp</a></div></article>';
@@ -232,7 +236,7 @@
     var msg = 'Hello SK Terabytes, I would like the dealer price for ' + modelName(b, s, t) + '.';
     dlg.innerHTML = '<div class="m-box" data-brand="' + b + '">' +
       '<button class="m-close" aria-label="Close">×</button>' +
-      '<div class="m-media">' + SKT_TV.html({ brand: d.name.toUpperCase(), cls: d.cls, mode: 'video', order: rot(+i || 0), hint: 'Tap the TV to change channel', lazy: false }) + '</div>' +
+      '<div class="m-media">' + SKT_TV.html({ brand: d.name.toUpperCase(), cls: d.cls, mode: 'video', order: modalOrder(i), hint: 'Tap the TV to change channel', lazy: false }) + '</div>' +
       '<div class="m-body"><p class="eyebrow" style="color:var(--ac)">' + d.name + (d.tm ? '™' : '') + ' · ' + s + ' inch</p>' +
       '<h3>' + d.name + (d.tm ? '<sup>' + d.tm + '</sup>' : '') + ' ' + s + '″</h3><p class="sub">' + T.label + '</p>' +
       '<dl class="specs">' + rows +
@@ -304,46 +308,49 @@
   /* ---- clarity compare: hover / drag / click / keys / magnifier / sweep ---- */
   (function () {
     var c = $('#cmp'); if (!c) return;
-    var blurImg = $('.blur', c), sharpImg = $('.sharp', c), lens = $('.lens', c);
-    var p = 50, goal = 50, drag = false, used = false, lensOn = false, anim = 0, rafLoop = 0;
-    var BLUR = blurImg.getAttribute('src'), SHARP = sharpImg.getAttribute('src');
+    var blurImg = $('.blur', c), sharpImg = $('.sharp', c), lens = $('.lens', c), lin = $('.lin', c), tip = $('.tip', c);
+    var p = 50, goal = 50, drag = false, used = false, lensOn = false, inside = false, anim = 0, rafLoop = 0, lastE = null;
+    var BLUR = blurImg.getAttribute('src'), SHARP = sharpImg.getAttribute('src'), Z = 3;
+    var TIP_DEFAULT = tip.textContent;
     function clamp(v) { return Math.max(0, Math.min(100, v)); }
     function set(v) { p = clamp(v); c.style.setProperty('--p', p + '%'); c.setAttribute('aria-valuenow', Math.round(p)); }
     function touched() { if (!used) { used = true; c.classList.add('used'); } anim++; }
     function tween(to, ms, cb) {
-      var id = ++anim, from = p, s = performance.now();
+      var id = ++anim, from = p, s0 = performance.now();
       (function f(n) {
         if (id !== anim) return;
-        var k = Math.min(1, (n - s) / ms), e = k < .5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
+        var k = Math.min(1, (n - s0) / ms), e = k < .5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
         set(from + (to - from) * e); goal = p;
         if (k < 1) requestAnimationFrame(f); else if (cb) cb();
-      })(s);
+      })(s0);
     }
     function rect(e) { var r = c.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top, w: r.width, h: r.height }; }
     function loop() { rafLoop = 0; if (Math.abs(goal - p) > .05) { set(p + (goal - p) * .22); rafLoop = requestAnimationFrame(loop); } }
     function follow(e) { var q = rect(e); goal = clamp(q.x / q.w * 100); if (!rafLoop) rafLoop = requestAnimationFrame(loop); }
-    function moveLens(e) {
-      var q = rect(e), Z = 2.6, size = lens.offsetWidth;
-      lens.style.left = q.x + 'px'; lens.style.top = q.y + 'px';
-      lens.style.backgroundImage = 'url(' + ((q.x / q.w * 100 < p) ? BLUR : SHARP) + ')';
-      lens.style.backgroundSize = (q.w * Z) + 'px ' + (q.h * Z) + 'px';
-      lens.style.backgroundPosition = (-(q.x * Z - size / 2)) + 'px ' + (-(q.y * Z - size / 2)) + 'px';
+    function placeLens(x, y, w, h) {
+      var size = lens.offsetWidth;
+      lens.style.left = x + 'px'; lens.style.top = y + 'px';
+      lin.style.backgroundImage = 'url(' + ((x / w * 100 < p) ? BLUR : SHARP) + ')';
+      lin.style.backgroundSize = (w * Z) + 'px ' + (h * Z) + 'px';
+      lin.style.backgroundPosition = (-(x * Z - size / 2)) + 'px ' + (-(y * Z - size / 2)) + 'px';
     }
+    function moveLens(e) { var q = rect(e); placeLens(q.x, q.y, q.w, q.h); }
+    c.addEventListener('pointerenter', function () { inside = true; c.classList.add('hover'); });
     c.addEventListener('pointerdown', function (e) {
-      touched(); drag = true; c.classList.add('drag');
+      touched(); drag = true; inside = true; c.classList.add('drag', 'hover');
       try { c.setPointerCapture(e.pointerId); } catch (_) {}
       var q = rect(e); set(q.x / q.w * 100); goal = p; if (lensOn) moveLens(e);
     });
     c.addEventListener('pointermove', function (e) {
-      if (e.pointerType === 'mouse') c.classList.add('hover');
+      inside = true; c.classList.add('hover');
       var q = rect(e);
       if (drag) { set(q.x / q.w * 100); goal = p; }
       else if (e.pointerType === 'mouse') { touched(); follow(e); }
       if (lensOn) moveLens(e);
     });
-    function up() { drag = false; c.classList.remove('drag'); }
+    function up(e) { drag = false; c.classList.remove('drag'); if (e && e.pointerType && e.pointerType !== 'mouse') { inside = false; c.classList.remove('hover'); } }
     c.addEventListener('pointerup', up); c.addEventListener('pointercancel', up);
-    c.addEventListener('pointerleave', function () { c.classList.remove('hover'); });
+    c.addEventListener('pointerleave', function () { inside = false; c.classList.remove('hover'); });
     c.addEventListener('keydown', function (e) {
       var k = e.key, v = k === 'ArrowLeft' ? p - 5 : k === 'ArrowRight' ? p + 5 : k === 'Home' ? 0 : k === 'End' ? 100 : null;
       if (v === null) return; e.preventDefault(); touched(); goal = clamp(v); set(goal);
@@ -352,7 +359,15 @@
     function sweep() { anim++; tween(6, 600, function () { tween(94, 1700, function () { tween(50, 800); }); }); }
     $('#cmp-sweep').addEventListener('click', function () { touched(); sweep(); });
     var lb = $('#cmp-lens');
-    lb.addEventListener('click', function () { lensOn = !lensOn; c.classList.toggle('lens-on', lensOn); lb.classList.toggle('on', lensOn); lb.setAttribute('aria-pressed', lensOn); });
+    lb.addEventListener('click', function () {
+      lensOn = !lensOn; c.classList.toggle('lens-on', lensOn); lb.classList.toggle('on', lensOn); lb.setAttribute('aria-pressed', lensOn);
+      if (lensOn) {
+        /* show the lens straight away so it is obvious what the button does */
+        var r = c.getBoundingClientRect(); placeLens(r.width * .72, r.height * .5, r.width, r.height);
+        c.classList.add('hover'); c.classList.remove('used'); tip.textContent = 'Magnifier on — move over the picture to zoom in 3×';
+        setTimeout(function () { if (!inside) c.classList.remove('hover'); }, 2600);
+      } else { tip.textContent = TIP_DEFAULT; c.classList.remove('hover'); if (used) c.classList.add('used'); }
+    });
     if (!reduce) {
       new IntersectionObserver(function (es, o) { if (es[0].isIntersecting) { o.disconnect(); setTimeout(function () { if (!used) sweep(); }, 500); } }, { threshold: .55 }).observe(c);
     }
