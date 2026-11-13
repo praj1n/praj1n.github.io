@@ -7,7 +7,7 @@
   'use strict';
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var saveData = !!(navigator.connection && navigator.connection.saveData);
-  var BASE = 'assets/video/', WP = 'assets/img/wp/', VER = '?v=20261113g';
+  var BASE = 'assets/video/', WP = 'assets/img/wp/', VER = '?v=20261114a';
   function picSrc(n) { return (typeof n === 'number' ? BASE + 'ch' + n + '.jpg' : WP + n + '.jpg') + VER; }
   var CHANNELS = {
     1: 'Wild Colours', 2: 'Deep Blue', 3: 'Splash', 4: 'Colour Burst', 5: 'Fresh', 6: 'Golden Hour', 7: 'Bloom', 8: 'Studio Gold', 9: 'Studio Colour'
@@ -102,6 +102,12 @@
     this._ot = setTimeout(function () { o.classList.remove('show'); }, 2400);
   };
   TV.prototype.next = function () { this.i = (this.i + 1) % this.order.length; this.show(true); this.arm(); };
+  /* switch straight to a given channel or wallpaper (added to this TV's list if new) */
+  TV.prototype.tune = function (val) {
+    var k = this.order.indexOf(val);
+    if (k < 0) { this.order.push(val); k = this.order.length - 1; }
+    this.i = k; this.show(true); this.arm();
+  };
   TV.prototype.arm = function () {
     var self = this; clearTimeout(this.timer);
     if (this.auto && !reduce && this.visible) this.timer = setTimeout(function () { self.next(); }, this.auto);

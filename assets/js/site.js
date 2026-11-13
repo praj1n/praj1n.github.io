@@ -47,14 +47,15 @@
 
   function modelName(b, s, t) { return DATA[b].name + ' ' + s + '″ ' + TIERS[t].label; }
   function waLink(text) { return 'https://wa.me/' + WA + '?text=' + encodeURIComponent(text); }
-  var WALLS = ['honey', 'pepper', 'chameleon', 'strawberry', 'owl', 'oranges', 'jelly', 'budgie', 'kiwidrink', 'amethyst', 'peony', 'powder', 'dahlia'];
-  /* one unique wallpaper per model; the two brand cards use honey (Xudesi) and the jellyfish (Adsan) */
-  var WALL_PICK = { xudesi: ['pepper', 'chameleon', 'strawberry', 'owl', 'oranges'], adsan: ['budgie', 'kiwidrink', 'amethyst', 'peony', 'powder', 'dahlia'] };
-  function wallsFrom(f) { return [f].concat(WALLS.filter(function (w) { return w !== f; })); }
-  function wallOrder(b, i) { return wallsFrom(WALL_PICK[b][i]); }
-  function brandWalls(b) { return wallsFrom(b === 'xudesi' ? 'honey' : 'jelly'); }
+  /* Wallpapers. Lineups, brand cards and the catalog each get their own set, so no two
+     TVs on the page start on the same picture. */
+  var BRAND_WALL = { xudesi: 'honey', adsan: 'jelly' };
+  var LINEUP_WALLS = { xudesi: ['pepper', 'chameleon', 'strawberry', 'owl', 'oranges'], adsan: ['budgie', 'kiwidrink', 'amethyst', 'peony', 'powder', 'dahlia'] };
+  var CARD_WALLS = { xudesi: ['chrysanth', 'apple', 'candied', 'lava', 'nectarine'], adsan: ['cat', 'figs', 'clips', 'cactus', 'grapes', 'cherries'] };
+  var EXTRA_WALLS = ['coconut', 'roses', 'lizard', 'tulip', 'avocado', 'broccoli', 'pasta', 'tomatoes'];
+  var CARD_POOL = [].concat(CARD_WALLS.xudesi, CARD_WALLS.adsan, EXTRA_WALLS, LINEUP_WALLS.xudesi, LINEUP_WALLS.adsan);
+  function shuffle(a) { for (var k = a.length - 1; k > 0; k--) { var r = Math.floor(Math.random() * (k + 1)), t = a[k]; a[k] = a[r]; a[r] = t; } return a; }
   function modalOrder(b) { var first = b === 'xudesi' ? 8 : 9; return [first].concat([8, 9, 7, 5, 6, 1, 4, 3, 2].filter(function (c) { return c !== first; })); }
-  function rot(i) { var a = [1, 2, 3, 4, 5, 6, 7], k = i % 7; return a.slice(k).concat(a.slice(0, k)); }
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
 
   /* ---- preloader ---- */
@@ -179,7 +180,7 @@
     el.style.setProperty('--n', d.sizes.length);
     el.innerHTML = d.sizes.map(function (z, i) {
       return '<div class="lu" role="button" tabindex="0" aria-label="' + modelName(b, z[0], z[1]) + ' — view details" data-info="' + b + '|' + z[0] + '|' + z[1] + '|' + i + '" style="--d:' + z[0] + '">' +
-        SKT_TV.html({ brand: d.name.toUpperCase(), cls: d.cls, mode: 'poster', order: wallOrder(b, i), interactive: false }) +
+        SKT_TV.html({ brand: d.name.toUpperCase(), cls: d.cls, mode: 'poster', order: [LINEUP_WALLS[b][i]], interactive: false }) +
         '<div class="lab"><b>' + z[0] + '″</b><small>' + TIERS[z[1]].label + '</small></div></div>';
     }).join('');
     SKT_TV.mount(el);
@@ -196,7 +197,7 @@
   /* ---- brand cards: live TV previews + pointer parallax ---- */
   $$('.b-tv').forEach(function (el, i) {
     var d = DATA[el.dataset.tv];
-    el.innerHTML = SKT_TV.html({ brand: d.name.toUpperCase(), cls: d.cls, mode: 'poster', order: brandWalls(el.dataset.tv), interactive: false, lazy: false });
+    el.innerHTML = SKT_TV.html({ brand: d.name.toUpperCase(), cls: d.cls, mode: 'poster', order: [BRAND_WALL[el.dataset.tv]], interactive: false, lazy: false });
     SKT_TV.mount(el);
   });
   if (fine && !reduce) {
@@ -217,7 +218,7 @@
       var s = z[0], t = z[1], T = TIERS[t];
       var msg = 'Hello SK Terabytes, I would like the dealer price for ' + modelName(brand, s, t) + '.';
       return '<article class="card" data-t="' + t + '"><span class="info-hint">More info ↗</span>' +
-        '<div class="art">' + SKT_TV.html({ brand: d.name.toUpperCase(), cls: d.cls, mode: 'poster', order: wallOrder(brand, i), interactive: false }) + '</div>' +
+        '<div class="art">' + SKT_TV.html({ brand: d.name.toUpperCase(), cls: d.cls, mode: 'poster', order: [CARD_WALLS[brand][i]], interactive: false }) + '</div>' +
         '<h3><button type="button" class="stretch" data-info="' + brand + '|' + s + '|' + t + '|' + i + '">' + d.name + (d.tm ? '<sup>' + d.tm + '</sup>' : '') + ' ' + s + '″</button></h3><p class="sub">' + T.label + '</p>' +
         '<div class="chips"><span class="t">' + s + ' inch</span><span>' + T.short + '</span><span>' + T.os + '</span><span>1+1 yr warranty</span></div>' +
         '<div class="go"><button type="button" class="p" data-ask="' + brand + '|' + s + '|' + t + '">Get dealer price</button><a class="w" target="_blank" rel="noopener" href="' + waLink(msg) + '">WhatsApp</a></div></article>';
@@ -225,9 +226,25 @@
     SKT_TV.mount(grid); applyFilter();
     $$('.card', grid).forEach(function (c) {
       var tv = c.querySelector('.tvf'), last = 0;
-      c.addEventListener('pointerenter', function (e) { if (e.pointerType === 'touch') return; var n = performance.now(); if (n - last > 1400 && tv._tv) { last = n; tv._tv.next(); } });
+      c.addEventListener('pointerenter', function (e) {
+        if (e.pointerType === 'touch' || !tv._tv) return;
+        var n = performance.now(); if (n - last < 1400) return; last = n;
+        var w = nextCardWall(); if (w) tv._tv.tune(w);
+      });
     });
     if (animate && hasGsap && !reduce) gsap.from($$('.card', grid), { y: 34, opacity: 0, scale: .96, duration: .55, stagger: .07, ease: 'power3.out', clearProps: 'transform,opacity' });
+  }
+  /* one shared, shuffled deck for the catalogue: walk through every wallpaper before any
+     repeats, and never pick one that another catalogue TV is showing right now */
+  var cardDeck = [];
+  function nextCardWall() {
+    var showing = $$('.tvf', grid).map(function (el) { return el._tv && el._tv.ch(); });
+    for (var tries = 0; tries < CARD_POOL.length * 2; tries++) {
+      if (!cardDeck.length) cardDeck = shuffle(CARD_POOL.slice());
+      var w = cardDeck.shift();
+      if (showing.indexOf(w) < 0) return w;
+    }
+    return null;
   }
   function applyFilter() { $$('.card', grid).forEach(function (c) { c.classList.toggle('hide', filter !== 'all' && c.dataset.t !== filter); }); }
   $$('.tabs button').forEach(function (b) {
