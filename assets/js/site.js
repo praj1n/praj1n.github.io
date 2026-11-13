@@ -67,11 +67,26 @@
   var nav = $('.nav');
   function onScroll() { nav.classList.toggle('solid', window.scrollY > 30); }
   onScroll(); window.addEventListener('scroll', onScroll, { passive: true });
-  var burger = $('.burger');
-  function menu(open) { document.body.classList.toggle('menu-open', open); burger.setAttribute('aria-expanded', open); }
+  var burger = $('.burger'), menuEl = $('#menu');
+  if (menuEl) menuEl.inert = true;
+  function menu(open) {
+    document.body.classList.toggle('menu-open', open);
+    burger.setAttribute('aria-expanded', open); burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    var bt = $('.bt', burger); if (bt) bt.textContent = open ? 'Close' : 'Menu';
+    if (menuEl) { menuEl.setAttribute('aria-hidden', !open); menuEl.inert = !open; if (open) { var f = $('.menu-links a', menuEl); setTimeout(function () { f && f.focus({ preventScroll: true }); }, 450); } }
+  }
   burger.addEventListener('click', function () { menu(!document.body.classList.contains('menu-open')); });
-  $$('.drawer a').forEach(function (a) { a.addEventListener('click', function () { menu(false); }); });
+  $$('#menu a').forEach(function (a) { a.addEventListener('click', function () { menu(false); }); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') menu(false); });
+  window.addEventListener('resize', function () { if (window.innerWidth > 960 && document.body.classList.contains('menu-open')) menu(false); });
+
+  /* never let a pinch zoom the page OUT below 100% (zooming in stays available) */
+  ['gesturestart', 'gesturechange'].forEach(function (ev) {
+    document.addEventListener(ev, function (e) {
+      var vv = window.visualViewport, z = vv ? vv.scale : 1;
+      if (e.scale < 1 && z <= 1.02) e.preventDefault();
+    }, { passive: false });
+  });
 
   /* ---- chapter tracking: nav + side rail ---- */
   var secs = $$('[data-ch]');
@@ -160,6 +175,8 @@
   /* ---- lineups: real-size ratio, one shared floor line; a click opens the model details ---- */
   $$('.lineup').forEach(function (el) {
     var b = el.dataset.brand, d = DATA[b];
+    el.style.setProperty('--sum', d.sizes.reduce(function (t, z) { return t + z[0]; }, 0));
+    el.style.setProperty('--n', d.sizes.length);
     el.innerHTML = d.sizes.map(function (z, i) {
       return '<div class="lu" role="button" tabindex="0" aria-label="' + modelName(b, z[0], z[1]) + ' — view details" data-info="' + b + '|' + z[0] + '|' + z[1] + '|' + i + '" style="--d:' + z[0] + '">' +
         SKT_TV.html({ brand: d.name.toUpperCase(), cls: d.cls, mode: 'poster', order: wallOrder(b, i), interactive: false }) +
@@ -397,8 +414,9 @@
   /* ---- hero background: slow flowing lines that bend toward the pointer ---- */
   (function () {
     var cv = $('#bgfx'); if (!cv) return;
-    var c = cv.getContext('2d'), DPR = Math.min(window.devicePixelRatio || 1, 1.5), W = 0, H = 0;
-    var N = 30, vis = true, mx = .65, my = .45, tx = .65, ty = .45, last = 0;
+    var small = window.innerWidth < 700;
+    var c = cv.getContext('2d'), DPR = small ? 1 : Math.min(window.devicePixelRatio || 1, 1.5), W = 0, H = 0;
+    var N = small ? 16 : 30, vis = true, mx = .65, my = .45, tx = .65, ty = .45, last = 0;
     function size() { var r = cv.getBoundingClientRect(); W = cv.width = Math.max(1, Math.round(r.width * DPR)); H = cv.height = Math.max(1, Math.round(r.height * DPR)); }
     size(); window.addEventListener('resize', size);
     var hero = cv.parentElement;

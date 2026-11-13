@@ -65,16 +65,6 @@ h2{font-size:clamp(2rem,4.6vw,3.4rem)}
 .nav ul a{display:block;padding:8px 14px;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;font-weight:500;color:#cfc6b8;border-radius:999px;transition:color .2s,background .2s}
 .nav ul a:hover,.nav ul a.on{color:#fff;background:rgba(255,255,255,.07)}
 .nav .cta{padding:10px 20px;font-size:.85rem}
-.burger{display:none;width:44px;height:44px;border-radius:12px;position:relative}
-.burger span,.burger span::before,.burger span::after{content:"";position:absolute;left:11px;right:11px;height:2px;background:#fff;border-radius:2px;transition:.3s}
-.burger span{top:21px}.burger span::before{left:0;right:0;top:-7px}.burger span::after{left:0;right:0;top:7px}
-.menu-open .burger span{background:transparent}
-.menu-open .burger span::before{top:0;transform:rotate(45deg)}
-.menu-open .burger span::after{top:0;transform:rotate(-45deg)}
-.drawer{position:fixed;inset:0;z-index:90;background:rgba(13,11,9,.97);display:flex;flex-direction:column;justify-content:center;padding:40px 32px;gap:6px;transform:translateY(-100%);transition:transform .5s cubic-bezier(.7,0,.2,1);visibility:hidden}
-.menu-open .drawer{transform:none;visibility:visible}
-.drawer a{font-size:1.8rem;font-weight:600;padding:8px 0;border-bottom:1px solid var(--line)}
-.drawer .btn{margin-top:20px;justify-content:center;font-size:1rem;border-bottom:0}
 
 /* chapter rail */
 .rail{position:fixed;right:18px;top:50%;transform:translateY(-50%);z-index:80;display:flex;flex-direction:column;gap:14px}
@@ -321,7 +311,7 @@ footer .copy{margin-top:54px;padding-top:24px;border-top:1px solid var(--line);d
 /* ---------- horizon (your own asset, used as a divider) ---------- */
 
 /* ---------- TV frame ---------- */
-.tvf{--sx:1.25%;--sy:1.97%;--sw:97.57%;--sh:82.65%;position:relative;isolation:isolate;aspect-ratio:1455/909;container-type:inline-size;width:100%;margin:0;-webkit-tap-highlight-color:transparent;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.tvf{--sx:.85%;--sy:1.3%;--sw:98.35%;--sh:83.95%;position:relative;isolation:isolate;aspect-ratio:1455/909;container-type:inline-size;width:100%;margin:0;-webkit-tap-highlight-color:transparent;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
 .tvf[role=button]{cursor:pointer}
 .tvf[role=button]:hover{transform:translateY(-4px)}
 .tvf::before{content:"";position:absolute;left:5%;right:5%;top:22%;bottom:-8%;z-index:-1;background:radial-gradient(closest-side,var(--glow,rgba(139,142,226,.45)),transparent);filter:blur(34px);opacity:.85}
@@ -624,3 +614,138 @@ footer .wrap{position:relative;z-index:1}
 .cat[data-brand="adsan"] h2 .gold{background:linear-gradient(110deg,#d7ecff 0%,#5db0ff 32%,#f1f8ff 52%,#2b97ff 68%,#0a6fd6 100%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 7s linear infinite}
 .cat h2 .gold.flip{animation:shimmer 7s linear infinite,brandflip .6s cubic-bezier(.2,.8,.2,1)}
 @keyframes brandflip{from{opacity:0;transform:translateY(10px) scale(.96);filter:blur(6px)}to{opacity:1;transform:none;filter:blur(0)}}
+
+
+/* ================= v4: stable viewport, themed mobile menu, phone polish ================= */
+html{overflow-x:clip;overscroll-behavior-x:none}
+body{overflow-x:clip;overscroll-behavior-x:none}
+img,video,canvas,svg{max-width:100%}
+
+/* menu button (phones/tablets) */
+.burger{display:none;align-items:center;gap:12px;height:44px;padding:0 14px 0 18px;border-radius:999px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.05);color:#fff;font-size:.72rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;position:relative;z-index:101;transition:background .3s,border-color .3s}
+.burger:hover{background:rgba(255,255,255,.1)}
+.burger .bt{min-width:3.6em;text-align:left}
+.burger .bi{position:relative;width:20px;height:12px;flex:none}
+.burger .bi::before,.burger .bi::after{content:"";position:absolute;left:0;height:2px;border-radius:2px;background:#fff;transition:transform .45s cubic-bezier(.7,0,.2,1),top .45s cubic-bezier(.7,0,.2,1),width .3s,background .3s}
+.burger .bi::before{top:0;width:20px}
+.burger .bi::after{top:10px;width:13px}
+.menu-open .burger{border-color:var(--coral);background:rgba(249,110,89,.12)}
+.menu-open .burger .bi::before{top:5px;width:20px;transform:rotate(45deg);background:var(--coral)}
+.menu-open .burger .bi::after{top:5px;width:20px;transform:rotate(-45deg);background:var(--coral)}
+.menu-open .nav{background:transparent;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
+.menu-open{overflow:hidden}
+
+/* full-screen menu */
+.menu{position:fixed;inset:0;z-index:90;display:none;flex-direction:column;overflow-y:auto;overscroll-behavior:contain;padding:108px 28px calc(26px + env(safe-area-inset-bottom));background:#0a0807;visibility:hidden;clip-path:circle(0 at calc(100% - 76px) 40px);transition:clip-path .75s cubic-bezier(.7,0,.2,1),visibility 0s .75s}
+.menu-open .menu{visibility:visible;clip-path:circle(160% at calc(100% - 76px) 40px);transition:clip-path .75s cubic-bezier(.7,0,.2,1),visibility 0s}
+.menu-bg{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.menu-bg::before{content:"";position:absolute;inset:0;background:radial-gradient(520px 420px at 92% 4%,rgba(249,110,89,.22),transparent 70%),radial-gradient(560px 460px at 0% 100%,rgba(139,142,226,.2),transparent 70%)}
+.menu-bg i{position:absolute;right:-60px;top:-110px;width:360px;aspect-ratio:1;border-radius:50%;border:1px solid var(--copper);opacity:0;animation:emit2 7s linear infinite}
+.menu-bg i:nth-child(2){animation-delay:2.3s;border-color:var(--lav)}.menu-bg i:nth-child(3){animation-delay:4.6s}
+.menu-in{position:relative;z-index:1;display:flex;flex-direction:column;flex:1;min-height:min-content}
+.menu-links{list-style:none;margin:0 0 auto}
+.menu-links a{display:flex;align-items:baseline;gap:18px;padding:15px 0;border-bottom:1px solid rgba(255,255,255,.09);font-size:clamp(1.8rem,8.6vw,2.5rem);font-weight:600;letter-spacing:-.015em;line-height:1.1;opacity:0;transform:translateY(26px);transition:opacity .5s,transform .7s cubic-bezier(.2,.8,.2,1),color .25s,padding .25s}
+.menu-open .menu-links a{opacity:1;transform:none;transition-delay:calc(.3s + var(--i) * .07s),calc(.3s + var(--i) * .07s),0s,0s}
+.menu-links b{font-family:var(--f-serif);font-size:.82rem;color:var(--coral);font-weight:700;letter-spacing:.1em;min-width:28px;transform:translateY(-.55em)}
+.menu-links a:active,.menu-links a:focus-visible{color:var(--lav);padding-left:8px}
+.menu-brands{display:flex;align-items:center;gap:22px;margin:30px 0 22px;opacity:0;transition:opacity .6s .75s}
+.menu-open .menu-brands,.menu-open .menu-act{opacity:1}
+.menu-brands img{height:34px;width:auto}
+.menu-brands i{width:1px;height:30px;background:rgba(255,255,255,.25)}
+.menu-act{opacity:0;transition:opacity .6s .85s}
+.menu-act .btn{width:100%;justify-content:center;font-size:1rem;padding:16px 24px}
+.menu-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+.menu-row a{text-align:center;padding:13px 6px;border-radius:14px;border:1px solid rgba(255,255,255,.14);font-size:.84rem;font-weight:500;transition:border-color .25s,background .25s}
+.menu-row a:active{border-color:var(--coral);background:rgba(249,110,89,.12)}
+.menu-open .actbar{display:none}
+.home-link{display:none;padding:10px 20px;font-size:.84rem}
+
+@media (max-width:960px){
+  .menu{display:flex}
+  .burger{display:inline-flex}
+  .home-link{display:inline-flex}
+  .legal{padding-top:120px}
+}
+
+/* phone polish: tighter rhythm, no overlaps */
+@media (max-width:700px){
+  .pad{padding:64px 0}
+  .hero{padding:96px 0 56px;min-height:auto}
+  .scroll-cue{display:none}
+  .hero h1{font-size:clamp(2.4rem,11.5vw,3.2rem);margin:14px 0 18px}
+  .hero .lead{font-size:1rem;margin-bottom:18px}
+  .type{min-height:3.4em;margin-bottom:24px;font-size:1rem}
+  .hero .grid{gap:34px}
+  .hbrands{margin-bottom:22px}
+  .tvf-hint{position:static;display:block;margin-top:14px;text-align:center}
+  .stats .wrap{grid-template-columns:repeat(2,1fr)}
+  .stat{padding:22px 10px}
+  h2{font-size:clamp(1.85rem,8.4vw,2.5rem)}
+  .lead{font-size:1rem}
+  .facts{margin-top:26px}
+  .why{margin-top:56px;gap:14px}
+  .fb{margin-top:76px}
+  .fb .head{margin-bottom:40px}
+  .tl-card{padding:26px 22px}
+  .tl{padding-left:36px}
+  .tl-item{padding-bottom:44px}
+  .vision{margin-top:60px}
+  .brands{padding-top:64px}
+  .brands .head{margin-bottom:34px}
+  .bgrid{gap:16px;padding-bottom:64px}
+  .bcard{padding:38px 20px 28px;border-radius:24px}
+  .blogo{height:104px}
+  .b-tv{margin:22px auto 18px}
+  .xud{padding-top:150px}
+  .xud .head{margin-bottom:40px}
+  .xud .stage,.ads .stage{gap:34px}
+  .lineup-wrap{margin-top:56px}
+  .lineup-title{margin-bottom:22px;font-size:.66rem;letter-spacing:.22em}
+  .ads{padding-top:110px}
+  .ads .head{margin-bottom:40px}
+  .from{width:100%;justify-content:center;flex-wrap:wrap}
+  .xud .stage .btn,.ads .stage .btn{flex:1 1 100%;justify-content:center}
+  .tabs button{padding:12px 28px}
+  .filters{gap:6px;margin-bottom:30px}
+  .cards{gap:16px}
+  .card{padding:22px 18px 20px}
+  .cat .head{margin-bottom:28px}
+  .steps{margin-bottom:60px}
+  .contact .head{margin-bottom:36px}
+  .contact .grid{gap:28px}
+  .ibox{padding:16px 16px}
+  .ibox a,.ibox p{font-size:.98rem;overflow-wrap:anywhere}
+  form{padding:20px 16px}
+  .form-btns .btn{flex:1 1 100%}
+  footer{padding:52px 0 28px}
+  footer .grid{gap:30px}
+  footer .copy{margin-top:34px;flex-direction:column;gap:6px}
+  .cmp-ctl button{flex:1 1 calc(50% - 5px);padding:10px 8px}
+  .m-box{border-radius:20px}
+  dialog.modal{width:calc(100vw - 20px)}
+  .m-body{padding:18px 18px 22px}
+  .m-foot .btn{min-width:0;flex:1 1 100%}
+  .legal h1{font-size:2.1rem}
+}
+
+/* phones and touch: lighter paint so scrolling stays smooth */
+@media (max-width:700px){
+  .lu .tvf::before,.card .tvf::before,.b-tv .tvf::before{display:none}
+  .bhz{opacity:.8}
+}
+@media (hover:none){
+  .bcard::after,.spot::after{display:none}
+  .bcard:hover,.card:hover,.wcard:hover,.term:hover{transform:none}
+  .lu:hover .tvf{transform:none}
+}
+
+/* phones: every lineup fits the screen width, still drawn to scale, on one shared floor */
+@media (max-width:700px){
+  .lineup,.lineup[data-brand]{--gap:6px;--lab:48px;overflow:visible;justify-content:center;padding:6px 0 0}
+  .lu{width:calc(var(--d) * (100vw - 32px - (var(--n) - 1) * var(--gap)) / var(--sum))}
+  .lu .lab{padding-top:10px;white-space:nowrap}
+  .lu .lab b{font-size:.86rem}
+  .lu .lab small{display:none}
+  .lu:first-child::after{left:-16px}.lu:last-child::after{right:-16px}
+  .xud{padding-top:110px}
+}
