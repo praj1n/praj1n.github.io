@@ -7,7 +7,7 @@
   'use strict';
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var saveData = !!(navigator.connection && navigator.connection.saveData);
-  var BASE = 'assets/video/', WP = 'assets/img/wp/', VER = '?v=20261114f';
+  var BASE = 'assets/video/', WP = 'assets/img/wp/', VER = '?v=20261114g';
   function picSrc(n) { return (typeof n === 'number' ? BASE + 'ch' + n + '.jpg' : WP + n + '.jpg') + VER; }
   var CHANNELS = {
     1: 'Wild Colours', 2: 'Deep Blue', 3: 'Splash', 4: 'Colour Burst', 5: 'Fresh', 6: 'Golden Hour', 7: 'Bloom', 8: 'Studio Gold', 9: 'Studio Colour',
@@ -59,6 +59,8 @@
     this.auto = +el.dataset.auto || 0;
     this.hold = +el.dataset.hold || 2300;
     this.booting = false;
+    /* a TV with a start-up screen stays dark until it powers on */
+    if (this.mode === 'video' && this.splash && !reduce) el.classList.add('off');
     this.pic = el.querySelector('.tvf-pic');
     this.vid = el.querySelector('.tvf-vid');
     this.noise = el.querySelector('.tvf-noise');
@@ -122,6 +124,7 @@
     this.started = true;
     var self = this;
     if (this.mode !== 'video') return;
+    this.el.classList.remove('off');
     this.el.classList.add('powering');
     if (this.splash && !reduce) {
       /* boot splash first (held for data-hold ms, like a TV start-up screen), then channel 1 */
@@ -138,7 +141,8 @@
     if (!this.booting) return;
     this.booting = false; clearTimeout(this._boot);
     if (this.osd) this.osd.classList.remove('show');
-    this.el.classList.remove('powering'); this.i = 0; this.show(true); this.arm();
+    var el = this.el; setTimeout(function () { el.classList.remove('powering'); }, 200);
+    this.i = 0; this.show(true); this.arm();
   };
   TV.prototype.enter = function () {
     this.visible = true;

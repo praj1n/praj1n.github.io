@@ -335,8 +335,14 @@ footer .copy{margin-top:54px;padding-top:24px;border-top:1px solid var(--line);d
 @container (max-width:170px){.tvf-brand{display:none}.tvf-osd{display:none}}
 .tvf-hint{position:absolute;right:0;top:100%;margin-top:14px;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);white-space:nowrap}
 .tvf-hint::before{content:"● ";color:var(--coral)}
-.tvf.powering .tvf-screen{animation:crt-on 1.1s ease-out both}
-@keyframes crt-on{0%,30%{clip-path:inset(49.6% 0 49.6% 0);filter:brightness(5)}100%{clip-path:inset(0);filter:brightness(1)}}
+/* power-on: the screen sits dark, a soft line of light grows across, opens to the full picture,
+   and the start-up logo settles in with a slow zoom; the channel label follows once it is up */
+.tvf.off .tvf-pic,.tvf.off .tvf-osd{opacity:0}
+.tvf.powering .tvf-screen{animation:crt-on 1.3s cubic-bezier(.3,.7,.2,1) both}
+.tvf.powering .tvf-pic{animation:logo-in 2.6s cubic-bezier(.2,.7,.2,1) both}
+.tvf.powering .tvf-osd{transition-delay:1.2s}
+@keyframes crt-on{0%{clip-path:inset(49.8% 50% 49.8% 50%);filter:brightness(1.8)}22%{clip-path:inset(49.8% 6% 49.8% 6%);filter:brightness(1.8)}62%{clip-path:inset(0);filter:brightness(1.2)}100%{clip-path:inset(0);filter:brightness(1)}}
+@keyframes logo-in{from{transform:scale(1.07);opacity:.35}to{transform:none;opacity:1}}
 
 /* hero */
 .hero-tv{position:relative;z-index:2}
@@ -791,3 +797,6 @@ body:not(.ready) #bgfx{opacity:0;transform:scale(1.35)}
 body:not(.ready) .nav{opacity:0;transform:translateY(-14px)}
 body:not(.ready) .scroll-cue{opacity:0}
 @media (prefers-reduced-motion:reduce){#pre.open{animation:none}#pre.open::before{-webkit-mask-image:none;mask-image:none}}
+
+/* founder's journey as its own chapter near the end */
+section.founder .fb{margin-top:0}
