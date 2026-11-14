@@ -567,8 +567,11 @@ footer .wrap{position:relative;z-index:1}
 .bx:hover .bcta{box-shadow:0 12px 36px -10px rgba(224,166,63,.8)}
 .bx .bdesc{color:#d9cbb0}.bx .bmeta li{color:#e6cf9a}
 .bhz{position:absolute;left:50%;top:44%;width:190%;max-width:none;transform:translateX(-50%);mix-blend-mode:screen;opacity:.95;z-index:-1;pointer-events:none}
-.ba{background:linear-gradient(165deg,#ffffff,#dcebfc 68%,#c5ddf9);color:var(--ad-d);border-color:rgba(10,120,224,.3)}
-.ba::before{content:"";position:absolute;inset:0;z-index:-1;background:repeating-linear-gradient(115deg,rgba(10,120,224,.06) 0 1px,transparent 1px 38px);-webkit-mask-image:linear-gradient(transparent,#000 70%);mask-image:linear-gradient(transparent,#000 70%)}
+.ba{background:linear-gradient(165deg,#ffffff,#d6e8fc 62%,#b9d6f8);color:var(--ad-d);border-color:rgba(10,120,224,.3)}
+.ba::before{content:"";position:absolute;inset:0;z-index:-1;background:repeating-linear-gradient(115deg,rgba(10,120,224,.1) 0 1px,transparent 1px 38px);-webkit-mask-image:linear-gradient(transparent 5%,#000 62%);mask-image:linear-gradient(transparent 5%,#000 62%)}
+/* enlarged, faint Adsan mark rising from the bottom of the card (same treatment as the Adsan section) */
+.bwm{position:absolute;left:50%;bottom:-6%;width:118%;max-width:none;transform:translateX(-50%);opacity:.09;z-index:-1;pointer-events:none;transition:transform .8s cubic-bezier(.2,.7,.2,1),opacity .5s}
+.ba:hover .bwm{transform:translateX(-50%) translateY(-10px);opacity:.12}
 .ba:hover{border-color:var(--ad);box-shadow:0 34px 90px -34px rgba(10,120,224,.6)}
 .ba .bcta{background:var(--ad);color:#fff}
 .ba:hover .bcta{box-shadow:0 12px 36px -10px rgba(10,120,224,.85)}
