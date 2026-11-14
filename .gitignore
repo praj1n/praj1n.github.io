@@ -1,3 +1,4 @@
 # source footage stays local; only the cut web clips in assets/video are published
 /*.mp4
 .DS_Store
+/*.pdf

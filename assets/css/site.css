@@ -755,3 +755,10 @@ img,video,canvas,svg{max-width:100%}
   .xud{padding-top:110px}
 }
 
+
+/* catalog: brochure download + filters a brand doesn't use */
+.filters[hidden],.filters button[hidden]{display:none}
+.cat .head .btn-dl{margin-top:22px;border:1px solid var(--ac);color:var(--ac2);background:var(--acbg)}
+.btn-dl:hover{transform:translateY(-2px);box-shadow:0 14px 34px -16px var(--ac)}
+.btn-dl svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.btn-dl small{font-size:.74rem;opacity:.7;letter-spacing:.02em}

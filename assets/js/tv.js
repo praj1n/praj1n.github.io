@@ -7,10 +7,11 @@
   'use strict';
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var saveData = !!(navigator.connection && navigator.connection.saveData);
-  var BASE = 'assets/video/', WP = 'assets/img/wp/', VER = '?v=20261114c';
+  var BASE = 'assets/video/', WP = 'assets/img/wp/', VER = '?v=20261114d';
   function picSrc(n) { return (typeof n === 'number' ? BASE + 'ch' + n + '.jpg' : WP + n + '.jpg') + VER; }
   var CHANNELS = {
-    1: 'Wild Colours', 2: 'Deep Blue', 3: 'Splash', 4: 'Colour Burst', 5: 'Fresh', 6: 'Golden Hour', 7: 'Bloom', 8: 'Studio Gold', 9: 'Studio Colour'
+    1: 'Wild Colours', 2: 'Deep Blue', 3: 'Splash', 4: 'Colour Burst', 5: 'Fresh', 6: 'Golden Hour', 7: 'Bloom', 8: 'Studio Gold', 9: 'Studio Colour',
+    10: 'Lagoon', 11: 'Spring Green', 12: 'Fresh Green', 13: 'Colour Pop', 14: 'Cool Splash'
   };
   var SPLASH = {
     xudesi: 'assets/img/splash-xudesi.jpg',
@@ -56,6 +57,8 @@
     this.i = 0;
     this.splash = el.dataset.splash || '';
     this.auto = +el.dataset.auto || 0;
+    this.hold = +el.dataset.hold || 2300;
+    this.booting = false;
     this.pic = el.querySelector('.tvf-pic');
     this.vid = el.querySelector('.tvf-vid');
     this.noise = el.querySelector('.tvf-noise');
@@ -69,8 +72,8 @@
       el.tabIndex = 0;
       el.setAttribute('role', 'button');
       el.setAttribute('aria-label', 'Animated TV. Activate to change channel.');
-      el.addEventListener('click', function () { self.next(); });
-      el.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); self.next(); } });
+      el.addEventListener('click', function () { self.press(); });
+      el.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); self.press(); } });
     }
     if (this.vid) {
       this.vid.addEventListener('playing', function () { el.classList.add('vid-on'); });
@@ -101,6 +104,8 @@
     o.classList.add('show'); clearTimeout(this._ot);
     this._ot = setTimeout(function () { o.classList.remove('show'); }, 2400);
   };
+  /* a tap during the start-up screen tunes to the first channel; after that it changes channel */
+  TV.prototype.press = function () { if (this.booting) this.boot(); else this.next(); };
   TV.prototype.next = function () { this.i = (this.i + 1) % this.order.length; this.show(true); this.arm(); };
   /* switch straight to a given channel or wallpaper (added to this TV's list if new) */
   TV.prototype.tune = function (val) {
@@ -119,12 +124,21 @@
     if (this.mode !== 'video') return;
     this.el.classList.add('powering');
     if (this.splash && !reduce) {
-      /* boot splash first, then channel 1 */
+      /* boot splash first (held for data-hold ms, like a TV start-up screen), then channel 1 */
       this.pic.src = this.splash;
-      setTimeout(function () { self.el.classList.remove('powering'); self.show(true); self.arm(); }, 2300);
+      this.booting = true;
+      var b = this.el.querySelector('.tvf-brand');
+      if (this.osd && b) { this.osd.textContent = b.textContent; this.osd.classList.add('show'); clearTimeout(this._ot); }
+      this._boot = setTimeout(function () { self.boot(); }, this.hold);
     } else {
       this.el.classList.remove('powering'); this.show(false); this.arm();
     }
+  };
+  TV.prototype.boot = function () {
+    if (!this.booting) return;
+    this.booting = false; clearTimeout(this._boot);
+    if (this.osd) this.osd.classList.remove('show');
+    this.el.classList.remove('powering'); this.i = 0; this.show(true); this.arm();
   };
   TV.prototype.enter = function () {
     this.visible = true;

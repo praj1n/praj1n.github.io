@@ -18,7 +18,7 @@
     webos: { label: 'WebOS 4K', short: '4K · Smart', os: 'WebOS' }
   };
   var DATA = {
-    xudesi: { name: 'Xudesi', tm: '™', cls: 'gold', splash: 'xudesi', sizes: [[24, 'non'], [32, 'android'], [43, 'android'], [50, 'webos'], [55, 'webos']] },
+    xudesi: { name: 'Xudesi', tm: '™', cls: 'gold', splash: 'xudesi', sizes: [[24, 'android'], [32, 'android'], [43, 'android'], [50, 'android'], [55, 'android']] },
     adsan: { name: 'Adsan', tm: '', cls: 'blue', splash: 'adsan', sizes: [[24, 'non'], [32, 'android'], [43, 'android'], [50, 'webos'], [55, 'webos'], [65, 'webos']] }
   };
 
@@ -42,6 +42,24 @@
       ['Smart features', 'None (no smart OS)']
     ]
   };
+  /* Xudesi: full per-model sheet from the brochure (every size is Android Smart Series) */
+  var X_PORTS = {
+    small: '1 HDMI · 2 USB · 1 VGA · 1 VGA audio in · 2 AV inputs · headphone jack · AC power input',
+    big: '2 HDMI · 2 USB · 1 AV · LAN (RJ-45) · Wi-Fi · headphone jack · coaxial out'
+  };
+  function xudesiSpecs(size) {
+    return [
+      ['Series', 'Android Smart Series — frameless, with or without voice remote'],
+      ['Panel', 'A+ Grade IPS panel'],
+      ['Resolution', '1920 × 1080 (Full HD)'],
+      ['Display', 'UHD Full Smart'],
+      ['Operating system', 'Android OS'],
+      ['Storage', '1GB / 8GB or 2GB / 16GB internal'],
+      ['Sound', '30W · sound bar model support'],
+      ['Ports', X_PORTS[size <= 24 ? 'small' : 'big']]
+    ];
+  }
+  function specsFor(b, s, t) { return b === 'xudesi' ? xudesiSpecs(+s) : SPECS[t]; }
   var OS_LIST = ['Android', 'Google', 'Web', 'Cloud', 'Wave'];
   var APPS = ['Google Assistant', 'YouTube', 'Netflix', 'Prime Video', 'Google Play', 'Mirror Cast', 'Zee5', 'Sun NXT', 'Hotstar'];
 
@@ -223,7 +241,7 @@
         '<div class="chips"><span class="t">' + s + ' inch</span><span>' + T.short + '</span><span>' + T.os + '</span><span>1+1 yr warranty</span></div>' +
         '<div class="go"><button type="button" class="p" data-ask="' + brand + '|' + s + '|' + t + '">Get dealer price</button><a class="w" target="_blank" rel="noopener" href="' + waLink(msg) + '">WhatsApp</a></div></article>';
     }).join('');
-    SKT_TV.mount(grid); applyFilter();
+    SKT_TV.mount(grid); syncFilters(); applyFilter();
     $$('.card', grid).forEach(function (c) {
       var tv = c.querySelector('.tvf'), last = 0;
       c.addEventListener('pointerenter', function (e) {
@@ -246,6 +264,14 @@
     }
     return null;
   }
+  /* only offer the type filters this brand actually has */
+  function syncFilters() {
+    var have = {}; DATA[brand].sizes.forEach(function (z) { have[z[1]] = 1; });
+    var fs = $('.filters'); if (!fs) return;
+    fs.hidden = Object.keys(have).length < 2;
+    $$('button', fs).forEach(function (b) { b.hidden = b.dataset.f !== 'all' && !have[b.dataset.f]; });
+    if (filter !== 'all' && !have[filter]) { filter = 'all'; $$('button', fs).forEach(function (x) { x.classList.toggle('on', x.dataset.f === 'all'); }); }
+  }
   function applyFilter() { $$('.card', grid).forEach(function (c) { c.classList.toggle('hide', filter !== 'all' && c.dataset.t !== filter); }); }
   $$('.tabs button').forEach(function (b) {
     b.addEventListener('click', function () {
@@ -266,7 +292,7 @@
   document.body.appendChild(dlg);
   function openInfo(b, s, t, i) {
     var d = DATA[b], T = TIERS[t];
-    var rows = SPECS[t].map(function (r) { return '<div><dt>' + r[0] + '</dt><dd>' + esc(r[1]) + '</dd></div>'; }).join('');
+    var rows = specsFor(b, s, t).map(function (r) { return '<div><dt>' + r[0] + '</dt><dd>' + esc(r[1]) + '</dd></div>'; }).join('');
     var extra = t === 'android'
       ? '<h4>Available OS</h4><div class="pills">' + OS_LIST.map(function (x) { return '<span>' + x + '</span>'; }).join('') + '</div>' +
         '<h4>Built-in apps &amp; smart features</h4><div class="pills">' + APPS.map(function (x) { return '<span>' + x + '</span>'; }).join('') + '</div>'
