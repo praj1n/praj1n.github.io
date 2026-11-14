@@ -76,11 +76,20 @@
   function modalOrder(b) { var first = b === 'xudesi' ? 8 : 9; return [first].concat([8, 9, 7, 5, 6, 1, 4, 3, 2].filter(function (c) { return c !== first; })); }
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
 
-  /* ---- preloader ---- */
-  var pre = $('#pre'), t0 = performance.now();
-  function hidePre() { var wait = Math.max(0, 1100 - (performance.now() - t0)); setTimeout(function () { pre && pre.classList.add('gone'); document.body.classList.add('ready'); }, wait); }
+  /* ---- preloader: logo + rings, then a portal opens from the centre and the hero flies in ---- */
+  var pre = $('#pre'), t0 = performance.now(), entered = false;
+  function ready() { document.body.classList.add('ready'); document.dispatchEvent(new Event('skt:enter')); }
+  function enter() {
+    if (entered) return; entered = true;
+    if (!pre || reduce) { pre && pre.classList.add('gone'); ready(); return; }
+    pre.classList.add('open');
+    setTimeout(ready, 380);
+    setTimeout(function () { pre.classList.add('gone'); }, 1500);
+  }
+  function hidePre() { setTimeout(enter, Math.max(0, 1100 - (performance.now() - t0))); }
   if (document.readyState === 'complete') hidePre(); else window.addEventListener('load', hidePre);
-  setTimeout(function () { pre && pre.classList.add('gone'); }, 4000);
+  setTimeout(enter, 4000);
+  function onEnter(fn) { if (document.body.classList.contains('ready')) fn(); else document.addEventListener('skt:enter', fn, { once: true }); }
 
   /* ---- nav ---- */
   var nav = $('.nav');
@@ -444,10 +453,12 @@
       h.style.transform = 'none'; gsap.set(h, { xPercent: -50 });
       gsap.fromTo(h, { y: -30 }, { y: 70, ease: 'none', scrollTrigger: { trigger: h.parentElement, start: 'top bottom', end: 'bottom top', scrub: .6 } });
     });
-    $$('.hb').forEach(function (b, i) {
-      gsap.from(b, { opacity: 0, y: 28, scale: .88, filter: 'blur(8px)', duration: 1.1, delay: .7 + i * .25, ease: 'power3.out', clearProps: 'filter' });
+    onEnter(function () {
+      $$('.hb').forEach(function (b, i) {
+        gsap.from(b, { opacity: 0, y: 28, scale: .88, filter: 'blur(8px)', duration: 1.1, delay: .45 + i * .22, ease: 'power3.out', clearProps: 'filter' });
+      });
+      gsap.from('.hb-label,.hb-sep', { opacity: 0, duration: 1, delay: .4 });
     });
-    gsap.from('.hb-label,.hb-sep', { opacity: 0, duration: 1, delay: .6 });
     $$('.tower .mk').forEach(function (m) { gsap.fromTo(m, { y: 26 }, { y: -26, ease: 'none', scrollTrigger: { trigger: m.parentElement, start: 'top bottom', end: 'bottom top', scrub: .8 } }); });
     $$('.vision p').forEach(function (t) {
       gsap.from(t, { scale: .94, opacity: 0, duration: 1, ease: 'power3.out', scrollTrigger: { trigger: t, start: 'top 85%', once: true } });

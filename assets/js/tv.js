@@ -7,7 +7,7 @@
   'use strict';
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var saveData = !!(navigator.connection && navigator.connection.saveData);
-  var BASE = 'assets/video/', WP = 'assets/img/wp/', VER = '?v=20261114d';
+  var BASE = 'assets/video/', WP = 'assets/img/wp/', VER = '?v=20261114e';
   function picSrc(n) { return (typeof n === 'number' ? BASE + 'ch' + n + '.jpg' : WP + n + '.jpg') + VER; }
   var CHANNELS = {
     1: 'Wild Colours', 2: 'Deep Blue', 3: 'Splash', 4: 'Colour Burst', 5: 'Fresh', 6: 'Golden Hour', 7: 'Bloom', 8: 'Studio Gold', 9: 'Studio Colour',
@@ -143,6 +143,12 @@
   TV.prototype.enter = function () {
     this.visible = true;
     if (this.mode !== 'video') return;
+    /* hold the power-on until the visitor is through the intro portal */
+    if (!entered) {
+      var self = this;
+      if (!this._wait) { this._wait = 1; onEntered(function () { self._wait = 0; setTimeout(function () { if (self.visible) self.enter(); }, 450); }); }
+      return;
+    }
     if (!this.started) this.start();
     else if (this.vid && this.vid.src) { var p = this.vid.play(); if (p && p.catch) p.catch(function () {}); this.arm(); }
   };
@@ -150,6 +156,12 @@
     this.visible = false; clearTimeout(this.timer);
     if (this.vid) this.vid.pause();
   };
+
+  var entered = !document.getElementById('pre'), waiting = [];
+  function onEntered(fn) { waiting.push(fn); }
+  function flush() { if (entered) return; entered = true; waiting.splice(0).forEach(function (f) { f(); }); }
+  document.addEventListener('skt:enter', flush);
+  setTimeout(flush, 5000);
 
   var io = new IntersectionObserver(function (es) {
     es.forEach(function (e) { var tv = e.target._tv; if (!tv) return; e.isIntersecting ? tv.enter() : tv.leave(); });
